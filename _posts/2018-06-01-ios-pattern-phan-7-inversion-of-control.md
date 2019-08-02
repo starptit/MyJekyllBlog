@@ -55,19 +55,19 @@ Khi User tap vào nút, UIKit sẽ nắm bắt sự kiện này, xử lý, và s
 Ví dụ khác, chắc chắn ai cũng đã và đang sử dụng UITableView, thế nhưng bạn có từng để ý đến cách mà chúng ta làm việc với nó không?
 
 <pre class="theme:solarized-dark toolbar:2 plain:false lang:default decode:true ">extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -&gt; Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
        return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userList.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -&gt; CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let reuseCell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "reuseCell")!
         return reuseCell
     }
@@ -92,7 +92,7 @@ Chính từ ví dụ về Framework này, Martin Fowler đã kết luận hóm h
 Đặc điểm và ý nghĩa này khiến cho nhiều người cho rằng, IoC là một trong những cách để thể hiện nguyên lý Dependency Inversion (phần 6).
 
 <p style="text-align: center;">
-  <a href="http://206.189.90.168/wordpress/wp-content/uploads/2018/06/ioc-and-mapper-in-c-6-638.jpg"><img class="size-full wp-image-1750 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2018/06/ioc-and-mapper-in-c-6-638.jpg" alt="" width="638" height="479" srcset="http://swiftyvn.com/wp-content/uploads/2018/06/ioc-and-mapper-in-c-6-638.jpg 638w, http://swiftyvn.com/wp-content/uploads/2018/06/ioc-and-mapper-in-c-6-638-300x225.jpg 300w" sizes="(max-width: 638px) 100vw, 638px" />(Nguồn ảnh: Google)</a>
+  <a href="http://206.189.90.168/wordpress/wp-content/uploads/2018/06/ioc-and-mapper-in-c-6-638.jpg"><img class="size-full wp-image-1750 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2018/06/ioc-and-mapper-in-c-6-638.jpg" alt="" width="638" height="479" srcset="/wp-content/uploads/2018/06/ioc-and-mapper-in-c-6-638.jpg 638w, /wp-content/uploads/2018/06/ioc-and-mapper-in-c-6-638-300x225.jpg 300w" sizes="(max-width: 638px) 100vw, 638px" />(Nguồn ảnh: Google)</a>
 </p>
 
 Theo mình, D.I.P tập trung vào vấn đề Dependency, nghĩa là giữa module cấp cao và cấp thấp với nhau, còn IoC thì tập trung vào vấn đề luồng dữ liệu (flow control), do đó không đúng khi nói IoC là một cách để đảm bảo D.I.P. Bản thân Martin Fowler cũng từng nói IoC  là nguyên lý tổng quát, ông thể hiện nó thông qua ServiceLocator cùng với Dependency Injection pattern, chứ không bàn luận về Dependency Inversion. Mặt khác, mình không tìm thấy tài liệu nào đủ sức thuyết phục để chứng minh hoặc phủ nhận mối liên hệ giữa D.I.P và IoC. Do đó, quan điểm cá nhân của mình không thừa nhận IoC là con của D.I.P như biểu đồ trên.

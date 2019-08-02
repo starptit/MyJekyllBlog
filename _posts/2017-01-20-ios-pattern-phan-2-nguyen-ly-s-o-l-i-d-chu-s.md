@@ -53,25 +53,25 @@ Chúng ta đều biết ngành công nghiệp là ngành rất dễ thay đổi,
 
 Như mình đã nói ở phần trước, khi thay đổi kị nhất là gặp phải code kết dính và không rõ ràng, nếu bạn thiết kế 1 class đảm nhận quá nhiều chức năng, thuật ngữ gọi là GOD class thì khả năng chúng kết dính với nhau khá cao, và khi có bất kì thay đổi nào liên quan đến một chức năng nhỏ trong đó, bạn sẽ phải test lại toàn bộ cái class đó, rất bất tiện.
 
-<img class="aligncenter size-full wp-image-930" src="https://devislifeblog.files.wordpress.com/2017/01/2.png" alt="2.png" width="340" height="338" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/2.png 340w, http://swiftyvn.com/wp-content/uploads/2017/01/2-150x150.png 150w, http://swiftyvn.com/wp-content/uploads/2017/01/2-300x298.png 300w, http://swiftyvn.com/wp-content/uploads/2017/01/2-100x100.png 100w" sizes="(max-width: 340px) 100vw, 340px" /> 
+<img class="aligncenter size-full wp-image-930" src="https://devislifeblog.files.wordpress.com/2017/01/2.png" alt="2.png" width="340" height="338" srcset="/wp-content/uploads/2017/01/2.png 340w, /wp-content/uploads/2017/01/2-150x150.png 150w, /wp-content/uploads/2017/01/2-300x298.png 300w, /wp-content/uploads/2017/01/2-100x100.png 100w" sizes="(max-width: 340px) 100vw, 340px" /> 
 
 Hình ảnh hộp dụng cụ đa năng trên là ví dụ kinh điển cho trường hợp vi phạm SRP ( nó là cái GOD class mà mình nói ở trên): nó tuy tiện dụng nhưng lại rất cồng kềnh, giả sử bây giờ một con dao cạo mà bị hỏng &#8211;> bạn phải mở cả hộp ra, sửa lại con dao đó mà không biết chắc rằng sửa xong rồi có ảnh hưởng đến mấy cái cờ lê, tuốc lơ vít bên cạnh hay không?
 
 Hãy nhìn vào ví dụ thực tế này:
 
-<img class="  wp-image-860 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-20-at-14-39-31.png" alt="Screen Shot 2017-01-20 at 14.39.31.png" width="276" height="145" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-20-at-14-39-31.png 358w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-20-at-14-39-31-300x158.png 300w" sizes="(max-width: 276px) 100vw, 276px" /> 
+<img class="  wp-image-860 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-20-at-14-39-31.png" alt="Screen Shot 2017-01-20 at 14.39.31.png" width="276" height="145" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-20-at-14-39-31.png 358w, /wp-content/uploads/2017/01/screen-shot-2017-01-20-at-14-39-31-300x158.png 300w" sizes="(max-width: 276px) 100vw, 276px" /> 
 
 Thầy u mua cho chiếc xe máy để đi học, nên nhiệm vụ chính của cái xe là để đi học. Mọi chuyện vẫn ổn, cho đến khi có gấu, cái xe giờ lại phải thêm nhiệm vụ là chở gấu
 
-<img class="  wp-image-865 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-20-at-14-44-26.png" alt="Screen Shot 2017-01-20 at 14.44.26.png" width="268" height="146" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-20-at-14-44-26.png 388w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-20-at-14-44-26-300x164.png 300w" sizes="(max-width: 268px) 100vw, 268px" /> 
+<img class="  wp-image-865 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-20-at-14-44-26.png" alt="Screen Shot 2017-01-20 at 14.44.26.png" width="268" height="146" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-20-at-14-44-26.png 388w, /wp-content/uploads/2017/01/screen-shot-2017-01-20-at-14-44-26-300x164.png 300w" sizes="(max-width: 268px) 100vw, 268px" /> 
 
 Xe giờ lại phải dán thêm mấy cái đề can, hoặc sửa lại bộ đèn nháy, độ lại bô,&#8230; thế nên bạn phải kiểm tra lại xem xe này còn đi học được không, sợ bô to vào trường người ta đuổi. Lúc này vẫn ổn, có gấu thì lúc nào chả ổn :)))).
 
 Có gấu thì tốn tiền, mà sinh viên thì lấy đâu ra tiền, thế là lại phải làm thêm, sẵn có cái xe máy, đăng kí làm shipper.
 
-<img class="aligncenter  wp-image-944" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-20-at-14-47-50.png" alt="Screen Shot 2017-01-20 at 14.47.50.png" width="293" height="175" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-20-at-14-47-50.png 450w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-20-at-14-47-50-300x179.png 300w" sizes="(max-width: 293px) 100vw, 293px" /> 
+<img class="aligncenter  wp-image-944" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-20-at-14-47-50.png" alt="Screen Shot 2017-01-20 at 14.47.50.png" width="293" height="175" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-20-at-14-47-50.png 450w, /wp-content/uploads/2017/01/screen-shot-2017-01-20-at-14-47-50-300x179.png 300w" sizes="(max-width: 293px) 100vw, 293px" /> 
 
-<img class="  wp-image-870 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/img0110a-2.jpg" alt="IMG0110A-2.jpg" width="451" height="338" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/img0110a-2.jpg 640w, http://swiftyvn.com/wp-content/uploads/2017/01/img0110a-2-300x225.jpg 300w" sizes="(max-width: 451px) 100vw, 451px" /> 
+<img class="  wp-image-870 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/img0110a-2.jpg" alt="IMG0110A-2.jpg" width="451" height="338" srcset="/wp-content/uploads/2017/01/img0110a-2.jpg 640w, /wp-content/uploads/2017/01/img0110a-2-300x225.jpg 300w" sizes="(max-width: 451px) 100vw, 451px" /> 
 
 Hí hửng lắp xong cái thùng để đi ship, thế rồi test chở gấu đi chơi &#8211;> gấu chê cái thùng xấu xí &#8211;> chia tay. Test tiếp đi học, cái thùng xấu xí nhìn dị hợm, mấy anh bảo vệ không cho vào trường &#8211;> R.I.P.
 
@@ -89,7 +89,7 @@ Lời khuyên của mình là các bạn chưa thử bao giờ thì cứ nên á
 
 Lý thuyết dài dòng đủ rồi, các bạn hãy quan sát ví dụ thực tế dưới đây để hiểu rõ hơn phần lý thuyết mình đã trình bày ở bên trên: Bài toán phổ biến nhất trong lập trình mobile: giao tiếp với server, ở đây mình lấy ví dụ bằng việc gọi qua API Webservice. Ví dụ rất đơn giản: tạo request &#8211;> gọi đến server &#8211;> lấy response trả về. Hiện nay kiểu dữ liệu JSON đang khá phổ biến, thế nên có nhiều bạn xây dựng như sau:
 
-<img class=" size-full wp-image-627 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-11-20-19-am.png" alt="Screen Shot 2017-01-18 at 11.20.19 AM.png" width="514" height="485" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-11-20-19-am.png 514w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-11-20-19-am-300x283.png 300w" sizes="(max-width: 514px) 100vw, 514px" /> 
+<img class=" size-full wp-image-627 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-11-20-19-am.png" alt="Screen Shot 2017-01-18 at 11.20.19 AM.png" width="514" height="485" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-11-20-19-am.png 514w, /wp-content/uploads/2017/01/screen-shot-2017-01-18-at-11-20-19-am-300x283.png 300w" sizes="(max-width: 514px) 100vw, 514px" /> 
 
 Ở hình trên mình xây dựng một request gửi đến domain http://troidat.com, có vẻ như không có gì đặc biệt đúng không ?? Nhưng bạn hãy thử nghĩ về chức năng của chúng xem, ta có thể thấy rõ ràng ViewControllerA đảm nhận 2 nhiệm vụ: xử lý UI cho View (viewDidload, viewWillAppear, viewDidAppear,&#8230;) và gửi Request đến server. Rõ ràng là nó đã vi phạm nguyên lý SRP rồi.
 
@@ -97,11 +97,11 @@ Lý thuyết dài dòng đủ rồi, các bạn hãy quan sát ví dụ thực t
 
 1 tuần sau, khách hàng báo lại, hệ thống của họ cần bảo mật, họ mới bổ sung TLS và mua SSL certificate (HTTPS) rồi, và báo lại cho bạn để bạn thay đổi add thêm cái certificate đó vào. Bụng bảo dạ, cay thật, nhưng vẫn phải làm, và vì bạn không chia theo chức năng, nên cứ đoạn nào có gọi service là bạn phải mở ra mà sửa lại, ví dụ như:
 
-<img class="aligncenter size-full wp-image-693" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-2-26-27-pm.png" alt="Screen Shot 2017-01-18 at 2.26.27 PM.png" width="459" height="421" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-26-27-pm.png 459w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-26-27-pm-300x275.png 300w" sizes="(max-width: 459px) 100vw, 459px" /> 
+<img class="aligncenter size-full wp-image-693" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-2-26-27-pm.png" alt="Screen Shot 2017-01-18 at 2.26.27 PM.png" width="459" height="421" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-26-27-pm.png 459w, /wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-26-27-pm-300x275.png 300w" sizes="(max-width: 459px) 100vw, 459px" /> 
 
 1 tháng sau, anh code backend fix bug nên phải bổ sung thêm trường custom HTTP Headers vào, headers[&#8220;X-Authen-Token&#8221;] = &#8220;MariaOzawa&#8221;. Lúc này lại cay lần 2, mò lại đống code, hí húi thêm cái HTTP Headers, chỗ nào có gọi service thì lại phải mở ra sửa &#8211;> R.I.P
 
-<img class=" size-full wp-image-707 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-2-44-58-pm.png" alt="Screen Shot 2017-01-18 at 2.44.58 PM.png" width="506" height="510" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-44-58-pm.png 506w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-44-58-pm-150x150.png 150w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-44-58-pm-298x300.png 298w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-44-58-pm-100x100.png 100w" sizes="(max-width: 506px) 100vw, 506px" /> 
+<img class=" size-full wp-image-707 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-2-44-58-pm.png" alt="Screen Shot 2017-01-18 at 2.44.58 PM.png" width="506" height="510" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-44-58-pm.png 506w, /wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-44-58-pm-150x150.png 150w, /wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-44-58-pm-298x300.png 298w, /wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-44-58-pm-100x100.png 100w" sizes="(max-width: 506px) 100vw, 506px" /> 
 
 2 tuần sau, anh code backend lại nổi hứng: &#8220;em ơi thêm cho anh cái multipart data gửi lên server mình nhé, không xài 3rd server nữa&#8221;. Ok ok, mở code lần 3, lần lượt sửa các ViewControllerA,B,C,&#8230;. &#8212;> Thưa sếp, em nghỉ việc.
 
@@ -111,11 +111,11 @@ _**Sửa đổi theo SRP:**_
 
 Theo như nguyên lý SRP, mỗi một class hoặc một module chỉ nên có một nhiệm vụ duy nhất, vậy nên bạn cần phải tách 2 nhiệm vụ xử lý UI và giao tiếp với Server thành 2 class khác nhau. Cái nhược điểm của cách code ban đầu chính là module của các bạn nằm rải rác trong nhiều class, khiến cho khi bạn thay đổi, bạn chỉnh sửa và test lại rất nhiều lần, rồi còn có thể nhầm lẫn trong các lần sửa, &#8230; Nếu bạn tạo 1 class riêng cho việc gọi Service, giả sử sau này có thay đổi, thì bạn chỉ cần mở và  chỉnh sửa ngay trong class này mà không làm ảnh hưởng đến các class khác. Ngoài ra, việc tiến hành unit test cũng dễ hơn, do nó chỉ đảm nhận một chức năng duy nhất.
 
-<img class="aligncenter size-full wp-image-719" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-2-56-25-pm.png" alt="Screen Shot 2017-01-18 at 2.56.25 PM.png" width="465" height="378" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-56-25-pm.png 465w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-56-25-pm-300x244.png 300w" sizes="(max-width: 465px) 100vw, 465px" /> 
+<img class="aligncenter size-full wp-image-719" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-2-56-25-pm.png" alt="Screen Shot 2017-01-18 at 2.56.25 PM.png" width="465" height="378" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-56-25-pm.png 465w, /wp-content/uploads/2017/01/screen-shot-2017-01-18-at-2-56-25-pm-300x244.png 300w" sizes="(max-width: 465px) 100vw, 465px" /> 
 
 Ở đây, mình chuyển các hàm giao tiếp với Server vào trong class ServerCommunicate, việc xử lý của các ViewController sẽ tách biệt hơn thông qua class này:
 
-<img class="aligncenter size-full wp-image-724" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-3-00-39-pm.png" alt="Screen Shot 2017-01-18 at 3.00.39 PM.png" width="633" height="367" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-3-00-39-pm.png 633w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-3-00-39-pm-300x174.png 300w" sizes="(max-width: 633px) 100vw, 633px" /> 
+<img class="aligncenter size-full wp-image-724" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-3-00-39-pm.png" alt="Screen Shot 2017-01-18 at 3.00.39 PM.png" width="633" height="367" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-3-00-39-pm.png 633w, /wp-content/uploads/2017/01/screen-shot-2017-01-18-at-3-00-39-pm-300x174.png 300w" sizes="(max-width: 633px) 100vw, 633px" /> 
 
 Bây giờ xét các trường hợp trên:
 
@@ -123,11 +123,11 @@ Bây giờ xét các trường hợp trên:
   * Thêm HTTP Headers
   * Thêm MultipartData
 
-<img class="aligncenter size-full wp-image-731" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-3-06-44-pm.png" alt="Screen Shot 2017-01-18 at 3.06.44 PM.png" width="510" height="652" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-3-06-44-pm.png 510w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-3-06-44-pm-235x300.png 235w" sizes="(max-width: 510px) 100vw, 510px" /> 
+<img class="aligncenter size-full wp-image-731" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-3-06-44-pm.png" alt="Screen Shot 2017-01-18 at 3.06.44 PM.png" width="510" height="652" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-3-06-44-pm.png 510w, /wp-content/uploads/2017/01/screen-shot-2017-01-18-at-3-06-44-pm-235x300.png 235w" sizes="(max-width: 510px) 100vw, 510px" /> 
 
 Class ServerCommunicate sẽ phình ra thế này, tất nhiên rồi. Nhưng các ViewController thì sao ta ?
 
-<img class="aligncenter size-full wp-image-734" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-3-00-39-pm1.png" alt="Screen Shot 2017-01-18 at 3.00.39 PM.png" width="633" height="367" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-3-00-39-pm1.png 633w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-3-00-39-pm1-300x174.png 300w" sizes="(max-width: 633px) 100vw, 633px" /> 
+<img class="aligncenter size-full wp-image-734" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-18-at-3-00-39-pm1.png" alt="Screen Shot 2017-01-18 at 3.00.39 PM.png" width="633" height="367" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-18-at-3-00-39-pm1.png 633w, /wp-content/uploads/2017/01/screen-shot-2017-01-18-at-3-00-39-pm1-300x174.png 300w" sizes="(max-width: 633px) 100vw, 633px" /> 
 
 Nó vẫn y vậy, không thay đổi gì cả. Đơn giản, nó chỉ có nhiệm vụ là update các View, tôi không quan tâm các anh thêm bớt gửi nhận gì trong đoạn gửi lên server, cái tôi cần là khi tôi gọi service, các anh trả về cho tôi data để tôi update lại theo logic của mình.
 
@@ -150,15 +150,15 @@ Trên thực tế, có một số dự án bạn sẽ gặp phải tình trạng
 
 &#8211;> Nên sửa lại theo SRP, tức là chia làm 2 class khác nhau, 1 class đảm nhận request và 1 class đảm nhận Response.
 
-<img class="  wp-image-757 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-19-at-11-34-56.png?w=1150" alt="Screen Shot 2017-01-19 at 11.34.56.png" width="386" height="404" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-34-56.png 808w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-34-56-287x300.png 287w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-34-56-768x802.png 768w" sizes="(max-width: 386px) 100vw, 386px" /> 
+<img class="  wp-image-757 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-19-at-11-34-56.png?w=1150" alt="Screen Shot 2017-01-19 at 11.34.56.png" width="386" height="404" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-34-56.png 808w, /wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-34-56-287x300.png 287w, /wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-34-56-768x802.png 768w" sizes="(max-width: 386px) 100vw, 386px" /> 
 
 Ở trên mình khai báo 1 enum để phân loại các Data Type, mình còn tạo thêm 1 class chuyên cho việc tạo dựng các request gửi lên. Hàm chung để tạo request của mình à hàm buildRequest, nó có trách nhiệm tạo request ứng với loại request mà mình đang mong muốn.
 
-<img class=" size-full wp-image-763 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-19-at-11-42-15.png?w=792" alt="Screen Shot 2017-01-19 at 11.42.15.png" width="396" height="358" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-42-15.png 746w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-42-15-300x271.png 300w" sizes="(max-width: 396px) 100vw, 396px" /> 
+<img class=" size-full wp-image-763 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-19-at-11-42-15.png?w=792" alt="Screen Shot 2017-01-19 at 11.42.15.png" width="396" height="358" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-42-15.png 746w, /wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-42-15-300x271.png 300w" sizes="(max-width: 396px) 100vw, 396px" /> 
 
 Tương tự với class Response, mình tách việc parse response ra riêng so với phần tạo request.
 
-<img class="aligncenter size-full wp-image-768" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-19-at-11-46-52.png" alt="Screen Shot 2017-01-19 at 11.46.52.png" width="1426" height="386" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-46-52.png 1426w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-46-52-300x81.png 300w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-46-52-768x208.png 768w, http://swiftyvn.com/wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-46-52-1024x277.png 1024w" sizes="(max-width: 1426px) 100vw, 1426px" /> 
+<img class="aligncenter size-full wp-image-768" src="https://devislifeblog.files.wordpress.com/2017/01/screen-shot-2017-01-19-at-11-46-52.png" alt="Screen Shot 2017-01-19 at 11.46.52.png" width="1426" height="386" srcset="/wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-46-52.png 1426w, /wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-46-52-300x81.png 300w, /wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-46-52-768x208.png 768w, /wp-content/uploads/2017/01/screen-shot-2017-01-19-at-11-46-52-1024x277.png 1024w" sizes="(max-width: 1426px) 100vw, 1426px" /> 
 
 Class ServerCommunicate nếu được thiết kế theo kiểu tách rời module gửi request, và module parse response, thì sẽ có dạng như trên. Thiết kế kiểu này thì có ích lợi gì ???
 

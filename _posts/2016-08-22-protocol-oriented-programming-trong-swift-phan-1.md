@@ -13,13 +13,13 @@ categories:
 
 <del></del><del></del>Lập trình hướng đối tượng (OOP &#8211; Object Oriented Programming): Ok Done.
 
-<img class=" size-full wp-image-229 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/oop-meme.jpg" alt="oop-meme.jpg" width="400" height="330" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/oop-meme.jpg 400w, http://swiftyvn.com/wp-content/uploads/2016/08/oop-meme-300x248.jpg 300w" sizes="(max-width: 400px) 100vw, 400px" /> 
+<img class=" size-full wp-image-229 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/oop-meme.jpg" alt="oop-meme.jpg" width="400" height="330" srcset="/wp-content/uploads/2016/08/oop-meme.jpg 400w, /wp-content/uploads/2016/08/oop-meme-300x248.jpg 300w" sizes="(max-width: 400px) 100vw, 400px" /> 
 
 Lập trình hướng Protocol (POP &#8211; Protocol Oriented Programming): Dafuq ????
 
 <!--more-->
 
-<img class=" size-full wp-image-223 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e.jpg" alt="d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e" width="620" height="455" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e.jpg 620w, http://swiftyvn.com/wp-content/uploads/2016/08/d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e-300x220.jpg 300w" sizes="(max-width: 620px) 100vw, 620px" /> 
+<img class=" size-full wp-image-223 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e.jpg" alt="d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e" width="620" height="455" srcset="/wp-content/uploads/2016/08/d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e.jpg 620w, /wp-content/uploads/2016/08/d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e-300x220.jpg 300w" sizes="(max-width: 620px) 100vw, 620px" /> 
 
 ##### <span style="color:#800000;"><em>// Protocol: từ này mình không biết dịch thế nào cho hợp lý : giao thức, giao tác, &#8230; nghe nó không tròn ý lắm, nên mình xin đặt tên theo nguyên bản. (Protocol này tương tự như Interface của Java và C#)</em></span>
 
@@ -92,7 +92,7 @@ Thuật ngữ Protocol-Oriented Programming (POP) được giới thiệu lần 
 </p>
 
 <p style="padding-left:60px;">
-  Implicit Sharing Data quan trọng và cần được chú ý đối với các bài toán đa tham chiếu, và đa luồng. Trong xử lý đa luồng, bài toán khó nhằn bậc nhất chính là phải xử lý đồng thời (concurrency). Implicit Sharing Data rất dễ gây ra các lỗi như giá trị nhảy lung tung (do nhiều luồng cùng thay đổi), Deadlock (do việc chờ đợi quyền thay đổi vùng tham chiếu),&#8230;<img class="aligncenter size-full wp-image-361" src="https://devislifeblog.files.wordpress.com/2016/08/65068231.jpg" alt="65068231.jpg" width="250" height="250" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/65068231.jpg 250w, http://swiftyvn.com/wp-content/uploads/2016/08/65068231-150x150.jpg 150w, http://swiftyvn.com/wp-content/uploads/2016/08/65068231-100x100.jpg 100w" sizes="(max-width: 250px) 100vw, 250px" />
+  Implicit Sharing Data quan trọng và cần được chú ý đối với các bài toán đa tham chiếu, và đa luồng. Trong xử lý đa luồng, bài toán khó nhằn bậc nhất chính là phải xử lý đồng thời (concurrency). Implicit Sharing Data rất dễ gây ra các lỗi như giá trị nhảy lung tung (do nhiều luồng cùng thay đổi), Deadlock (do việc chờ đợi quyền thay đổi vùng tham chiếu),&#8230;<img class="aligncenter size-full wp-image-361" src="https://devislifeblog.files.wordpress.com/2016/08/65068231.jpg" alt="65068231.jpg" width="250" height="250" srcset="/wp-content/uploads/2016/08/65068231.jpg 250w, /wp-content/uploads/2016/08/65068231-150x150.jpg 150w, /wp-content/uploads/2016/08/65068231-100x100.jpg 100w" sizes="(max-width: 250px) 100vw, 250px" />
 </p>
 
 <p style="text-align:left;padding-left:60px;">
@@ -100,7 +100,7 @@ Thuật ngữ Protocol-Oriented Programming (POP) được giới thiệu lần 
 </p>
 
 <p style="text-align:left;padding-left:60px;">
-  <img class="alignnone size-full wp-image-288 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-22-at-2-45-02-pm.png" alt="Screen Shot 2016-08-22 at 2.45.02 PM.png" width="597" height="504" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-22-at-2-45-02-pm.png 597w, http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-22-at-2-45-02-pm-300x253.png 300w" sizes="(max-width: 597px) 100vw, 597px" />
+  <img class="alignnone size-full wp-image-288 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-22-at-2-45-02-pm.png" alt="Screen Shot 2016-08-22 at 2.45.02 PM.png" width="597" height="504" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-22-at-2-45-02-pm.png 597w, /wp-content/uploads/2016/08/screen-shot-2016-08-22-at-2-45-02-pm-300x253.png 300w" sizes="(max-width: 597px) 100vw, 597px" />
 </p>
 
 <p style="text-align:left;padding-left:60px;">
@@ -108,7 +108,7 @@ Thuật ngữ Protocol-Oriented Programming (POP) được giới thiệu lần 
 </p>
 
 <p style="text-align:left;padding-left:60px;">
-  <img class=" size-full wp-image-292 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-22-at-2-48-29-pm.png" alt="Screen Shot 2016-08-22 at 2.48.29 PM.png" width="435" height="178" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-22-at-2-48-29-pm.png 435w, http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-22-at-2-48-29-pm-300x123.png 300w" sizes="(max-width: 435px) 100vw, 435px" />
+  <img class=" size-full wp-image-292 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-22-at-2-48-29-pm.png" alt="Screen Shot 2016-08-22 at 2.48.29 PM.png" width="435" height="178" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-22-at-2-48-29-pm.png 435w, /wp-content/uploads/2016/08/screen-shot-2016-08-22-at-2-48-29-pm-300x123.png 300w" sizes="(max-width: 435px) 100vw, 435px" />
 </p>
 
 <p style="text-align:left;padding-left:60px;">
@@ -116,7 +116,7 @@ Thuật ngữ Protocol-Oriented Programming (POP) được giới thiệu lần 
 </p>
 
 <p style="text-align:left;padding-left:30px;">
-  <img class="aligncenter size-full wp-image-298" src="https://devislifeblog.files.wordpress.com/2016/08/123.png" alt="123.png" width="241" height="358" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/123.png 241w, http://swiftyvn.com/wp-content/uploads/2016/08/123-202x300.png 202w" sizes="(max-width: 241px) 100vw, 241px" />
+  <img class="aligncenter size-full wp-image-298" src="https://devislifeblog.files.wordpress.com/2016/08/123.png" alt="123.png" width="241" height="358" srcset="/wp-content/uploads/2016/08/123.png 241w, /wp-content/uploads/2016/08/123-202x300.png 202w" sizes="(max-width: 241px) 100vw, 241px" />
 </p>
 
 <p style="padding-left:60px;">
@@ -128,11 +128,11 @@ Thuật ngữ Protocol-Oriented Programming (POP) được giới thiệu lần 
 </p>
 
 <p style="padding-left:60px;">
-  <img class=" size-full wp-image-370 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-2-08-07-pm.png" alt="Screen Shot 2016-08-24 at 2.08.07 PM.png" width="455" height="121" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-2-08-07-pm.png 455w, http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-2-08-07-pm-300x80.png 300w" sizes="(max-width: 455px) 100vw, 455px" />
+  <img class=" size-full wp-image-370 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-2-08-07-pm.png" alt="Screen Shot 2016-08-24 at 2.08.07 PM.png" width="455" height="121" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-2-08-07-pm.png 455w, /wp-content/uploads/2016/08/screen-shot-2016-08-24-at-2-08-07-pm-300x80.png 300w" sizes="(max-width: 455px) 100vw, 455px" />
 </p>
 
 <p style="padding-left:60px;">
-  <img class="aligncenter size-full wp-image-374" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-2-12-59-pm1.png" alt="Screen Shot 2016-08-24 at 2.12.59 PM.png" width="533" height="271" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-2-12-59-pm1.png 533w, http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-2-12-59-pm1-300x153.png 300w" sizes="(max-width: 533px) 100vw, 533px" />
+  <img class="aligncenter size-full wp-image-374" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-2-12-59-pm1.png" alt="Screen Shot 2016-08-24 at 2.12.59 PM.png" width="533" height="271" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-2-12-59-pm1.png 533w, /wp-content/uploads/2016/08/screen-shot-2016-08-24-at-2-12-59-pm1-300x153.png 300w" sizes="(max-width: 533px) 100vw, 533px" />
 </p>
 
 <p style="padding-left:60px;">

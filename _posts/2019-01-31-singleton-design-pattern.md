@@ -11,7 +11,7 @@ categories:
 ---
 Chủ đề lần này, tôi muốn viết về một loại Design Pattern khác cũng rất hay gặp, đó chính là Singleton Design Pattern. Tương tự như Factory Pattern, Singleton thuộc loại Creational, nó giải quyết bài toán liên quan đến vấn đề khởi tạo object (instation).
 
-<img class="size-full wp-image-1862 aligncenter" src="http://swiftyvn.com/wp-content/uploads/2019/01/its-a-design.jpg" alt="" width="600" height="400" srcset="http://swiftyvn.com/wp-content/uploads/2019/01/its-a-design.jpg 600w, http://swiftyvn.com/wp-content/uploads/2019/01/its-a-design-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /> 
+<img class="size-full wp-image-1862 aligncenter" src="/wp-content/uploads/2019/01/its-a-design.jpg" alt="" width="600" height="400" srcset="/wp-content/uploads/2019/01/its-a-design.jpg 600w, /wp-content/uploads/2019/01/its-a-design-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /> 
 
 ### <span style="color: #ff6600;">Singleton Là Gì, Và Tại Sao Cần Phải Sử Dụng Nó</span>
 
@@ -64,7 +64,7 @@ Vẫn đề trên sẽ biến mất hoàn toàn nếu như CookiesManager chỉ 
 
 Bước đầu tiên khi tìm hiểu về Design Pattern không có gì khác ngoài việc nghiên cứu UML Diagram của nó:
 
-<img class="size-large wp-image-1843 aligncenter" src="http://swiftyvn.com/wp-content/uploads/2019/01/Untitled-Diagram-4.png" alt="" width="378" height="366" srcset="http://swiftyvn.com/wp-content/uploads/2019/01/Untitled-Diagram-4.png 378w, http://swiftyvn.com/wp-content/uploads/2019/01/Untitled-Diagram-4-300x290.png 300w" sizes="(max-width: 378px) 100vw, 378px" /> 
+<img class="size-large wp-image-1843 aligncenter" src="/wp-content/uploads/2019/01/Untitled-Diagram-4.png" alt="" width="378" height="366" srcset="/wp-content/uploads/2019/01/Untitled-Diagram-4.png 378w, /wp-content/uploads/2019/01/Untitled-Diagram-4-300x290.png 300w" sizes="(max-width: 378px) 100vw, 378px" /> 
 
 Biến đổi UML trên thành code:
 
@@ -74,7 +74,7 @@ Biến đổi UML trên thành code:
     
     private static var instance = Singleton()
     
-    public static func getInstance() -&gt; Singleton {
+    public static func getInstance() -> Singleton {
         return instance
     }
 }</pre>
@@ -91,7 +91,7 @@ Swift là static language cho nên biến / hàm /class được đánh dấu l�
 
 UML của Singleton lúc này sẽ được update thành:
 
-<img class="size-full wp-image-1844 aligncenter" src="http://swiftyvn.com/wp-content/uploads/2019/01/Untitled-Diagram-5.png" alt="" width="398" height="256" srcset="http://swiftyvn.com/wp-content/uploads/2019/01/Untitled-Diagram-5.png 398w, http://swiftyvn.com/wp-content/uploads/2019/01/Untitled-Diagram-5-300x193.png 300w" sizes="(max-width: 398px) 100vw, 398px" /> 
+<img class="size-full wp-image-1844 aligncenter" src="/wp-content/uploads/2019/01/Untitled-Diagram-5.png" alt="" width="398" height="256" srcset="/wp-content/uploads/2019/01/Untitled-Diagram-5.png 398w, /wp-content/uploads/2019/01/Untitled-Diagram-5-300x193.png 300w" sizes="(max-width: 398px) 100vw, 398px" /> 
 
 &nbsp;
 

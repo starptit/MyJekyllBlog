@@ -39,7 +39,7 @@ Nếu bạn quên thì không sao, hãy cố gắng ghi nhớ 2 nguyên lý này
 
 Có bao nhiêu Design Pattern? Rất rất nhiều, tương đương với việc có rất nhiều cách để phân loại, và cũng không thể đảm bảo có phương pháp phân loại nào có thể phân loại được hết các Design Pattern. Tuy nhiên, tần suất và độ phổ biến của các design pattern lại khác nhau, vì lẽ đó, người ta thường nhặt các design patterns phổ biến hơn ra, và cố gắng phân loại chúng. Trong quyển sách mình đề cập ở phần giới thiệu, các tác giả (4 tác giả GoF) đã nêu ra 23 loại design pattern khác nhau, và phân loại chúng thành 3 loại: Creational, Structural, Behavioral. Về sau, sinh ra thêm nhiều patterns khác, tuy nhiên cách phân thành 3 loại như trước đây vẫn được tôn trọng và tuân theo.<figure id="attachment_1805" style="width: 955px" class="wp-caption aligncenter">
 
-<img class="wp-image-1805 size-full" src="http://swiftyvn.com/wp-content/uploads/2018/09/Untitled.png" alt="" width="955" height="457" srcset="http://swiftyvn.com/wp-content/uploads/2018/09/Untitled.png 955w, http://swiftyvn.com/wp-content/uploads/2018/09/Untitled-300x144.png 300w, http://swiftyvn.com/wp-content/uploads/2018/09/Untitled-768x368.png 768w" sizes="(max-width: 955px) 100vw, 955px" /> <figcaption class="wp-caption-text">(Source: smarttechie.org)</figcaption></figure> 
+<img class="wp-image-1805 size-full" src="/wp-content/uploads/2018/09/Untitled.png" alt="" width="955" height="457" srcset="/wp-content/uploads/2018/09/Untitled.png 955w, /wp-content/uploads/2018/09/Untitled-300x144.png 300w, /wp-content/uploads/2018/09/Untitled-768x368.png 768w" sizes="(max-width: 955px) 100vw, 955px" /> <figcaption class="wp-caption-text">(Source: smarttechie.org)</figcaption></figure> 
 
 &nbsp;
 
@@ -94,7 +94,7 @@ Tôi đã từng phỏng vấn một số lập trình viên, họ đều nói r
 
 Design Pattern trong OOP là template, concept phục vụ cho vấn đề thiết kế, chẳng có gì dễ hiểu và trực quan để nhìn nhận và nghiên cứu thiết kế bằng việc vẽ, thể hiện nó dưới dạng sơ đồ (Diagram) cả. Biểu đồ thường được dùng để minh họa cho Design Pattern có tên gọi Sơ đồ Lớp (Class Diagram).<figure id="attachment_1803" style="width: 917px" class="wp-caption aligncenter">
 
-<img class="wp-image-1803 size-full" src="http://swiftyvn.com/wp-content/uploads/2018/09/12-uml-class-diagram-example.png" alt="" width="917" height="436" srcset="http://swiftyvn.com/wp-content/uploads/2018/09/12-uml-class-diagram-example.png 917w, http://swiftyvn.com/wp-content/uploads/2018/09/12-uml-class-diagram-example-300x143.png 300w, http://swiftyvn.com/wp-content/uploads/2018/09/12-uml-class-diagram-example-768x365.png 768w" sizes="(max-width: 917px) 100vw, 917px" /> <figcaption class="wp-caption-text">(Source: visual-paradigm.com)</figcaption></figure> 
+<img class="wp-image-1803 size-full" src="/wp-content/uploads/2018/09/12-uml-class-diagram-example.png" alt="" width="917" height="436" srcset="/wp-content/uploads/2018/09/12-uml-class-diagram-example.png 917w, /wp-content/uploads/2018/09/12-uml-class-diagram-example-300x143.png 300w, /wp-content/uploads/2018/09/12-uml-class-diagram-example-768x365.png 768w" sizes="(max-width: 917px) 100vw, 917px" /> <figcaption class="wp-caption-text">(Source: visual-paradigm.com)</figcaption></figure> 
 
 Ngoài lề chút, bạn cũng nên tìm hiểu về các UML Diagram khác (Class Diagram là 1 trong các UML Diagram).
 

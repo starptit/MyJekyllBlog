@@ -179,7 +179,7 @@ Constructor Injection cũng khá phổ biến, tuy nhiên nhược điểm của
 
 Nhược điểm không tối ưu với lập trình iOS khá quan trọng, bởi vì các UIViewController trong iOS thường được khởi tạo từ xib/storyboard, thông qua hàm
 
-<pre class="theme:sublime-text float-enable:true plain:false lang:swift decode:true">func instantiateViewController(withIdentifier identifier: String) -&gt; UIViewController
+<pre class="theme:sublime-text float-enable:true plain:false lang:swift decode:true">func instantiateViewController(withIdentifier identifier: String) -> UIViewController
 
 </pre>
 

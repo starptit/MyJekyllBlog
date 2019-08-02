@@ -26,29 +26,29 @@ Trong OOP, <span style="color: #993300;"><strong>Builder pattern</strong></span>
 
 Giả sử tôi đang tạo chương trình quản lý cho quán trà sữa, một trong những core function trong ứng dụng của tôi đó là lấy yêu cầu đặt trà sữa từ khách hàng và lập hóa đơn thanh toán cho họ:
 
-<img class="wp-image-1879 aligncenter" src="http://swiftyvn.com/wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-1024x1024.jpg" alt="" width="300" height="300" srcset="http://swiftyvn.com/wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-1024x1024.jpg 1024w, http://swiftyvn.com/wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-150x150.jpg 150w, http://swiftyvn.com/wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-300x300.jpg 300w, http://swiftyvn.com/wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-768x768.jpg 768w, http://swiftyvn.com/wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5.jpg 1080w" sizes="(max-width: 300px) 100vw, 300px" />
+<img class="wp-image-1879 aligncenter" src="/wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-1024x1024.jpg" alt="" width="300" height="300" srcset="/wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-1024x1024.jpg 1024w, /wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-150x150.jpg 150w, /wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-300x300.jpg 300w, /wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-768x768.jpg 768w, /wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5.jpg 1080w" sizes="(max-width: 300px) 100vw, 300px" />
 
 <!-- <pre class="theme:xcode plain:false plain-toggle:false lang:swift decode:true"> -->
 
 {% highlight swift %}
 public class MilkTea {
-private let taste: String // vị trà sữa: peach, origin, orange, kumquat,...
-private let size: String // S-M-L
-private let toppings: [String] // coconut, ....
-private let sugarPercent: Double // phần trăm đường: 100% - 80% - 50 %
-private let icyPercent: Double // phần trăm đá 100% - 80% - 50 %
+    private let taste: String // vị trà sữa: peach, origin, orange, kumquat,...
+    private let size: String // S-M-L
+    private let toppings: [String] // coconut, ....
+    private let sugarPercent: Double // phần trăm đường: 100% - 80% - 50 %
+    private let icyPercent: Double // phần trăm đá 100% - 80% - 50 %
   
- init(taste: String,
-size: String,
-toppings: [String],
-sugarPercent: Double,
-icyPercent: Double) {
-self.taste = taste
-self.size = size
-self.toppings = toppings
-self.sugarPercent = sugarPercent
-self.icyPercent = icyPercent
-}
+    init(taste: String,
+        size: String,
+        toppings: [String],
+        sugarPercent: Double,
+        icyPercent: Double) {
+        self.taste = taste
+        self.size = size
+        self.toppings = toppings
+        self.sugarPercent = sugarPercent
+        self.icyPercent = icyPercent
+    }
 }
 {% endhighlight %}
 
@@ -76,7 +76,7 @@ Duplicate thật xấu xí, và không khi nào là tốt cả. Do đó, ngườ
 
 Vẫn theo format cũ, trước khi đi vào cụ thể, hãy tạm dừng để ngó qua Class Diagram của nó đã:
 
-<img class="size-large wp-image-1874 aligncenter" src="http://swiftyvn.com/wp-content/uploads/2019/05/Untitled-Diagram-1024x320.png" alt="" width="768" height="240" srcset="http://swiftyvn.com/wp-content/uploads/2019/05/Untitled-Diagram-1024x320.png 1024w, http://swiftyvn.com/wp-content/uploads/2019/05/Untitled-Diagram-300x94.png 300w, http://swiftyvn.com/wp-content/uploads/2019/05/Untitled-Diagram-768x240.png 768w, http://swiftyvn.com/wp-content/uploads/2019/05/Untitled-Diagram.png 1314w" sizes="(max-width: 768px) 100vw, 768px" />
+<img class="size-large wp-image-1874 aligncenter" src="/wp-content/uploads/2019/05/Untitled-Diagram-1024x320.png" alt="" width="768" height="240" srcset="/wp-content/uploads/2019/05/Untitled-Diagram-1024x320.png 1024w, /wp-content/uploads/2019/05/Untitled-Diagram-300x94.png 300w, /wp-content/uploads/2019/05/Untitled-Diagram-768x240.png 768w, /wp-content/uploads/2019/05/Untitled-Diagram.png 1314w" sizes="(max-width: 768px) 100vw, 768px" />
 
 Phân tích Diagram trên:
 
@@ -90,34 +90,34 @@ Phân tích Diagram trên:
 {% highlight swift %}
 
 public final class MilkTeaBuilder {
-private var taste: String = "origin"
-private var size: String = "M"
-private var toppings: [String] = []
-private var sugarPercent: Double = 1.0
-private var icyPercent: Double = 1.0
+    private var taste: String = "origin"
+    private var size: String = "M"
+    private var toppings: [String] = []
+    private var sugarPercent: Double = 1.0
+    private var icyPercent: Double = 1.0
   
- public func chooseTaste(taste: String) { self.taste = taste }
-public func chooseSize(size: String) { self.size = size }
-public func addTopping(topping: String) { self.toppings.append(topping) }
-public func chooseSugarPercent(percent: Double) { self.sugarPercent = percent }
-public func chooseIcyPercent(percent: Double) { self.icyPercent = percent }
+    public func chooseTaste(taste: String) { self.taste = taste }
+    public func chooseSize(size: String) { self.size = size }
+    public func addTopping(topping: String) { self.toppings.append(topping) }
+    public func chooseSugarPercent(percent: Double) { self.sugarPercent = percent }
+    public func chooseIcyPercent(percent: Double) { self.icyPercent = percent }
   
- public func build() -&gt; MilkTea {
-return MilkTea(taste: taste,
-size: size, toppings: toppings,
-sugarPercent: sugarPercent,
-icyPercent: icyPercent)
-}
+     public func build() -> MilkTea {
+        return MilkTea(taste: taste,
+                        size: size, toppings: toppings,
+                        sugarPercent: sugarPercent,
+                        icyPercent: icyPercent)
+    }
 }
 
 class Order {
-let customerName: String
-let products: [MilkTea]
+    let customerName: String
+    let products: [MilkTea]
   
- init(customerName: String, products: [MilkTea]) {
-self.customerName = customerName
-self.products = products
-}
+    init(customerName: String, products: [MilkTea]) {
+        self.customerName = customerName
+        self.products = products
+    }
 }
 
 let milkTeaBuilder = MilkTeaBuilder()
@@ -161,47 +161,47 @@ Telescoping Initializer là trường hợp khi một Class có quá nhiều ini
 
 {% highlight swift %}
 public class MilkTea {
-private let taste: String // vị trà sữa: peach, origin, orange, kumquat,...
-private let size: String // S-M-L
-private let toppings: [String] // coconut, ....
-private let sugarPercent: Double // phần trăm đường: 100% - 80% - 50 %
-private let icyPercent: Double // phần trăm đá 100% - 80% - 50 %
+    private let taste: String // vị trà sữa: peach, origin, orange, kumquat,...
+    private let size: String // S-M-L
+    private let toppings: [String] // coconut, ....
+    private let sugarPercent: Double // phần trăm đường: 100% - 80% - 50 %
+    private let icyPercent: Double // phần trăm đá 100% - 80% - 50 %
   
- init(taste: String,
-size: String,
-toppings: [String],
-sugarPercent: Double,
-icyPercent: Double) {
-self.taste = taste
-self.size = size
-self.toppings = toppings
-self.sugarPercent = sugarPercent
-self.icyPercent = icyPercent
-}
+    init(taste: String,
+        size: String,
+        toppings: [String],
+        sugarPercent: Double,
+        icyPercent: Double) {
+        self.taste = taste
+        self.size = size
+        self.toppings = toppings
+        self.sugarPercent = sugarPercent
+        self.icyPercent = icyPercent
+    }
   
- init(taste: String) {
-self.taste = taste
-self.size = "M"
-self.toppings = []
-self.sugarPercent = 1.0
-self.icyPercent = 1.0
-}
+    init(taste: String) {
+        self.taste = taste
+        self.size = "M"
+        self.toppings = []
+        self.sugarPercent = 1.0
+        self.icyPercent = 1.0
+    }
   
- init(taste: String, size: String) {
-self.taste = taste
-self.size = size
-self.toppings = []
-self.sugarPercent = 1.0
-self.icyPercent = 1.0
-}
+    init(taste: String, size: String) {
+        self.taste = taste
+        self.size = size
+        self.toppings = []
+        self.sugarPercent = 1.0
+        self.icyPercent = 1.0
+    }
   
- init(size: String) {
-self.taste = "origin"
-self.size = size
-self.toppings = []
-self.sugarPercent = 1.0
-self.icyPercent = 1.0
-}
+    init(size: String) {
+        self.taste = "origin"
+        self.size = size
+        self.toppings = []
+        self.sugarPercent = 1.0
+        self.icyPercent = 1.0
+    }
   
  ....
 }
@@ -215,23 +215,23 @@ Telescoping Initializer không còn là vấn đề -> Builder Pattern như trê
 
 {% highlight swift %}
 public class MilkTea {
-private let taste: String // vị trà sữa: peach, origin, orange, kumquat,...
-private let size: String // S-M-L
-private let toppings: [String] // coconut, ....
-private let sugarPercent: Double // phần trăm đường: 100% - 80% - 50 %
-private let icyPercent: Double // phần trăm đá 100% - 80% - 50 %
+    private let taste: String // vị trà sữa: peach, origin, orange, kumquat,...
+    private let size: String // S-M-L
+    private let toppings: [String] // coconut, ....
+    private let sugarPercent: Double // phần trăm đường: 100% - 80% - 50 %
+    private let icyPercent: Double // phần trăm đá 100% - 80% - 50 %
   
- init(taste: String = "origin",
-size: String = "M",
-toppings: [String] = [],
-sugarPercent: Double = 1.0,
-icyPercent: Double = 1.0) {
-self.taste = taste
-self.size = size
-self.toppings = toppings
-self.sugarPercent = sugarPercent
-self.icyPercent = icyPercent
-}
+    init(taste: String = "origin",
+        size: String = "M",
+        toppings: [String] = [],
+        sugarPercent: Double = 1.0,
+        icyPercent: Double = 1.0) {
+        self.taste = taste
+        self.size = size
+        self.toppings = toppings
+        self.sugarPercent = sugarPercent
+        self.icyPercent = icyPercent
+    }
 }
 
 MilkTea(taste: "peach")
@@ -243,7 +243,7 @@ MilkTea(taste: "Kumquat", size: "S", toppings: [])
 
 Câu trả lời là không. Tôi muốn trình bày kĩ vì bản thân tôi cũng bị ngáo ngơ khi tìm hiểu về Builder trong Swift, vì như trên, các tài liệu trên mạng thường trùng lặp và hướng người đọc vào vấn đề Telescoping &#8211; vấn đề thường gặp ở các ngôn ngữ cổ điển.
 
-Cái hay của Builder ở nằm ở việc giảm thiểu sự phức tạp khi khơi tạo Object, thông qua hàm <span style="color: #993300;"><code>build() -&gt; Type</code></span> &#8211; bản chất là việc đóng gói quá trình khởi tạo này lại, bạn có thể thực hiện các logic, làm abcxyz gì đó, rồi mới trả về Object sau cùng. Đặc điểm quan trọng này là lý do chính khiến Builder Pattern vẫn đã và đang được ứng dụng trong Swift iOS.
+Cái hay của Builder ở nằm ở việc giảm thiểu sự phức tạp khi khơi tạo Object, thông qua hàm <span style="color: #993300;"><code>build() -> Type</code></span> &#8211; bản chất là việc đóng gói quá trình khởi tạo này lại, bạn có thể thực hiện các logic, làm abcxyz gì đó, rồi mới trả về Object sau cùng. Đặc điểm quan trọng này là lý do chính khiến Builder Pattern vẫn đã và đang được ứng dụng trong Swift iOS.
 
 ### <span style="color: #ff9900;">Ứng dụng trong iOS?</span>
 
@@ -264,7 +264,7 @@ class ViewController: UIViewController {
 
 class ViewControllerBuilder {
 
-    func build() -&gt; ViewController {
+    func build() -> ViewController {
         let apiService = APIService(alamofire, environment)
         // do stuff
         let dbService = DBService()
@@ -285,44 +285,42 @@ Tư tưởng Builder được áp dụng trong module Router / Navigator / Coord
 {% highlight swift %}
 Source: https://gist.github.com/jazzbpn/afd9f178fe4d8a212d83750e1b4a5389#file-viper-noticerouter-swift // Router in VIPER architectur
 
-class NoticeRouter:PresenterToRouterProtocol{
+class NoticeRouter:PresenterToRouterProtocol {
   
- static func createModule() -&gt; NoticeViewController {
+    static func createModule() -> NoticeViewController {
   
- let view = mainstoryboard.instantiateViewController(withIdentifier: "MyViewController") as! NoticeViewController
+        let view = mainstoryboard.instantiateViewController(withIdentifier: "MyViewController") as! NoticeViewController
   
- let presenter: ViewToPresenterProtocol & InteractorToPresenterProtocol = NoticePresenter()
-let interactor: PresenterToInteractorProtocol = NoticeInteractor()
-let router:PresenterToRouterProtocol = NoticeRouter()
+        let presenter: ViewToPresenterProtocol & InteractorToPresenterProtocol = NoticePresenter()
+        let interactor: PresenterToInteractorProtocol = NoticeInteractor()
+        let router:PresenterToRouterProtocol = NoticeRouter()
   
- view.presentor = presenter
-presenter.view = view
-presenter.router = router
-presenter.interactor = interactor
-interactor.presenter = presenter
+        view.presentor = presenter
+        presenter.view = view
+        presenter.router = router
+        presenter.interactor = interactor
+        interactor.presenter = presenter
   
- return view
+        return view
+    }
   
- }
+    static var mainstoryboard: UIStoryboard {
+        return UIStoryboard(name:"Main",bundle: Bundle.main)
+    }
   
- static var mainstoryboard: UIStoryboard{
-return UIStoryboard(name:"Main",bundle: Bundle.main)
-}
+    func pushToMovieScreen(navigationConroller navigationController:UINavigationController) {
   
- func pushToMovieScreen(navigationConroller navigationController:UINavigationController) {
+        let movieModue = MovieRouter.createMovieModule()
+        navigationController.pushViewController(movieModue,animated: true)
   
- let movieModue = MovieRouter.createMovieModule()
-navigationController.pushViewController(movieModue,animated: true)
-  
- }
+    }
   
 }
 {% endhighlight %}
 
 {% highlight swift %}// Uber/RIBs - Router example
-
 protocol RootBuildable: Buildable {
-func build() -&gt; LaunchRouting
+    func build() -> LaunchRouting
 }
 
 final class RootBuilder: Builder&lt;RootDependency&gt;, RootBuildable {
@@ -331,7 +329,7 @@ final class RootBuilder: Builder&lt;RootDependency&gt;, RootBuildable {
         super.init(dependency: dependency)
     }
 
-    func build() -&gt; LaunchRouting {
+    func build() -> LaunchRouting {
         let viewController = RootViewController()
         let component = RootComponent(dependency: dependency, rootViewController: viewController)
         let interactor = RootInteractor(presenter: viewController)

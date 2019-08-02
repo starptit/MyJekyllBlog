@@ -29,7 +29,7 @@ Hơn nữa, một source code được thiết kế tốt, có thể giúp bạ
 
 Khi bắt tay vào thiết kế module hay function nào đó, bạn cần cân nhắc xem nó đã đáp ứng được một số yêu cầu dưới đây chưa? Thực chất design pattern hay architecture hay template gì đó cũng chỉ là giải pháp đưa ra để nhằm đảm bảo code và hệ thống của bạn đáp ứng được các tiêu chí đó. Chính vì vậy mà không phải lúc nào áp dụng pattern vào cũng là tốt, bạn cần phải xem xét và đánh giá cẩn thận, lập trình viên giỏi hay không chính là ở bước này: biết áp dụng cái gì và không áp dụng cái gì. Nếu không thì dự án của bạn sẽ như thế này:
 
-<img class=" size-full wp-image-575 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/1.jpg" alt="1" width="459" height="330" srcset="http://swiftyvn.com/wp-content/uploads/2017/01/1.jpg 459w, http://swiftyvn.com/wp-content/uploads/2017/01/1-300x216.jpg 300w" sizes="(max-width: 459px) 100vw, 459px" /> 
+<img class=" size-full wp-image-575 aligncenter" src="https://devislifeblog.files.wordpress.com/2017/01/1.jpg" alt="1" width="459" height="330" srcset="/wp-content/uploads/2017/01/1.jpg 459w, /wp-content/uploads/2017/01/1-300x216.jpg 300w" sizes="(max-width: 459px) 100vw, 459px" /> 
 
 Dài dòng đủ rồi, các nguyên tắc đó đây:
 

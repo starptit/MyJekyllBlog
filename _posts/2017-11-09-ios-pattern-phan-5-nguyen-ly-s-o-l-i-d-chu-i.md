@@ -31,7 +31,7 @@ Khoan đợi đã, nếu không khác nhau thì tại sao họ lại phải chia
 Ta thử đặt ngược lại câu hỏi? Nếu không có ISP thì sao? Nghĩa là Clients phụ thuộc vào các Interface mà nó không sử dụng.
 
 Hãy nhìn vào một ví dụ thực tế:  
-[<img class="size-full wp-image-1647 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/image.axd_.jpeg" alt="" width="486" height="484" srcset="http://swiftyvn.com/wp-content/uploads/2017/11/image.axd_.jpeg 486w, http://swiftyvn.com/wp-content/uploads/2017/11/image.axd_-150x150.jpeg 150w, http://swiftyvn.com/wp-content/uploads/2017/11/image.axd_-300x300.jpeg 300w, http://swiftyvn.com/wp-content/uploads/2017/11/image.axd_-100x100.jpeg 100w" sizes="(max-width: 486px) 100vw, 486px" />](http://206.189.90.168/wordpress/wp-content/uploads/2017/11/image.axd_.jpeg)
+[<img class="size-full wp-image-1647 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/image.axd_.jpeg" alt="" width="486" height="484" srcset="/wp-content/uploads/2017/11/image.axd_.jpeg 486w, /wp-content/uploads/2017/11/image.axd_-150x150.jpeg 150w, /wp-content/uploads/2017/11/image.axd_-300x300.jpeg 300w, /wp-content/uploads/2017/11/image.axd_-100x100.jpeg 100w" sizes="(max-width: 486px) 100vw, 486px" />](http://206.189.90.168/wordpress/wp-content/uploads/2017/11/image.axd_.jpeg)
 
 &#8211; Cái cổng nào mới là hợp lý để nhét vào cái iPhone bên cạnh?  
 &#8211; Cái iPhone chỉ có 1 cổng giao tiếp là Jack 3.5mm &#8211;> còn đống HDMI, microUSB,&#8230; kia là thừa thãi, cồng kềnh, vướng víu, gây bất tiện khi sử dụng.
@@ -55,7 +55,7 @@ Hiển nhiên việc đơn giản nhất là mỗi method, chúng ta chia nó ra
 
 ## **4. Ví dụ thực tế:**
 
-[<img class=" wp-image-1648 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0967-576x1024.png" alt="" width="354" height="630" srcset="http://swiftyvn.com/wp-content/uploads/2017/11/IMG_0967-576x1024.png 576w, http://swiftyvn.com/wp-content/uploads/2017/11/IMG_0967-169x300.png 169w, http://swiftyvn.com/wp-content/uploads/2017/11/IMG_0967-768x1365.png 768w, http://swiftyvn.com/wp-content/uploads/2017/11/IMG_0967.png 1242w" sizes="(max-width: 354px) 100vw, 354px" />](http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0967.png)
+[<img class=" wp-image-1648 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0967-576x1024.png" alt="" width="354" height="630" srcset="/wp-content/uploads/2017/11/IMG_0967-576x1024.png 576w, /wp-content/uploads/2017/11/IMG_0967-169x300.png 169w, /wp-content/uploads/2017/11/IMG_0967-768x1365.png 768w, /wp-content/uploads/2017/11/IMG_0967.png 1242w" sizes="(max-width: 354px) 100vw, 354px" />](http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0967.png)
 
 Giả sử với bài post trên, chúng ta có thể: Like, Comment, Share, Download ảnh. Tương ứng, ta có Interface sau:
 
@@ -86,7 +86,7 @@ class ImageHandler:IFacebookContent{
 </pre>
 
 Facebook muốn hỗ trợ Video và cho phép hiển thị content theo dạng Video:  
-[<img class=" wp-image-1649 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0968-576x1024.jpg" alt="" width="317" height="563" srcset="http://swiftyvn.com/wp-content/uploads/2017/11/IMG_0968-576x1024.jpg 576w, http://swiftyvn.com/wp-content/uploads/2017/11/IMG_0968-169x300.jpg 169w, http://swiftyvn.com/wp-content/uploads/2017/11/IMG_0968-768x1365.jpg 768w, http://swiftyvn.com/wp-content/uploads/2017/11/IMG_0968.jpg 1242w" sizes="(max-width: 317px) 100vw, 317px" />](http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0968.jpg)
+[<img class=" wp-image-1649 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0968-576x1024.jpg" alt="" width="317" height="563" srcset="/wp-content/uploads/2017/11/IMG_0968-576x1024.jpg 576w, /wp-content/uploads/2017/11/IMG_0968-169x300.jpg 169w, /wp-content/uploads/2017/11/IMG_0968-768x1365.jpg 768w, /wp-content/uploads/2017/11/IMG_0968.jpg 1242w" sizes="(max-width: 317px) 100vw, 317px" />](http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0968.jpg)
 
 <pre class="theme:sublime-text toolbar:2 lang:swift decode:true">class VideoHandler:IFacebookContent{
     func like(){
@@ -111,7 +111,7 @@ Facebook muốn hỗ trợ Video và cho phép hiển thị content theo dạng 
 
 Rồi một ngày anh Mark yêu cầu app của anh ấy phải đảm bảo được tính riêng tư và bảo mật, như là tôi là chủ tài khoản, tôi chỉ muốn cho bạn bè của tôi comment/like và tương tác với tôi:
 
-[<img class=" wp-image-1650 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0969-576x1024.png" alt="" width="429" height="763" srcset="http://swiftyvn.com/wp-content/uploads/2017/11/IMG_0969-576x1024.png 576w, http://swiftyvn.com/wp-content/uploads/2017/11/IMG_0969-169x300.png 169w, http://swiftyvn.com/wp-content/uploads/2017/11/IMG_0969-768x1365.png 768w, http://swiftyvn.com/wp-content/uploads/2017/11/IMG_0969.png 1242w" sizes="(max-width: 429px) 100vw, 429px" />](http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0969.png)
+[<img class=" wp-image-1650 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0969-576x1024.png" alt="" width="429" height="763" srcset="/wp-content/uploads/2017/11/IMG_0969-576x1024.png 576w, /wp-content/uploads/2017/11/IMG_0969-169x300.png 169w, /wp-content/uploads/2017/11/IMG_0969-768x1365.png 768w, /wp-content/uploads/2017/11/IMG_0969.png 1242w" sizes="(max-width: 429px) 100vw, 429px" />](http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0969.png)
 
 Như ảnh trên, ta thấy người dùng hiện tại chỉ có duy nhất quyền được share nội dung:
 

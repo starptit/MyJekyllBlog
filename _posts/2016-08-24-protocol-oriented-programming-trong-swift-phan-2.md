@@ -26,19 +26,19 @@ Trong phần 2, mình sẽ trình bày cách sử dụng Protocol-Oriented Progr
 </p>
 
 <p style="padding-left:30px;">
-  <img class=" size-full wp-image-384 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-07-21-pm.png" alt="Screen Shot 2016-08-24 at 3.07.21 PM.png" width="367" height="238" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-21-pm.png 367w, http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-21-pm-300x195.png 300w" sizes="(max-width: 367px) 100vw, 367px" />
+  <img class=" size-full wp-image-384 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-07-21-pm.png" alt="Screen Shot 2016-08-24 at 3.07.21 PM.png" width="367" height="238" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-21-pm.png 367w, /wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-21-pm-300x195.png 300w" sizes="(max-width: 367px) 100vw, 367px" />
 </p>
 
 <!--more-->
 
-<img class=" size-full wp-image-388 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-07-49-pm.png" alt="Screen Shot 2016-08-24 at 3.07.49 PM" width="617" height="140" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-49-pm.png 617w, http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-49-pm-300x68.png 300w" sizes="(max-width: 617px) 100vw, 617px" /> 
+<img class=" size-full wp-image-388 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-07-49-pm.png" alt="Screen Shot 2016-08-24 at 3.07.49 PM" width="617" height="140" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-49-pm.png 617w, /wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-49-pm-300x68.png 300w" sizes="(max-width: 617px) 100vw, 617px" /> 
 
 <p style="padding-left:30px;">
   ==> Kết quả:
 </p>
 
 <p style="padding-left:30px;">
-  <img class=" size-full wp-image-393 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-11-20-pm.png" alt="Screen Shot 2016-08-24 at 3.11.20 PM.png" width="366" height="73" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-11-20-pm.png 366w, http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-11-20-pm-300x60.png 300w" sizes="(max-width: 366px) 100vw, 366px" />
+  <img class=" size-full wp-image-393 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-11-20-pm.png" alt="Screen Shot 2016-08-24 at 3.11.20 PM.png" width="366" height="73" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-11-20-pm.png 366w, /wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-11-20-pm-300x60.png 300w" sizes="(max-width: 366px) 100vw, 366px" />
 </p>
 
 <p style="padding-left:30px;">
@@ -49,7 +49,7 @@ Trong phần 2, mình sẽ trình bày cách sử dụng Protocol-Oriented Progr
   Một thay đổi nhỏ chuyển từ Class sang Struct &#8211;> không còn memory leak, không còn implicit sharing data, không còn deadlock,&#8230;. Cool, phải không. Rõ ràng, tâp trung vào Class (tức hướng về OOP) không phải là ý kiến hay.
 </p>
 
-<img class="aligncenter size-full wp-image-402" src="https://devislifeblog.files.wordpress.com/2016/08/r5btd.jpg" alt="r5btd.jpg" width="386" height="250" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/r5btd.jpg 386w, http://swiftyvn.com/wp-content/uploads/2016/08/r5btd-300x194.jpg 300w" sizes="(max-width: 386px) 100vw, 386px" /> 
+<img class="aligncenter size-full wp-image-402" src="https://devislifeblog.files.wordpress.com/2016/08/r5btd.jpg" alt="r5btd.jpg" width="386" height="250" srcset="/wp-content/uploads/2016/08/r5btd.jpg 386w, /wp-content/uploads/2016/08/r5btd-300x194.jpg 300w" sizes="(max-width: 386px) 100vw, 386px" /> 
 
 <p style="padding-left:30px;">
   b. Inheritance problem:
@@ -81,7 +81,7 @@ Trong phần 2, mình sẽ trình bày cách sử dụng Protocol-Oriented Progr
   Chú chim cánh cụt giờ có thể vui vẻ được rồi :D.
 </p>
 
-<img class=" size-full wp-image-412 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/happy-feet.jpg" alt="happy-feet.jpg" width="500" height="499" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/happy-feet.jpg 500w, http://swiftyvn.com/wp-content/uploads/2016/08/happy-feet-150x150.jpg 150w, http://swiftyvn.com/wp-content/uploads/2016/08/happy-feet-300x300.jpg 300w, http://swiftyvn.com/wp-content/uploads/2016/08/happy-feet-100x100.jpg 100w" sizes="(max-width: 500px) 100vw, 500px" /> 
+<img class=" size-full wp-image-412 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/happy-feet.jpg" alt="happy-feet.jpg" width="500" height="499" srcset="/wp-content/uploads/2016/08/happy-feet.jpg 500w, /wp-content/uploads/2016/08/happy-feet-150x150.jpg 150w, /wp-content/uploads/2016/08/happy-feet-300x300.jpg 300w, /wp-content/uploads/2016/08/happy-feet-100x100.jpg 100w" sizes="(max-width: 500px) 100vw, 500px" /> 
 
 <img class="aligncenter size-full wp-image-314" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-22-at-3-32-30-pm.png" alt="Screen Shot 2016-08-22 at 3.32.30 PM.png" width="598" height="424" /> 
 
@@ -97,7 +97,7 @@ Trong phần 2, mình sẽ trình bày cách sử dụng Protocol-Oriented Progr
   Vấn đề của lost relationship của classes đó là việc chúng ta liên tục phải ép kiểu (casting) lại các subclass mỗi khi chúng override. Để giải quyết vấn đề này, chúng ta có thể chuyển đổi từ việc sử dụng Class sang Struct và Protocol:
 </p>
 
-<img class="aligncenter size-full wp-image-428" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-45-48-pm.png" alt="Screen Shot 2016-08-24 at 3.45.48 PM.png" width="421" height="354" srcset="http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-45-48-pm.png 421w, http://swiftyvn.com/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-45-48-pm-300x252.png 300w" sizes="(max-width: 421px) 100vw, 421px" /> 
+<img class="aligncenter size-full wp-image-428" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-45-48-pm.png" alt="Screen Shot 2016-08-24 at 3.45.48 PM.png" width="421" height="354" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-45-48-pm.png 421w, /wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-45-48-pm-300x252.png 300w" sizes="(max-width: 421px) 100vw, 421px" /> 
 
 <p style="padding-left:30px;">
   AbstractComparation từ Class đã chuyển thành Protocol, và các subclass của nó được chuyển thành struct. Việc chuyển từ Class thành Protocol giúp cho AbstractComparation linh hoạt hơn, như ví dụ trong hình là việc inject Dependency vào, nhờ đó, mình không còn cần phải ép kiểu nữa.

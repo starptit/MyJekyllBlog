@@ -49,7 +49,7 @@ Struct (cấu trúc) và Class(lớp) trong Swift có nhiều điểm tương đ
       </ul>
       
       <p>
-        <img class="alignnone size-full wp-image-80" src="https://devislifeblog.files.wordpress.com/2016/04/screen-shot-2016-03-23-at-13-23-58.png" alt="Screen Shot 2016-03-23 at 13.23.58.png" width="914" height="1062" srcset="http://swiftyvn.com/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-13-23-58.png 914w, http://swiftyvn.com/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-13-23-58-258x300.png 258w, http://swiftyvn.com/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-13-23-58-768x892.png 768w, http://swiftyvn.com/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-13-23-58-881x1024.png 881w" sizes="(max-width: 914px) 100vw, 914px" />
+        <img class="alignnone size-full wp-image-80" src="https://devislifeblog.files.wordpress.com/2016/04/screen-shot-2016-03-23-at-13-23-58.png" alt="Screen Shot 2016-03-23 at 13.23.58.png" width="914" height="1062" srcset="/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-13-23-58.png 914w, /wp-content/uploads/2016/04/screen-shot-2016-03-23-at-13-23-58-258x300.png 258w, /wp-content/uploads/2016/04/screen-shot-2016-03-23-at-13-23-58-768x892.png 768w, /wp-content/uploads/2016/04/screen-shot-2016-03-23-at-13-23-58-881x1024.png 881w" sizes="(max-width: 914px) 100vw, 914px" />
       </p>
       
       <p>
@@ -80,7 +80,7 @@ Struct (cấu trúc) và Class(lớp) trong Swift có nhiều điểm tương đ
       </p>
       
       <p>
-        <img class="alignnone size-full wp-image-82" src="https://devislifeblog.files.wordpress.com/2016/04/screen-shot-2016-03-23-at-14-14-40.png" alt="Screen Shot 2016-03-23 at 14.14.40.png" width="1382" height="688" srcset="http://swiftyvn.com/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-14-14-40.png 1382w, http://swiftyvn.com/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-14-14-40-300x149.png 300w, http://swiftyvn.com/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-14-14-40-768x382.png 768w, http://swiftyvn.com/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-14-14-40-1024x510.png 1024w" sizes="(max-width: 1382px) 100vw, 1382px" />
+        <img class="alignnone size-full wp-image-82" src="https://devislifeblog.files.wordpress.com/2016/04/screen-shot-2016-03-23-at-14-14-40.png" alt="Screen Shot 2016-03-23 at 14.14.40.png" width="1382" height="688" srcset="/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-14-14-40.png 1382w, /wp-content/uploads/2016/04/screen-shot-2016-03-23-at-14-14-40-300x149.png 300w, /wp-content/uploads/2016/04/screen-shot-2016-03-23-at-14-14-40-768x382.png 768w, /wp-content/uploads/2016/04/screen-shot-2016-03-23-at-14-14-40-1024x510.png 1024w" sizes="(max-width: 1382px) 100vw, 1382px" />
       </p>
       
       <p>
@@ -88,7 +88,7 @@ Struct (cấu trúc) và Class(lớp) trong Swift có nhiều điểm tương đ
       </p>
       
       <p>
-        <img class="alignnone size-full wp-image-83" src="https://devislifeblog.files.wordpress.com/2016/04/screen-shot-2016-03-23-at-15-04-59.png" alt="Screen Shot 2016-03-23 at 15.04.59.png" width="1380" height="1078" srcset="http://swiftyvn.com/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-15-04-59.png 1380w, http://swiftyvn.com/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-15-04-59-300x234.png 300w, http://swiftyvn.com/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-15-04-59-768x600.png 768w, http://swiftyvn.com/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-15-04-59-1024x800.png 1024w" sizes="(max-width: 1380px) 100vw, 1380px" />
+        <img class="alignnone size-full wp-image-83" src="https://devislifeblog.files.wordpress.com/2016/04/screen-shot-2016-03-23-at-15-04-59.png" alt="Screen Shot 2016-03-23 at 15.04.59.png" width="1380" height="1078" srcset="/wp-content/uploads/2016/04/screen-shot-2016-03-23-at-15-04-59.png 1380w, /wp-content/uploads/2016/04/screen-shot-2016-03-23-at-15-04-59-300x234.png 300w, /wp-content/uploads/2016/04/screen-shot-2016-03-23-at-15-04-59-768x600.png 768w, /wp-content/uploads/2016/04/screen-shot-2016-03-23-at-15-04-59-1024x800.png 1024w" sizes="(max-width: 1380px) 100vw, 1380px" />
       </p>
       
       <p>

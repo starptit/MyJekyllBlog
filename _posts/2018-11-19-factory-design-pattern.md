@@ -88,7 +88,7 @@ Với Factory, mọi việc trở nên đơn giản hơn:
 }
 
 public struct LoggerFactory {
-    static func createLogger() -&gt; ILogger {
+    static func createLogger() -> ILogger {
 //        return DatabaseLogger()
         return NetworkingLogger()
     }
@@ -127,7 +127,7 @@ Giả sử tôi đang thiết kế ứng dụng hẹn hò tương tự như Tind
     
     }
     
-    func suggesst() -&gt; [User] {
+    func suggesst() -> [User] {
         // To Do: find and suggest user
         return []
     }
@@ -164,7 +164,7 @@ SuggestMatching là module đảm nhận business logic, User đại diện cho 
 &#8211;> Rõ ràng SuggestMatching được khởi tạo phức tạp, hơn nữa 2 ViewController lại không cần quan tâm đến cái phức tạp đó. Nếu sử dụng Factory, bài toán trên sẽ có dạng như sau:
 
 <pre class="theme:xcode lang:swift decode:true">struct SuggesstMatchingFactory {
-    static func getSuggestMatching() -&gt; SuggesstMatching {
+    static func getSuggestMatching() -> SuggesstMatching {
         let user = User()
         let propertyList = PropertyList()
         
@@ -193,7 +193,7 @@ Một vấn đề khác mà Factory có thể giải quyết được:
     
     init(user: [User]) {}
     
-    func suggesst() -&gt; [User] {
+    func suggesst() -> [User] {
         // To Do: find and suggest user
         return []
     }
@@ -217,7 +217,7 @@ Tôi đang phát triển tính năng cập nhật thông tin người dùng, tro
 }
 
 struct FilePlaceConnector {
-    func getPlaceList() -&gt; [Place] {
+    func getPlaceList() -> [Place] {
         // load File System
         // get Place list from Files
         return placeListFromFile
@@ -225,7 +225,7 @@ struct FilePlaceConnector {
 }
 
 struct DatabaseConnector {
-    func loadPlaceListFromDatabase() -&gt; [Place] {
+    func loadPlaceListFromDatabase() -> [Place] {
         // setup DB connection
         // query to get Place list
         
@@ -239,7 +239,7 @@ Thế nhưng, Hà Tây sát nhập vào Hà Nội, rồi Việt Nam thống nh�
 
 Cách đầu tiên là sử dụng một thủ thuật gọi là Simple Factory, cụ thể:
 
-<img class="size-full wp-image-1830 aligncenter" src="http://swiftyvn.com/wp-content/uploads/2018/11/Untitled-Diagram-2.png" alt="" width="974" height="296" srcset="http://swiftyvn.com/wp-content/uploads/2018/11/Untitled-Diagram-2.png 974w, http://swiftyvn.com/wp-content/uploads/2018/11/Untitled-Diagram-2-300x91.png 300w, http://swiftyvn.com/wp-content/uploads/2018/11/Untitled-Diagram-2-768x233.png 768w" sizes="(max-width: 974px) 100vw, 974px" /> 
+<img class="size-full wp-image-1830 aligncenter" src="/wp-content/uploads/2018/11/Untitled-Diagram-2.png" alt="" width="974" height="296" srcset="/wp-content/uploads/2018/11/Untitled-Diagram-2.png 974w, /wp-content/uploads/2018/11/Untitled-Diagram-2-300x91.png 300w, /wp-content/uploads/2018/11/Untitled-Diagram-2-768x233.png 768w" sizes="(max-width: 974px) 100vw, 974px" /> 
 
 <pre class="theme:xcode lang:swift decode:true">enum ConnectionType {
     case file
@@ -248,11 +248,11 @@ Cách đầu tiên là sử dụng một thủ thuật gọi là Simple Factory,
 }
 
 protocol PlaceConnectorProtocol {
-    func loadPlaceList() -&gt; [Place]
+    func loadPlaceList() -> [Place]
 }
 
 struct FilePlaceConnector: PlaceConnectorProtocol {
-    func loadPlaceList() -&gt; [Place] {
+    func loadPlaceList() -> [Place] {
         // load File System
         // get Place list from Files
         return placeListFromFile
@@ -261,7 +261,7 @@ struct FilePlaceConnector: PlaceConnectorProtocol {
 
 
 struct APIPlaceConnector: PlaceConnectorProtocol {
-    func loadPlaceList() -&gt; [Place] {
+    func loadPlaceList() -> [Place] {
         // setup connection
         // get Place list from API
         
@@ -270,7 +270,7 @@ struct APIPlaceConnector: PlaceConnectorProtocol {
 }
 
 struct DatabaseConnector: PlaceConnectorProtocol {
-    func loadPlaceList() -&gt; [Place] {
+    func loadPlaceList() -> [Place] {
         // setup DB connection
         // query to get Place list
         
@@ -279,7 +279,7 @@ struct DatabaseConnector: PlaceConnectorProtocol {
 }
 
 struct PlaceConnectorFactory {
-    static func getPlaceConnector(type: ConnectionType) -&gt; PlaceConnectorProtocol {
+    static func getPlaceConnector(type: ConnectionType) -> PlaceConnectorProtocol {
         switch type {
         case .file:
             return FilePlaceConnector()
@@ -329,7 +329,7 @@ Factory Method Pattern được đề cập đến trong quyển sách nổi ti�
       </p>
       
       <p>
-        <img class="size-large wp-image-1832 aligncenter" src="http://swiftyvn.com/wp-content/uploads/2018/11/Untitled-Diagram-3-1024x542.png" alt="" width="768" height="407" srcset="http://swiftyvn.com/wp-content/uploads/2018/11/Untitled-Diagram-3-1024x542.png 1024w, http://swiftyvn.com/wp-content/uploads/2018/11/Untitled-Diagram-3-300x159.png 300w, http://swiftyvn.com/wp-content/uploads/2018/11/Untitled-Diagram-3-768x407.png 768w, http://swiftyvn.com/wp-content/uploads/2018/11/Untitled-Diagram-3.png 1046w" sizes="(max-width: 768px) 100vw, 768px" />
+        <img class="size-large wp-image-1832 aligncenter" src="/wp-content/uploads/2018/11/Untitled-Diagram-3-1024x542.png" alt="" width="768" height="407" srcset="/wp-content/uploads/2018/11/Untitled-Diagram-3-1024x542.png 1024w, /wp-content/uploads/2018/11/Untitled-Diagram-3-300x159.png 300w, /wp-content/uploads/2018/11/Untitled-Diagram-3-768x407.png 768w, /wp-content/uploads/2018/11/Untitled-Diagram-3.png 1046w" sizes="(max-width: 768px) 100vw, 768px" />
       </p>
       
       <p>
@@ -337,7 +337,7 @@ Factory Method Pattern được đề cập đến trong quyển sách nổi ti�
       </p>
       
       <pre class="theme:xcode lang:default decode:true">protocol PlaceConnectorFactory {
-    func getPlaceConnector() -&gt; PlaceConnectorProtocol
+    func getPlaceConnector() -> PlaceConnectorProtocol
 }
 
 extension PlaceConnectorFactory {
@@ -348,7 +348,7 @@ extension PlaceConnectorFactory {
 }
 
 struct DatabaseConnectorFactory: PlaceConnectorFactory {
-    func getPlaceConnector() -&gt; PlaceConnectorProtocol {
+    func getPlaceConnector() -> PlaceConnectorProtocol {
         // Setup Database Environment
         // Connect Database and return instance
         DatabaseConnector()
@@ -356,7 +356,7 @@ struct DatabaseConnectorFactory: PlaceConnectorFactory {
 }
 
 struct APIConnectorFactory: PlaceConnectorFactory {
-    func getPlaceConnector() -&gt; PlaceConnectorProtocol {
+    func getPlaceConnector() -> PlaceConnectorProtocol {
         // Setup Request
         // Request
         // Response
