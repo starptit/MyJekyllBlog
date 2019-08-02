@@ -12,7 +12,7 @@ categories:
 
 Đợt vừa rồi tôi có hơi bận viết blog nội bộ cho công ty nên có hơi bỏ bê trang này, nhưng không sao, SwiftyVN đã trở lại và đương nhiên là series về Design Pattern cũng sẽ quay lại 🤘. Vẫn tiếp nối chuỗi bài viết về loại Creational (khởi tạo), và cũng vẫn là một trong những pattern thuộc hàng phổ thông nhất, đó chính là **<span style="color: #993300;">Builder Design Pattern.</span>**
 
-<img class="aligncenter wp-image-1878" src="http://swiftyvn.com/wp-content/uploads/2019/05/xfa1323749768.jpg" alt="" width="600" height="399" srcset="http://swiftyvn.com/wp-content/uploads/2019/05/xfa1323749768.jpg 800w, http://swiftyvn.com/wp-content/uploads/2019/05/xfa1323749768-300x200.jpg 300w, http://swiftyvn.com/wp-content/uploads/2019/05/xfa1323749768-768x511.jpg 768w" sizes="(max-width: 600px) 100vw, 600px" />
+<img class="aligncenter wp-image-1878" src="/wp-content/uploads/2019/05/xfa1323749768.jpg" alt="" width="600" height="399" srcset="/wp-content/uploads/2019/05/xfa1323749768.jpg 800w, /wp-content/uploads/2019/05/xfa1323749768-300x200.jpg 300w, /wp-content/uploads/2019/05/xfa1323749768-768x511.jpg 768w" sizes="(max-width: 600px) 100vw, 600px" />
 
 <!--more-->
 
@@ -32,23 +32,23 @@ Giả sử tôi đang tạo chương trình quản lý cho quán trà sữa, m�
 
 {% highlight swift %}
 public class MilkTea {
-    private let taste: String // vị trà sữa: peach, origin, orange, kumquat,...
-    private let size: String // S-M-L
-    private let toppings: [String] // coconut, ....
-    private let sugarPercent: Double // phần trăm đường: 100% - 80% - 50 %
-    private let icyPercent: Double // phần trăm đá 100% - 80% - 50 %
-    
-    init(taste: String,
-         size: String,
-         toppings: [String],
-         sugarPercent: Double,
-         icyPercent: Double) {
-        self.taste = taste
-        self.size = size
-        self.toppings = toppings
-        self.sugarPercent = sugarPercent
-        self.icyPercent = icyPercent
-    }
+private let taste: String // vị trà sữa: peach, origin, orange, kumquat,...
+private let size: String // S-M-L
+private let toppings: [String] // coconut, ....
+private let sugarPercent: Double // phần trăm đường: 100% - 80% - 50 %
+private let icyPercent: Double // phần trăm đá 100% - 80% - 50 %
+  
+ init(taste: String,
+size: String,
+toppings: [String],
+sugarPercent: Double,
+icyPercent: Double) {
+self.taste = taste
+self.size = size
+self.toppings = toppings
+self.sugarPercent = sugarPercent
+self.icyPercent = icyPercent
+}
 }
 {% endhighlight %}
 
@@ -90,39 +90,37 @@ Phân tích Diagram trên:
 {% highlight swift %}
 
 public final class MilkTeaBuilder {
-    private var taste: String = "origin"
-    private var size: String = "M"
-    private var toppings: [String] = []
-    private var sugarPercent: Double = 1.0
-    private var icyPercent: Double = 1.0
-    
-    public func chooseTaste(taste: String) { self.taste = taste }
-    public func chooseSize(size: String) { self.size = size }
-    public func addTopping(topping: String) { self.toppings.append(topping) }
-    public func chooseSugarPercent(percent: Double) { self.sugarPercent = percent }
-    public func chooseIcyPercent(percent: Double) { self.icyPercent = percent }
-    
-    public func build() -&gt; MilkTea {
-        return MilkTea(taste: taste,
-                       size: size, toppings: toppings,
-                       sugarPercent: sugarPercent,
-                       icyPercent: icyPercent)
-    }
+private var taste: String = "origin"
+private var size: String = "M"
+private var toppings: [String] = []
+private var sugarPercent: Double = 1.0
+private var icyPercent: Double = 1.0
+  
+ public func chooseTaste(taste: String) { self.taste = taste }
+public func chooseSize(size: String) { self.size = size }
+public func addTopping(topping: String) { self.toppings.append(topping) }
+public func chooseSugarPercent(percent: Double) { self.sugarPercent = percent }
+public func chooseIcyPercent(percent: Double) { self.icyPercent = percent }
+  
+ public func build() -&gt; MilkTea {
+return MilkTea(taste: taste,
+size: size, toppings: toppings,
+sugarPercent: sugarPercent,
+icyPercent: icyPercent)
+}
 }
 
-
 class Order {
-    let customerName: String
-    let products: [MilkTea]
-    
-    init(customerName: String, products: [MilkTea]) {
-        self.customerName = customerName
-        self.products = products
-    }
+let customerName: String
+let products: [MilkTea]
+  
+ init(customerName: String, products: [MilkTea]) {
+self.customerName = customerName
+self.products = products
+}
 }
 
 let milkTeaBuilder = MilkTeaBuilder()
-
 
 // Customer 1
 let customer1Name = "Shaw Vu"
@@ -163,49 +161,49 @@ Telescoping Initializer là trường hợp khi một Class có quá nhiều ini
 
 {% highlight swift %}
 public class MilkTea {
-    private let taste: String // vị trà sữa: peach, origin, orange, kumquat,...
-    private let size: String // S-M-L
-    private let toppings: [String] // coconut, ....
-    private let sugarPercent: Double // phần trăm đường: 100% - 80% - 50 %
-    private let icyPercent: Double // phần trăm đá 100% - 80% - 50 %
-    
-    init(taste: String,
-         size: String,
-         toppings: [String],
-         sugarPercent: Double,
-         icyPercent: Double) {
-        self.taste = taste
-        self.size = size
-        self.toppings = toppings
-        self.sugarPercent = sugarPercent
-        self.icyPercent = icyPercent
-    }
-    
-    init(taste: String) {
-        self.taste = taste
-        self.size = "M"
-        self.toppings = []
-        self.sugarPercent = 1.0
-        self.icyPercent = 1.0
-    }
-    
-    init(taste: String, size: String) {
-        self.taste = taste
-        self.size = size
-        self.toppings = []
-        self.sugarPercent = 1.0
-        self.icyPercent = 1.0
-    }
-    
-    init(size: String) {
-        self.taste = "origin"
-        self.size = size
-        self.toppings = []
-        self.sugarPercent = 1.0
-        self.icyPercent = 1.0
-    }
-    
-    ....
+private let taste: String // vị trà sữa: peach, origin, orange, kumquat,...
+private let size: String // S-M-L
+private let toppings: [String] // coconut, ....
+private let sugarPercent: Double // phần trăm đường: 100% - 80% - 50 %
+private let icyPercent: Double // phần trăm đá 100% - 80% - 50 %
+  
+ init(taste: String,
+size: String,
+toppings: [String],
+sugarPercent: Double,
+icyPercent: Double) {
+self.taste = taste
+self.size = size
+self.toppings = toppings
+self.sugarPercent = sugarPercent
+self.icyPercent = icyPercent
+}
+  
+ init(taste: String) {
+self.taste = taste
+self.size = "M"
+self.toppings = []
+self.sugarPercent = 1.0
+self.icyPercent = 1.0
+}
+  
+ init(taste: String, size: String) {
+self.taste = taste
+self.size = size
+self.toppings = []
+self.sugarPercent = 1.0
+self.icyPercent = 1.0
+}
+  
+ init(size: String) {
+self.taste = "origin"
+self.size = size
+self.toppings = []
+self.sugarPercent = 1.0
+self.icyPercent = 1.0
+}
+  
+ ....
 }
 {% endhighlight %}
 
@@ -217,23 +215,23 @@ Telescoping Initializer không còn là vấn đề -> Builder Pattern như trê
 
 {% highlight swift %}
 public class MilkTea {
-    private let taste: String // vị trà sữa: peach, origin, orange, kumquat,...
-    private let size: String // S-M-L
-    private let toppings: [String] // coconut, ....
-    private let sugarPercent: Double // phần trăm đường: 100% - 80% - 50 %
-    private let icyPercent: Double // phần trăm đá 100% - 80% - 50 %
-    
-    init(taste: String = "origin",
-         size: String = "M",
-         toppings: [String] = [],
-         sugarPercent: Double = 1.0,
-         icyPercent: Double = 1.0) {
-        self.taste = taste
-        self.size = size
-        self.toppings = toppings
-        self.sugarPercent = sugarPercent
-        self.icyPercent = icyPercent
-    }
+private let taste: String // vị trà sữa: peach, origin, orange, kumquat,...
+private let size: String // S-M-L
+private let toppings: [String] // coconut, ....
+private let sugarPercent: Double // phần trăm đường: 100% - 80% - 50 %
+private let icyPercent: Double // phần trăm đá 100% - 80% - 50 %
+  
+ init(taste: String = "origin",
+size: String = "M",
+toppings: [String] = [],
+sugarPercent: Double = 1.0,
+icyPercent: Double = 1.0) {
+self.taste = taste
+self.size = size
+self.toppings = toppings
+self.sugarPercent = sugarPercent
+self.icyPercent = icyPercent
+}
 }
 
 MilkTea(taste: "peach")
@@ -259,8 +257,9 @@ class ViewController: UIViewController {
 
     init(apiService: IAPIService,
          databaseService: IDBService) {
-        
+
     }
+
 }
 
 class ViewControllerBuilder {
@@ -269,12 +268,13 @@ class ViewControllerBuilder {
         let apiService = APIService(alamofire, environment)
         // do stuff
         let dbService = DBService()
-        
+
         return ViewController(
             apiService: apiService,
             databaseService: dbService
         )
     }
+
 }
 {% endhighlight %}
 
@@ -286,44 +286,43 @@ Tư tưởng Builder được áp dụng trong module Router / Navigator / Coord
 Source: https://gist.github.com/jazzbpn/afd9f178fe4d8a212d83750e1b4a5389#file-viper-noticerouter-swift // Router in VIPER architectur
 
 class NoticeRouter:PresenterToRouterProtocol{
-    
-    static func createModule() -&gt; NoticeViewController {
-        
-        let view = mainstoryboard.instantiateViewController(withIdentifier: "MyViewController") as! NoticeViewController
-        
-        let presenter: ViewToPresenterProtocol & InteractorToPresenterProtocol = NoticePresenter()
-        let interactor: PresenterToInteractorProtocol = NoticeInteractor()
-        let router:PresenterToRouterProtocol = NoticeRouter()
-        
-        view.presentor = presenter
-        presenter.view = view
-        presenter.router = router
-        presenter.interactor = interactor
-        interactor.presenter = presenter
-        
-        return view
-        
-    }
-    
-    static var mainstoryboard: UIStoryboard{
-        return UIStoryboard(name:"Main",bundle: Bundle.main)
-    }
-    
-    func pushToMovieScreen(navigationConroller navigationController:UINavigationController) {
-        
-        let movieModue = MovieRouter.createMovieModule()
-        navigationController.pushViewController(movieModue,animated: true)
-        
-    }
-    
+  
+ static func createModule() -&gt; NoticeViewController {
+  
+ let view = mainstoryboard.instantiateViewController(withIdentifier: "MyViewController") as! NoticeViewController
+  
+ let presenter: ViewToPresenterProtocol & InteractorToPresenterProtocol = NoticePresenter()
+let interactor: PresenterToInteractorProtocol = NoticeInteractor()
+let router:PresenterToRouterProtocol = NoticeRouter()
+  
+ view.presentor = presenter
+presenter.view = view
+presenter.router = router
+presenter.interactor = interactor
+interactor.presenter = presenter
+  
+ return view
+  
+ }
+  
+ static var mainstoryboard: UIStoryboard{
+return UIStoryboard(name:"Main",bundle: Bundle.main)
+}
+  
+ func pushToMovieScreen(navigationConroller navigationController:UINavigationController) {
+  
+ let movieModue = MovieRouter.createMovieModule()
+navigationController.pushViewController(movieModue,animated: true)
+  
+ }
+  
 }
 {% endhighlight %}
 
 {% highlight swift %}// Uber/RIBs - Router example
 
-
 protocol RootBuildable: Buildable {
-    func build() -&gt; LaunchRouting
+func build() -&gt; LaunchRouting
 }
 
 final class RootBuilder: Builder&lt;RootDependency&gt;, RootBuildable {
@@ -344,6 +343,7 @@ final class RootBuilder: Builder&lt;RootDependency&gt;, RootBuildable {
                           loggedOutBuilder: loggedOutBuilder,
                           loggedInBuilder: loggedInBuilder)
     }
+
 }
 {% endhighlight %}
 
