@@ -6,20 +6,20 @@ author: starptit
 layout: post
 guid: https://devislifeblog.wordpress.com/?p=217
 permalink: /2016/08/protocol-oriented-programming-trong-swift-phan-1/
-categories:
-  - Uncategorized
+categories: [Uncategorized, Swift]
 ---
+
 (If you are looking for English version, here you go: <a href="https://medium.com/@starptit/an-example-of-protocol-oriented-programming-in-swift-4c87804d4bd9#.c22prdn0v" target="_blank">POP English</a>)
 
 <del></del><del></del>Lập trình hướng đối tượng (OOP &#8211; Object Oriented Programming): Ok Done.
 
-<img class=" size-full wp-image-229 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/oop-meme.jpg" alt="oop-meme.jpg" width="400" height="330" srcset="/wp-content/uploads/2016/08/oop-meme.jpg 400w, /wp-content/uploads/2016/08/oop-meme-300x248.jpg 300w" sizes="(max-width: 400px) 100vw, 400px" /> 
+<img class=" size-full wp-image-229 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/oop-meme.jpg" alt="oop-meme.jpg" width="400" height="330" srcset="/wp-content/uploads/2016/08/oop-meme.jpg 400w, /wp-content/uploads/2016/08/oop-meme-300x248.jpg 300w" sizes="(max-width: 400px) 100vw, 400px" />
 
 Lập trình hướng Protocol (POP &#8211; Protocol Oriented Programming): Dafuq ????
 
 <!--more-->
 
-<img class=" size-full wp-image-223 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e.jpg" alt="d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e" width="620" height="455" srcset="/wp-content/uploads/2016/08/d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e.jpg 620w, /wp-content/uploads/2016/08/d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e-300x220.jpg 300w" sizes="(max-width: 620px) 100vw, 620px" /> 
+<img class=" size-full wp-image-223 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e.jpg" alt="d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e" width="620" height="455" srcset="/wp-content/uploads/2016/08/d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e.jpg 620w, /wp-content/uploads/2016/08/d52f9ca95731da7aab0b7c704df9154b32d08d4f6d87b25a848ed2df9386451e-300x220.jpg 300w" sizes="(max-width: 620px) 100vw, 620px" />
 
 ##### <span style="color:#800000;"><em>// Protocol: từ này mình không biết dịch thế nào cho hợp lý : giao thức, giao tác, &#8230; nghe nó không tròn ý lắm, nên mình xin đặt tên theo nguyên bản. (Protocol này tương tự như Interface của Java và C#)</em></span>
 
@@ -71,7 +71,7 @@ Thuật ngữ Protocol-Oriented Programming (POP) được giới thiệu lần 
   Trong ngôn ngữ Swift, Class là Reference Type, còn Struct là Values Type. Việc chúng ta truyền instance của Class (Object), thực chất là chúng ta truyền Reference (tham chiếu) của nó. Giả sử mình có một Class thể hiện họ nhà Chim sau:
 </p>
 
-<img class="aligncenter size-full wp-image-329" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-11-26-00-am.png" alt="Screen Shot 2016-08-24 at 11.26.00 AM.png" width="383" height="212" /> 
+<img class="aligncenter size-full wp-image-329" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-11-26-00-am.png" alt="Screen Shot 2016-08-24 at 11.26.00 AM.png" width="383" height="212" />
 
 <p style="padding-left:60px;">
   Mình tạo 1 instance của Bird, và tạo thêm một reference mới của nó, thông qua 2 biến &#8220;myParrot&#8221; và &#8220;hisParrot&#8221;. Thử xem reference tác động như thế nào nhé:
@@ -85,7 +85,7 @@ Thuật ngữ Protocol-Oriented Programming (POP) được giới thiệu lần 
   Kết quả:
 </p>
 
-<img class=" size-full wp-image-340 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-11-34-39-am.png" alt="Screen Shot 2016-08-24 at 11.34.39 AM.png" width="299" height="63" /> 
+<img class=" size-full wp-image-340 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-11-34-39-am.png" alt="Screen Shot 2016-08-24 at 11.34.39 AM.png" width="299" height="63" />
 
 <p style="padding-left:60px;">
   ==> Khi hisParrot thay đổi &#8220;name&#8221; của nó, thì đồng thời myParrot cũng thay đổi theo, do cả 2 cùng tham chiếu đến 1 địa chỉ. Vấn đề này gọi là &#8220;Implicit Sharing Data&#8221;.

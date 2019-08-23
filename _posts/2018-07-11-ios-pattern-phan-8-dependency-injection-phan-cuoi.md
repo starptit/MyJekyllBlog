@@ -1,14 +1,14 @@
 ---
 id: 1769
-title: 'iOS Pattern Phần 8: Dependency Injection (Phần cuối)'
+title: "iOS Pattern Phần 8: Dependency Injection (Phần cuối)"
 date: 2018-07-11T16:07:31+00:00
 author: starptit
 layout: post
 guid: http://www.swiftyvn.com/?p=1769
 permalink: /2018/07/ios-pattern-phan-8-dependency-injection-phan-cuoi/
-categories:
-  - Uncategorized
+categories: [Uncategorized, Swift]
 ---
+
 Ở phần trước, tôi đã giới thiệu cho các bạn khái niệm về Inversion of Control, để tiếp nối mạch logic, tôi sẽ trình bày nốt về Dependency Injection &#8211; một kĩ thuật, phương pháp khá hay và phổ biến trong ngành lập trình. Vậy nó là gì? Nó làm sao? Dùng nó thế nào? Hãy đọc bài viết để có câu trả lời cho riêng mình nhé!
 
 <!--more-->
@@ -46,8 +46,8 @@ Okay, 1 vạn câu hỏi tại sao. Đừng vội, bạn sẽ tìm được câu
 
 Tóm lại, đọc đến đây, tôi muốn bạn hiểu và nắm được:
 
-  * Injecton là gì?
-  * Dependency Injection là gì?
+- Injecton là gì?
+- Dependency Injection là gì?
 
 ## <span style="color: #ff6600;">Phân tích kĩ thuật Depedency Injection:</span>
 
@@ -120,8 +120,8 @@ Việc inject / passing DatabaseService đã giúp chúng ta đảm bảo đư�
 
 &#8211;> Tóm lại: phần này tôi cần bạn hiểu:
 
-  * Lợi ích của việc injection
-  * Tại sao lại cần phải injection
+- Lợi ích của việc injection
+- Tại sao lại cần phải injection
 
 ## <span style="color: #ff6600;">Làm thể nào để Inject Dependency ?</span>
 
@@ -173,9 +173,9 @@ Tương tự như setter Injection, phương pháp này sử dụng các hàm kh
 
 Constructor Injection cũng khá phổ biến, tuy nhiên nhược điểm của nó là:
 
-  * Dễ thay đổi khi constructor thay đổi, và việc thay đổi constructor trong giai đoạn thiết kế và phát triển là điều bình thường
-  * Khi có quá nhiều dependency, hàm dễ trở nên dài và cồng kềnh.
-  * Không tối ưu và hoạt động tốt với lập trình iOS.
+- Dễ thay đổi khi constructor thay đổi, và việc thay đổi constructor trong giai đoạn thiết kế và phát triển là điều bình thường
+- Khi có quá nhiều dependency, hàm dễ trở nên dài và cồng kềnh.
+- Không tối ưu và hoạt động tốt với lập trình iOS.
 
 Nhược điểm không tối ưu với lập trình iOS khá quan trọng, bởi vì các UIViewController trong iOS thường được khởi tạo từ xib/storyboard, thông qua hàm
 
@@ -233,17 +233,17 @@ userVC.inject(userService: UserService(), dbService: DatabaseService())
 
 Okay, qua đoạn này, tôi muốn bạn phải hiểu được:
 
-  * Injection có những phương pháp nào?
-  * Phân tích từng phương pháp
-  * Ưu / Nhược điểm của từng phương pháp
-  * Thử nghĩ về một bài toán và áp dụng cả 3 phương pháp kể trên.
+- Injection có những phương pháp nào?
+- Phân tích từng phương pháp
+- Ưu / Nhược điểm của từng phương pháp
+- Thử nghĩ về một bài toán và áp dụng cả 3 phương pháp kể trên.
 
 ## <span style="color: #ff6600;">Dependency Injection và Dependency Inversion Principle:</span>
 
 Đừng hoa mắt vì 2 cái tên mà đọc nhầm nhé 😂:
 
-  * **<span style="color: #ff0000;">Dependency Injection (DI)</span>**: kĩ thuật inject các dependencies (bài viết hôm nay)
-  * <span style="color: #ff0000;"><strong>Dependency Inversion Principle (D.I.P):</strong></span> nguyên lý đảo ngược các Dependencies (phần 6 &#8211; series S.O.L.I.D)
+- **<span style="color: #ff0000;">Dependency Injection (DI)</span>**: kĩ thuật inject các dependencies (bài viết hôm nay)
+- <span style="color: #ff0000;"><strong>Dependency Inversion Principle (D.I.P):</strong></span> nguyên lý đảo ngược các Dependencies (phần 6 &#8211; series S.O.L.I.D)
 
 Có một sự thật kì lạ, khi tôi tìm hiểu về đề tài này, nhiều blogger và thông tin từ trang hỏi đáp thường sử dụng 2 định nghĩa này kèm với nhau. Điều này là đúng, tuy nhiên theo tôi ,nó gây ra bối rối cho nhiều người, và hơn hết, cách tìm hiểu trên chỉ cho bạn hiểu phần ngọn chứ không hề là bản chất của vấn đề.
 
@@ -318,10 +318,10 @@ Nếu bạn vẫn thắc mắc nó có thực sự tốt hơn, thì một lần 
 
 Tóm tắt lại những ý chính bạn cần nắm được sau khi đã đọc hết bài viết:
 
-  * Dependency Injection là gì?
-  * Dependency Injection có lợi thế gì, nó giải quyết bài toán gì, và tại sao lại cần có nó?
-  * Các cách thực hiện Dependency Injection là gì? Ưu/ nhược điểm của chúng.
-  * Phân biệt Dependency Injection và Dependency Inversion Principle.
+- Dependency Injection là gì?
+- Dependency Injection có lợi thế gì, nó giải quyết bài toán gì, và tại sao lại cần có nó?
+- Các cách thực hiện Dependency Injection là gì? Ưu/ nhược điểm của chúng.
+- Phân biệt Dependency Injection và Dependency Inversion Principle.
 
 Dependency Injection là kĩ thuật phổ biến mà gần như developer nào cũng biết, khi kết hợp cùng nguyên lý đảo ngược Dependency (D.I.P), nó sẽ giúp bạn phân tách rõ ràng các module với nhau, qua đó đảm bảo tính đơn chức năng, tăng tính mềm dẻo, giảm sự kết dính giữa các module. Ngoài ra, DI và D.I.P còn là một trong những cách tiêu biểu nhằm hạn chế code phình to, đặc biệt là đối với các UIViewController. Kĩ thuật này giúp chúng ta khởi tạo các services (mỗi service là một module cấp thấp, hay còn gọi là dependency) phục vụ cho nghiệp vụ của module cấp cao. Với kinh nghiệm bản thân, tôi khuyên các bạn nên thử thực hành nó với 2 module hay gặp nhất, đó là gửi API Request, và  xử lý thao tác với Database (DatabaseService).
 
@@ -329,7 +329,7 @@ Series về iOS Pattern cũng xin được tạm dừng tại đây, nếu bạn
 
 Tài liệu tham khảo:
 
-  * https://en.wikipedia.org/wiki/Dependency_injection
-  * https://www.martinfowler.com/articles/injection.html#InterfaceInjection
-  * https://marcosantadev.com/solid-principles-applied-swift/
-  * https://medium.com/swift-programming/dependency-injection-with-the-cake-pattern-3cf87f9e97af
+- https://en.wikipedia.org/wiki/Dependency_injection
+- https://www.martinfowler.com/articles/injection.html#InterfaceInjection
+- https://marcosantadev.com/solid-principles-applied-swift/
+- https://medium.com/swift-programming/dependency-injection-with-the-cake-pattern-3cf87f9e97af

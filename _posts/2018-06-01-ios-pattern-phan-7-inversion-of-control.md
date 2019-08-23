@@ -1,14 +1,14 @@
 ---
 id: 1738
-title: 'iOS pattern: Phần 7: Inversion of Control'
+title: "iOS pattern: Phần 7: Inversion of Control"
 date: 2018-06-01T16:54:59+00:00
 author: starptit
 layout: post
 guid: http://www.swiftyvn.com/?p=1738
 permalink: /2018/06/ios-pattern-phan-7-inversion-of-control/
-categories:
-  - Uncategorized
+categories: [Uncategorized, Swift]
 ---
+
 Ở 6 phần trước, mình đã lần lượt trình bày cho các bạn bộ nguyên tắc S.O.L.I.D. Để tiếp nối chủ đề này, bài viết hôm nay sẽ giới thiệu một nguyên lý khác cũng khá phổ biến không kém S.O.L.I.D, và được áp dụng rất rất nhiều. Đó chính là nguyên lý _**Inversion Of Control**_<!--more-->
 
 # _Inversion of Control_
@@ -33,7 +33,7 @@ Vào ngày cuối tuần, bạn được tự do lựa chọn, còn ngày thư�
 
 Đó chính là luồng (flow control) của ứng dụng.
 
-Thuật ngữ này lần đầu tiên được đề cập trong quyển _**Design Patterns: Elements of Reusable Object-Oriented Software,**_ về sau được **Martin Fowle**r bàn luận trong blog của mình. Theo như **Martin Fowler**, IoC là kiến thức trừu tượng, ông lý giải bằng việc chỉ ra sự khác biệt giữa Framework và Library: Code của chúng ta sẽ gọi Library để thực thi, còn Framework thì thực thi và gọi ngược code của chúng ta.
+Thuật ngữ này lần đầu tiên được đề cập trong quyển ***Design Patterns: Elements of Reusable Object-Oriented Software,*** về sau được **Martin Fowle**r bàn luận trong blog của mình. Theo như **Martin Fowler**, IoC là kiến thức trừu tượng, ông lý giải bằng việc chỉ ra sự khác biệt giữa Framework và Library: Code của chúng ta sẽ gọi Library để thực thi, còn Framework thì thực thi và gọi ngược code của chúng ta.
 
 # _Ví Dụ Về IoC:_
 
@@ -48,9 +48,9 @@ func buttonTapped(_ sender: Any) {
 
 Có nhận xét gì về đoạn code trên ?
 
-Khi User tap vào nút, UIKit sẽ nắm bắt sự kiện này, xử lý, và sau đó sẽ in ra dòng chữ &#8220;Hello World&#8221; bằng việc gọi code của bạn thông qua hàm buttonTapped(_:).
+Khi User tap vào nút, UIKit sẽ nắm bắt sự kiện này, xử lý, và sau đó sẽ in ra dòng chữ &#8220;Hello World&#8221; bằng việc gọi code của bạn thông qua hàm buttonTapped(\_:).
 
- _Đúng, code của bạn được gọi_. Đó chính là điểm khác biệt của framework: xây dựng xương sống, điều khiển luồng bên trong, và gọi code của bạn khi cần.
+_Đúng, code của bạn được gọi_. Đó chính là điểm khác biệt của framework: xây dựng xương sống, điều khiển luồng bên trong, và gọi code của bạn khi cần.
 
 Ví dụ khác, chắc chắn ai cũng đã và đang sử dụng UITableView, thế nhưng bạn có từng để ý đến cách mà chúng ta làm việc với nó không?
 
@@ -101,11 +101,11 @@ Theo mình, D.I.P tập trung vào vấn đề Dependency, nghĩa là giữa mod
 
 Để thực hiện IoC, chúng ta có thể sử dụng một số pattern sau:
 
-  * Delegate
-  * Template Method
-  * Service Locator
-  * Dependency Injection
-  * &#8230;
+- Delegate
+- Template Method
+- Service Locator
+- Dependency Injection
+- &#8230;
 
 Delegate mình đã trình bày rồi, bạn có thể tìm đọc lại. Hiệu quả của delegate được thể hiện rõ nhất thông qua ví dụ về UITableViewDataSource & UITableViewDelegate kể trên.
 
@@ -119,10 +119,10 @@ Chú ý, ở đây là Dependency Injection, chứ không phải là Inversion n
 
 Rút ra được gì qua bài viết?
 
-  * IoC là gì?
-  * Định luật HollyWood
-  * IoC làm gì
-  * IoC và D.I.P
+- IoC là gì?
+- Định luật HollyWood
+- IoC làm gì
+- IoC và D.I.P
 
 IoC trừu tượng và tổng quát, gây rối cho khá nhiều người khi tìm hiểu. Thế nhưng IoC lại cực kỳ phổ biến trong ngành lập trình, việc nắm bắt và vận dụng được nó luôn luôn cần thiết. Một số framework nổi tiếng áp dụng ý tưởng từ IoC: Spring (java), Unity (C#),&#8230;.
 
@@ -132,8 +132,8 @@ Cám ơn các bạn đã dành thời gian đọc bài !
 
 Tài liệu tham khảo:
 
-  * https://martinfowler.com/articles/injection.html#ConstructorInjectionWithPicocontainer
-  * https://martinfowler.com/bliki/InversionOfControl.html
-  * https://en.wikipedia.org/wiki/Inversion\_of\_control
+- https://martinfowler.com/articles/injection.html#ConstructorInjectionWithPicocontainer
+- https://martinfowler.com/bliki/InversionOfControl.html
+- https://en.wikipedia.org/wiki/Inversion\_of\_control
 
 &nbsp;

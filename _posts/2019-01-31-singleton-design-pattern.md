@@ -6,12 +6,12 @@ author: starptit
 layout: post
 guid: http://swiftyvn.com/?p=1837
 permalink: /2019/01/singleton-design-pattern/
-categories:
-  - Uncategorized
+categories: [Uncategorized, Swift]
 ---
+
 Chủ đề lần này, tôi muốn viết về một loại Design Pattern khác cũng rất hay gặp, đó chính là Singleton Design Pattern. Tương tự như Factory Pattern, Singleton thuộc loại Creational, nó giải quyết bài toán liên quan đến vấn đề khởi tạo object (instation).
 
-<img class="size-full wp-image-1862 aligncenter" src="/wp-content/uploads/2019/01/its-a-design.jpg" alt="" width="600" height="400" srcset="/wp-content/uploads/2019/01/its-a-design.jpg 600w, /wp-content/uploads/2019/01/its-a-design-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /> 
+<img class="size-full wp-image-1862 aligncenter" src="/wp-content/uploads/2019/01/its-a-design.jpg" alt="" width="600" height="400" srcset="/wp-content/uploads/2019/01/its-a-design.jpg 600w, /wp-content/uploads/2019/01/its-a-design-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" />
 
 ### <span style="color: #ff6600;">Singleton Là Gì, Và Tại Sao Cần Phải Sử Dụng Nó</span>
 
@@ -64,7 +64,7 @@ Vẫn đề trên sẽ biến mất hoàn toàn nếu như CookiesManager chỉ 
 
 Bước đầu tiên khi tìm hiểu về Design Pattern không có gì khác ngoài việc nghiên cứu UML Diagram của nó:
 
-<img class="size-large wp-image-1843 aligncenter" src="/wp-content/uploads/2019/01/Untitled-Diagram-4.png" alt="" width="378" height="366" srcset="/wp-content/uploads/2019/01/Untitled-Diagram-4.png 378w, /wp-content/uploads/2019/01/Untitled-Diagram-4-300x290.png 300w" sizes="(max-width: 378px) 100vw, 378px" /> 
+<img class="size-large wp-image-1843 aligncenter" src="/wp-content/uploads/2019/01/Untitled-Diagram-4.png" alt="" width="378" height="366" srcset="/wp-content/uploads/2019/01/Untitled-Diagram-4.png 378w, /wp-content/uploads/2019/01/Untitled-Diagram-4-300x290.png 300w" sizes="(max-width: 378px) 100vw, 378px" />
 
 Biến đổi UML trên thành code:
 
@@ -91,7 +91,7 @@ Swift là static language cho nên biến / hàm /class được đánh dấu l�
 
 UML của Singleton lúc này sẽ được update thành:
 
-<img class="size-full wp-image-1844 aligncenter" src="/wp-content/uploads/2019/01/Untitled-Diagram-5.png" alt="" width="398" height="256" srcset="/wp-content/uploads/2019/01/Untitled-Diagram-5.png 398w, /wp-content/uploads/2019/01/Untitled-Diagram-5-300x193.png 300w" sizes="(max-width: 398px) 100vw, 398px" /> 
+<img class="size-full wp-image-1844 aligncenter" src="/wp-content/uploads/2019/01/Untitled-Diagram-5.png" alt="" width="398" height="256" srcset="/wp-content/uploads/2019/01/Untitled-Diagram-5.png 398w, /wp-content/uploads/2019/01/Untitled-Diagram-5-300x193.png 300w" sizes="(max-width: 398px) 100vw, 398px" />
 
 &nbsp;
 
@@ -163,8 +163,8 @@ Trong định nghĩa của Singleton, chúng ta cần chú ý đến:
 
 Chính phần chữ bôi đậm (tạm dịch: cung cấp khả năng truy cập global đến instance của Singleton) là điều khiến Singleton trở nên xấu xí. Lý do:
 
-  1. Singleton là duy nhất, là global state, nhưng class/module nào cũng có quyền truy cập, sử dụng và chỉnh sửa, nghĩa là Global nhưng share state. Giả sử với CookiesManager, ViewControllerA đang tiến hành lưu cookies, cùng lúc đó, ViewControllerB lại thực hiện clear toàn bộ cookies ===> BOOMS!! Đây là bài toán xử lý concurrency tối kị trong lập trình. Chưa kể nếu nhét trong multiple thread thì nó còn phức tạp và kinh khủng thế nào nữa ?
-  2. Singleton không dễ viết Unit Test.
+1. Singleton là duy nhất, là global state, nhưng class/module nào cũng có quyền truy cập, sử dụng và chỉnh sửa, nghĩa là Global nhưng share state. Giả sử với CookiesManager, ViewControllerA đang tiến hành lưu cookies, cùng lúc đó, ViewControllerB lại thực hiện clear toàn bộ cookies ===> BOOMS!! Đây là bài toán xử lý concurrency tối kị trong lập trình. Chưa kể nếu nhét trong multiple thread thì nó còn phức tạp và kinh khủng thế nào nữa ?
+2. Singleton không dễ viết Unit Test.
 
 Khá nhiều lập trình viên khi mới biết Singleton thì rất thích thú và áp dụng tràn lan (vì nó viết dễ mà lại tiện), Global share state kể trên đúng ra phải là lý do để hắt hủi, thì lại trở thành lý do khiến họ ưa thích Singleton. Đây là lỗi tư duy phổ biến và nên tránh, hãy suy nghĩ thật kỹ trước khi quyết định, để chắc chắn bạn cần Singleton để giải quyết bài toán của mình.
 
@@ -172,14 +172,14 @@ Khá nhiều lập trình viên khi mới biết Singleton thì rất thích th�
 
 Tổng kết lại, bài viết này trình bày về Singleton Design Pattern, tuy đơn giản nhưng lại cực kỳ phổ biến trong ngành lập trình hướng đối tượng. Tôi đã lần lượt giải đáp các câu hỏi:
 
-  * Singleton là gì, tại sao lại cần nó?
-  * Viết Singleton thế nào cho đúng?
-  * Phân tích Singleton.
+- Singleton là gì, tại sao lại cần nó?
+- Viết Singleton thế nào cho đúng?
+- Phân tích Singleton.
 
 Nhắc lại, Singleton tốt thật, tiện thật, nhưng cũng hoàn toàn có thể là Anti-pattern, đừng lạm dụng nó, hãy chú ý đến vấn đề Global share state của nó trước khi quyết định áp dụng.
 
 Link tham khảo:
 
-  * <https://krakendev.io/blog/the-right-way-to-write-a-singleton>
-  * <https://gurunh.com/2018/05/singleton-dung-hay-khong/>
-  * <http://coding-geek.com/design-pattern-singleton-prototype-and-builder/>
+- <https://krakendev.io/blog/the-right-way-to-write-a-singleton>
+- <https://gurunh.com/2018/05/singleton-dung-hay-khong/>
+- <http://coding-geek.com/design-pattern-singleton-prototype-and-builder/>

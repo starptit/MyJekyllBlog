@@ -1,14 +1,14 @@
 ---
 id: 1621
-title: 'iOS pattern: Phần 4: Nguyên lý S.O.L.I.D (chữ L )'
+title: "iOS pattern: Phần 4: Nguyên lý S.O.L.I.D (chữ L )"
 date: 2017-09-12T12:19:06+00:00
 author: starptit
 layout: post
 guid: http://www.swiftyvn.com/?p=1621
 permalink: /2017/09/ios-pattern-phan-4-nguyen-ly-s-o-l-i-d-chu-l/
-categories:
-  - Uncategorized
+categories: [Uncategorized, Swift]
 ---
+
 Tiếp nối chuỗi series về nguyên lý S.O.L.I.D, bài viết này sẽ giới thiệu nguyên lý thứ 3, tạm dịch là nguyên lý thay thế Liskov (Liskov substitution principle – LSP) – chữ L. Liskov ở đây là tên riêng của một nhà khoa học máy tính người Mỹ, bà Barbara Liskov – bà đã giới thiệu về đặc tính thay thế giữa các đối tượng trong một hội nghị khoa học. Về sau, Robert C. Martin (Uncle Bob – cha đẻ của S.O.L.I.D) đã viết ra nguyên lý thứ 3 này, dựa trên phát biểu của bà Liskov, nên ông đã trân trọng lấy tên của bà để đặt cho nguyên lý.
 
 **1. Nguyên lý thay thế Liskov là gì ?**

@@ -6,9 +6,9 @@ author: starptit
 layout: post
 guid: https://devislifeblog.wordpress.com/?p=78
 permalink: /2016/04/su-khac-biet-giua-struct-va-class-trong-swift/
-categories:
-  - Uncategorized
+categories: [Uncategorized, Swift]
 ---
+
 Struct (cấu trúc) và Class(lớp) trong Swift có nhiều điểm tương đồng với nhau, Apple đã mô tả sự tương đồng giữa chúng như sau:
 
 <div class="page" title="Page 141">

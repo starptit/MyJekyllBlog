@@ -6,9 +6,9 @@ author: starptit
 layout: post
 guid: https://devislifeblog.wordpress.com/?p=320
 permalink: /2016/08/protocol-oriented-programming-trong-swift-phan-2/
-categories:
-  - Uncategorized
+categories: [Uncategorized, Swift]
 ---
+
 (If you are looking for English version, here you go: <a href="https://medium.com/@starptit/an-example-of-protocol-oriented-programming-in-swift-4c87804d4bd9#.c22prdn0v" target="_blank">POP English</a>)
 
 Trong phần 2, mình sẽ trình bày cách sử dụng Protocol-Oriented Programming kết hợp với Struct để giải quyết một số vấn đề của Class đã trình bày trước đó.
@@ -31,7 +31,7 @@ Trong phần 2, mình sẽ trình bày cách sử dụng Protocol-Oriented Progr
 
 <!--more-->
 
-<img class=" size-full wp-image-388 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-07-49-pm.png" alt="Screen Shot 2016-08-24 at 3.07.49 PM" width="617" height="140" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-49-pm.png 617w, /wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-49-pm-300x68.png 300w" sizes="(max-width: 617px) 100vw, 617px" /> 
+<img class=" size-full wp-image-388 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-07-49-pm.png" alt="Screen Shot 2016-08-24 at 3.07.49 PM" width="617" height="140" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-49-pm.png 617w, /wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-49-pm-300x68.png 300w" sizes="(max-width: 617px) 100vw, 617px" />
 
 <p style="padding-left:30px;">
   ==> Kết quả:
@@ -49,7 +49,7 @@ Trong phần 2, mình sẽ trình bày cách sử dụng Protocol-Oriented Progr
   Một thay đổi nhỏ chuyển từ Class sang Struct &#8211;> không còn memory leak, không còn implicit sharing data, không còn deadlock,&#8230;. Cool, phải không. Rõ ràng, tâp trung vào Class (tức hướng về OOP) không phải là ý kiến hay.
 </p>
 
-<img class="aligncenter size-full wp-image-402" src="https://devislifeblog.files.wordpress.com/2016/08/r5btd.jpg" alt="r5btd.jpg" width="386" height="250" srcset="/wp-content/uploads/2016/08/r5btd.jpg 386w, /wp-content/uploads/2016/08/r5btd-300x194.jpg 300w" sizes="(max-width: 386px) 100vw, 386px" /> 
+<img class="aligncenter size-full wp-image-402" src="https://devislifeblog.files.wordpress.com/2016/08/r5btd.jpg" alt="r5btd.jpg" width="386" height="250" srcset="/wp-content/uploads/2016/08/r5btd.jpg 386w, /wp-content/uploads/2016/08/r5btd-300x194.jpg 300w" sizes="(max-width: 386px) 100vw, 386px" />
 
 <p style="padding-left:30px;">
   b. Inheritance problem:
@@ -63,15 +63,15 @@ Trong phần 2, mình sẽ trình bày cách sử dụng Protocol-Oriented Progr
   Vậy giờ làm thế nào nhỉ ?
 </p>
 
-  * Decouple ra 2 class: Bird và PenguinBird &#8211;> Không ổn, sai hẳn nguyên lý của OOP.
-  * Tạo một Protocol mới chỉ hành động Fly &#8211;> Phải viết lại code rất nhiều.
-  * Đặt lại static func fly() &#8211;> trong trường hợp có nhiều Object thì sao? Rồi còn vấn đề về Concurrency, multi threading,&#8230;
+- Decouple ra 2 class: Bird và PenguinBird &#8211;> Không ổn, sai hẳn nguyên lý của OOP.
+- Tạo một Protocol mới chỉ hành động Fly &#8211;> Phải viết lại code rất nhiều.
+- Đặt lại static func fly() &#8211;> trong trường hợp có nhiều Object thì sao? Rồi còn vấn đề về Concurrency, multi threading,&#8230;
 
 <p style="padding-left:30px;">
   Welcome to Protocol-Oriented Programming:
 </p>
 
-<img class=" size-full wp-image-309 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-22-at-3-18-43-pm.png" alt="Screen Shot 2016-08-22 at 3.18.43 PM.png" width="422" height="372" /> 
+<img class=" size-full wp-image-309 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-22-at-3-18-43-pm.png" alt="Screen Shot 2016-08-22 at 3.18.43 PM.png" width="422" height="372" />
 
 <p style="padding-left:30px;">
   Mình chuyển Bird từ Class sang Protocol, và decouple phương thức fly() và thuộc tính feather thành 2 protocol : Flyable (dành cho những loài chim có thể bay), Featherable (dành cho những loài chim có lông vũ). Nhờ vào tính năng Extension (Category trong Objective-C), mình có thể tùy biến mở rộng Protocol đã khai báo trước đó, các struct không cần phải implement lại phương thức fly() và thuộc tính feather nếu không thực sự cần thiết. &#8211;> 3 vấn đề trên của Class đã được giải quyết.
@@ -81,9 +81,9 @@ Trong phần 2, mình sẽ trình bày cách sử dụng Protocol-Oriented Progr
   Chú chim cánh cụt giờ có thể vui vẻ được rồi :D.
 </p>
 
-<img class=" size-full wp-image-412 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/happy-feet.jpg" alt="happy-feet.jpg" width="500" height="499" srcset="/wp-content/uploads/2016/08/happy-feet.jpg 500w, /wp-content/uploads/2016/08/happy-feet-150x150.jpg 150w, /wp-content/uploads/2016/08/happy-feet-300x300.jpg 300w, /wp-content/uploads/2016/08/happy-feet-100x100.jpg 100w" sizes="(max-width: 500px) 100vw, 500px" /> 
+<img class=" size-full wp-image-412 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/happy-feet.jpg" alt="happy-feet.jpg" width="500" height="499" srcset="/wp-content/uploads/2016/08/happy-feet.jpg 500w, /wp-content/uploads/2016/08/happy-feet-150x150.jpg 150w, /wp-content/uploads/2016/08/happy-feet-300x300.jpg 300w, /wp-content/uploads/2016/08/happy-feet-100x100.jpg 100w" sizes="(max-width: 500px) 100vw, 500px" />
 
-<img class="aligncenter size-full wp-image-314" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-22-at-3-32-30-pm.png" alt="Screen Shot 2016-08-22 at 3.32.30 PM.png" width="598" height="424" /> 
+<img class="aligncenter size-full wp-image-314" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-22-at-3-32-30-pm.png" alt="Screen Shot 2016-08-22 at 3.32.30 PM.png" width="598" height="424" />
 
 <p style="padding-left:30px;">
   ( Giả sử giờ có thêm chim đà điểu, một loài thuộc họ nhà chim, có lông vũ, nhưng không thể bay &#8211;> cách phân tách ra các protocol đã phát huy được tác dụng)
@@ -97,7 +97,7 @@ Trong phần 2, mình sẽ trình bày cách sử dụng Protocol-Oriented Progr
   Vấn đề của lost relationship của classes đó là việc chúng ta liên tục phải ép kiểu (casting) lại các subclass mỗi khi chúng override. Để giải quyết vấn đề này, chúng ta có thể chuyển đổi từ việc sử dụng Class sang Struct và Protocol:
 </p>
 
-<img class="aligncenter size-full wp-image-428" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-45-48-pm.png" alt="Screen Shot 2016-08-24 at 3.45.48 PM.png" width="421" height="354" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-45-48-pm.png 421w, /wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-45-48-pm-300x252.png 300w" sizes="(max-width: 421px) 100vw, 421px" /> 
+<img class="aligncenter size-full wp-image-428" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-45-48-pm.png" alt="Screen Shot 2016-08-24 at 3.45.48 PM.png" width="421" height="354" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-45-48-pm.png 421w, /wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-45-48-pm-300x252.png 300w" sizes="(max-width: 421px) 100vw, 421px" />
 
 <p style="padding-left:30px;">
   AbstractComparation từ Class đã chuyển thành Protocol, và các subclass của nó được chuyển thành struct. Việc chuyển từ Class thành Protocol giúp cho AbstractComparation linh hoạt hơn, như ví dụ trong hình là việc inject Dependency vào, nhờ đó, mình không còn cần phải ép kiểu nữa.
@@ -109,10 +109,10 @@ Dựa vào những điểm yếu đó, Apple đã tập trung phát triển Prot
 
 Một số link tham khảo:
 
-  * Link gốc của Apple: <a href="https://developer.apple.com/videos/play/wwdc2015/408/" target="_blank">https://developer.apple.com/videos/play/wwdc2015/408/</a>
-  * Ứng dụng POP: <a href="https://realm.io/news/appbuilders-natasha-muraschev-practical-protocol-oriented-programming/" target="_blank">https://realm.io/news/appbuilders-natasha-muraschev-practical-protocol-oriented-programming/</a>
-  * Link Raywenderlich: <a href="https://www.raywenderlich.com/109156/introducing-protocol-oriented-programming-in-swift-2" target="_blank">https://www.raywenderlich.com/109156/introducing-protocol-oriented-programming-in-swift-2</a>
-  * Link đưa ra lập luận phản bác, do chính cộng tác viên với tác giả của Apple đưa ra: <a href="http://blog.metaobject.com/2015/06/protocol-oriented-programming-is-object.html" target="_blank">http://blog.metaobject.com/2015/06/protocol-oriented-programming-is-object.html</a>. Link này viết rất hay, tuy khó hiểu, nhưng nếu ngồi phân tích lại thì lập luận mà tác giả đưa ra cực kì sắc sảo.
+- Link gốc của Apple: <a href="https://developer.apple.com/videos/play/wwdc2015/408/" target="_blank">https://developer.apple.com/videos/play/wwdc2015/408/</a>
+- Ứng dụng POP: <a href="https://realm.io/news/appbuilders-natasha-muraschev-practical-protocol-oriented-programming/" target="_blank">https://realm.io/news/appbuilders-natasha-muraschev-practical-protocol-oriented-programming/</a>
+- Link Raywenderlich: <a href="https://www.raywenderlich.com/109156/introducing-protocol-oriented-programming-in-swift-2" target="_blank">https://www.raywenderlich.com/109156/introducing-protocol-oriented-programming-in-swift-2</a>
+- Link đưa ra lập luận phản bác, do chính cộng tác viên với tác giả của Apple đưa ra: <a href="http://blog.metaobject.com/2015/06/protocol-oriented-programming-is-object.html" target="_blank">http://blog.metaobject.com/2015/06/protocol-oriented-programming-is-object.html</a>. Link này viết rất hay, tuy khó hiểu, nhưng nếu ngồi phân tích lại thì lập luận mà tác giả đưa ra cực kì sắc sảo.
 
 Hết.
 

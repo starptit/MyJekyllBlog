@@ -1,15 +1,8 @@
 ---
-layout: home
+layout: page
 title: About
 permalink: /swift/
 ---
-
-<!-- {% for post in site.categories.Swift %}
-<li>
-  <span>{{ post.date | date_to_string }}</span> &nbsp;
-  <a href="{{ post.url }}">{{ post.title }}</a>
-</li>
-{% endfor %} -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,18 +57,17 @@ permalink: /swift/
     <main>
       <div class="catalogue">
         {% for post in site.categories.Swift %}
-        <li>
-          <span>{{ post.date | date_to_string }}</span> &nbsp;
-          <a href="{{ post.url }}">
-            <div>
-              <time datetime="{{ post.date }}" class="catalogue-time">{{
-                post.date
-              }}</time>
-              <h1 class="catalogue-title">{{ post.title }}</h1>
-              <div class="catalogue-line"></div>
-            </div>
-          </a>
-        </li>
+        <a href="{{ post.url }}" class="catalogue-item">
+          <div>
+            <time datetime="{{ post.date }}" class="catalogue-time">{{
+              post.date | date_to_string
+            }}</time>
+            <h1 class="catalogue-title">{{ post.title }}</h1>
+            <div class="catalogue-line"></div>
+            {% if post.content contains "<!--more-->" %} {{ post.content |
+            split:"<!--more-->" | first }} {% endif %}
+          </div>
+        </a>
         {% endfor %}
       </div>
 

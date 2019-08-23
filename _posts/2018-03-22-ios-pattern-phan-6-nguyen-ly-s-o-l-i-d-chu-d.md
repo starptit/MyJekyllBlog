@@ -1,14 +1,14 @@
 ---
 id: 1690
-title: 'iOS pattern: Phần 6: Nguyên lý S.O.L.I.D (chữ D )'
+title: "iOS pattern: Phần 6: Nguyên lý S.O.L.I.D (chữ D )"
 date: 2018-03-22T16:31:28+00:00
 author: starptit
 layout: post
 guid: http://www.swiftyvn.com/?p=1690
 permalink: /2018/03/ios-pattern-phan-6-nguyen-ly-s-o-l-i-d-chu-d/
-categories:
-  - Uncategorized
+categories: [Uncategorized, Swift]
 ---
+
 Chào mừng các bạn đến với bài viết cuối cùng về chủ đề nguyên lý S.O.L.I.D. Cũng được một thời gian dài kể từ bài viết gần nhất của mình về S.O.L.I.D, vì vậy trước khi đi vào bài viết, mình khuyến khích các bạn đọc lại series này, từ phần đầu tiên, để có thể nhớ lại mục tiêu và phương pháp tiếp cận mà mình đã trình bày.
 
 Nguyên lý cuối cùng này là nguyên lý đem đến cho mình nhiều hứng thú nhất trong quá trình tìm hiểu và áp dụng, nó giúp mình giải đáp những hiểu lầm về S.O.L.I.D, và trên thực tế, đây là nguyên lý mà mình áp dụng nhiều nhất.
@@ -56,17 +56,17 @@ Cocoapods hay Carthage hay những dịch vụ tương tự được gọi là: 
 > <p class="">
 >   A. High-level modules should not depend on low-level modules. Both should depend on abstractions.
 > </p>
-> 
+>
 > &nbsp;
-> 
+>
 > <p class="">
 >   B. Abstractions should not depend on details. Details should depend on abstractions.
 > </p>
 
 Nguyên lý được phát biểu với 2 ý chính:
 
-  * Các modules cấp cao không nên phụ thuộc vào các module cấp thấp, cả 2 nên phụ thuộc vào abstraction.
-  * Abstraction không nên phụ thuộc vào details, ngược lại, detail nên phụ thuộc vào abstraction.
+- Các modules cấp cao không nên phụ thuộc vào các module cấp thấp, cả 2 nên phụ thuộc vào abstraction.
+- Abstraction không nên phụ thuộc vào details, ngược lại, detail nên phụ thuộc vào abstraction.
 
 Abstraction (sự trừu tượng) kỹ thuật lược bỏ các chi tiết bên trong, do đó các abstraction rất cơn bản và đơn giản, đặc điểm này vô cùng quan trọng, nhất là trong vấn đề giao tiếp giữa các module với nhau. Thật vậy, giao tiếp với các abstraction có nghĩa là giao tiếp với những phần cơ bản nhất và đơn giản nhất, hiển nhiên là dễ dàng hơn so với việc phải quan tâm thêm các thành phần khác.
 
@@ -82,10 +82,10 @@ Có thể đọc đến đây bạn thấy nó hơi tối nghĩa và khó hiểu
 
 Tóm lại, phần này các bạn cần nhớ:
 
-  * Dependency là gì ?
-  * Abstraction là gì ?
-  * High-level và low-level module là gì?
-  * Nguyên lý Dependency Inversion có 2 mục tiêu chính là gì ?
+- Dependency là gì ?
+- Abstraction là gì ?
+- High-level và low-level module là gì?
+- Nguyên lý Dependency Inversion có 2 mục tiêu chính là gì ?
 
 ### _**2. Phân tích và giải nghĩa nguyên lý:**_
 
@@ -109,15 +109,15 @@ class UserManager {
 
 Rất tốt, bạn đã biết vận dụng nguyên lý SRP (phần 1) để tạo một class UserManager nhằm quản lý nghiệp vụ liên quan đến User. Từ các định nghĩa nêu ở trên, ta có thể xác định được:
 
-  * UserManager: là high level module
-  * APIService: là low level module, đồng thời là dependency của UserManager.
+- UserManager: là high level module
+- APIService: là low level module, đồng thời là dependency của UserManager.
 
 Ta có thể rút ra những nhận xét về ví dụ trên:
 
-  * Hàm getUserList() rất khó test, vì nó liên quan đến module APIService bên trong, dẫn đến muốn test hàm này cần phải test APIService trước.
-  * Hàm getUserList() không reuse code được, dẫn đến UserManager cũng không reuse lại code được, vì nó phụ thuộc hoàn toàn vào APIService.
-  * Thiết kế trên không linh hoạt, giả sử class APIService có thay đổi, dẫn đến hàm getUserList() trên cũng thay đổi kéo theo là UserManager. Thật nguy hiểm nếu bạn sử dụng APIService để thực hiện tác vụ trong nhiều class khác nhau.
-  * Thiết kế trên vi phạm nguyên lý DIP, do UserManager (high-level) bị phụ thuộc vào APIService (low-level).
+- Hàm getUserList() rất khó test, vì nó liên quan đến module APIService bên trong, dẫn đến muốn test hàm này cần phải test APIService trước.
+- Hàm getUserList() không reuse code được, dẫn đến UserManager cũng không reuse lại code được, vì nó phụ thuộc hoàn toàn vào APIService.
+- Thiết kế trên không linh hoạt, giả sử class APIService có thay đổi, dẫn đến hàm getUserList() trên cũng thay đổi kéo theo là UserManager. Thật nguy hiểm nếu bạn sử dụng APIService để thực hiện tác vụ trong nhiều class khác nhau.
+- Thiết kế trên vi phạm nguyên lý DIP, do UserManager (high-level) bị phụ thuộc vào APIService (low-level).
 
 Từ kết luận trên, ta có thể thấy rõ module chúng ta vừa lập trình hoàn toàn thất bại trong việc tối ưu source code, và cực kỳ tệ khi phản ứng với các thay đổi từ cả bên trong lẫn bên ngoài. Lại nói, đối với ngành lập trình, thay đổi là vấn đề thường xuyên, đừng bảo với tôi là bạn chưa khi nào gặp những việc như:  thư viện cập nhật, fix bug, requirement từ khách hàng bị thay đổi,&#8230;
 
@@ -242,9 +242,9 @@ class ViewControllerB: UIViewController {
 
 Ở đây, ta tạo một protocol IUserService và định nghĩa hàm fetchUserList(). APIService là module cấp thấp, sẽ implement protocol trên, còn module cấp cao UserManager sẽ sử dụng protocol trên vào nghiệp vụ của mình. Điều này có lợi gì?
 
-  * Hàm getUserList() chỉ quan tâm và giao tiếp với Interface IUserService, việc thực thi bên trong là nằm ở các module conform đến Interface. Điều này dẫn đến hệ quả là hàm getUserList() dễ test, và dễ reuse hơn.
-  * Giả sử hàm fetchUserList() thay đổi thì sao? Thay đổi đó là nằm ở các module thực thi Interface IUserService, UserManager không quan tâm, vì thằng mà nó trực tiếp tương tác là IUserService chứ không phải các thằng module cấp thấp.
-  * Nhờ sử dụng Interface, các module cấp con linh hoạt hơn và có thể swap cho nhau.
+- Hàm getUserList() chỉ quan tâm và giao tiếp với Interface IUserService, việc thực thi bên trong là nằm ở các module conform đến Interface. Điều này dẫn đến hệ quả là hàm getUserList() dễ test, và dễ reuse hơn.
+- Giả sử hàm fetchUserList() thay đổi thì sao? Thay đổi đó là nằm ở các module thực thi Interface IUserService, UserManager không quan tâm, vì thằng mà nó trực tiếp tương tác là IUserService chứ không phải các thằng module cấp thấp.
+- Nhờ sử dụng Interface, các module cấp con linh hoạt hơn và có thể swap cho nhau.
 
 Sau một thời gian phát triển, khách hàng yêu cầu ứng dụng phải hỗ trợ offline, nghĩa là dữ liệu phải được lưu và xử lý local, nói đơn giản hơn là bạn phải cung cấp tính năng fetchUser từ local. Với kiểu thiết kế như ban đầu, công việc của chúng ta lúc này lại cực kỳ phức tạp:
 

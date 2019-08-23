@@ -6,9 +6,9 @@ author: starptit
 layout: post
 guid: http://swiftyvn.com/?p=1801
 permalink: /2018/09/tong-quan-ve-design-pattern/
-categories:
-  - Uncategorized
+categories: [Uncategorized, Swift]
 ---
+
 Ra đời từ những năm 70 của thế kỉ trước, thực sự trở nên nổi tiếng và phổ biến thông qua cuốn sách &#8220;Design Patterns: Elements of Reusable Object-Oriented Software&#8221; (viết bởi 4 tác giả Erich Gamma, Richard Helm, Ralph Johnson và John Vlissides, còn được biết đến với tên gọi Gang of Four &#8211; GoF), Design Pattern dần dần trở thành tiêu chuẩn và là kiến thức buộc phải biết của mọi lập trình viên. Tôi chắc chắn rằng bạn đã từng nghe thuật ngữ này nhiều lần: khi tìm kiếm tài liệu, trong các cuộc thảo luận, trong các topics, quyển sách về lập trình,&#8230; Điều đó chứng minh tính hữu dụng và độ phổ biến của Design Pattern.
 
 Vậy Design Pattern là gì? Nó có đặc điểm gì? Cần tìm hiểu nó như thế nào? Có những điều gì cần lưu ý khi nghiên cứu nó ?
@@ -25,21 +25,21 @@ Ngành phần mềm có rất nhiều kiểu lập trình: _functional programmi
 
 Design Pattern trong OOP thường biểu thị mối quan hệ và tương tác giữa Class, Object với nhau (Class với Object, Class với Class, Object với Object, &#8230;), dựa trên 2 nguyên lý thiết kế đối tượng nổi tiếng mà mình đã trình bày trong series S.O.L.I.D:
 
-  * **Program to an interface not implementation** ( Lập trình hướng đến các Interface và tính trừu tượng).
-  * **Object Composition over inheritance** (Sử dụng Composition thay vì Inheritance &#8211; kế thừa).
+- **Program to an interface not implementation** ( Lập trình hướng đến các Interface và tính trừu tượng).
+- **Object Composition over inheritance** (Sử dụng Composition thay vì Inheritance &#8211; kế thừa).
 
 Nếu bạn quên thì không sao, hãy cố gắng ghi nhớ 2 nguyên lý này, và đọc tiếp các phần sau của series, chắc chắn mình sẽ còn nhắc lại nó, để các bạn có thể hiểu và thấy được mối liên hệ giữa chúng với các design patterns.
 
 <span style="color: #3182d9;"><em><strong>==> Tóm lại, mình cần bạn nhớ:</strong></em></span>
 
-  1. Design Pattern là template, concept,&#8230; hoặc chỉ đơn giản cung cấp một phương pháp thiết kế phần mềm.
-  2. Design Pattern có liên quan chặt chẽ đến 2 nguyên lý thiết kế đối tượng: về interface và về composition ở trên.
+1. Design Pattern là template, concept,&#8230; hoặc chỉ đơn giản cung cấp một phương pháp thiết kế phần mềm.
+2. Design Pattern có liên quan chặt chẽ đến 2 nguyên lý thiết kế đối tượng: về interface và về composition ở trên.
 
 ### <span style="color: #d93829;"><strong>Phân loại Design Pattern</strong></span>
 
 Có bao nhiêu Design Pattern? Rất rất nhiều, tương đương với việc có rất nhiều cách để phân loại, và cũng không thể đảm bảo có phương pháp phân loại nào có thể phân loại được hết các Design Pattern. Tuy nhiên, tần suất và độ phổ biến của các design pattern lại khác nhau, vì lẽ đó, người ta thường nhặt các design patterns phổ biến hơn ra, và cố gắng phân loại chúng. Trong quyển sách mình đề cập ở phần giới thiệu, các tác giả (4 tác giả GoF) đã nêu ra 23 loại design pattern khác nhau, và phân loại chúng thành 3 loại: Creational, Structural, Behavioral. Về sau, sinh ra thêm nhiều patterns khác, tuy nhiên cách phân thành 3 loại như trước đây vẫn được tôn trọng và tuân theo.<figure id="attachment_1805" style="width: 955px" class="wp-caption aligncenter">
 
-<img class="wp-image-1805 size-full" src="/wp-content/uploads/2018/09/Untitled.png" alt="" width="955" height="457" srcset="/wp-content/uploads/2018/09/Untitled.png 955w, /wp-content/uploads/2018/09/Untitled-300x144.png 300w, /wp-content/uploads/2018/09/Untitled-768x368.png 768w" sizes="(max-width: 955px) 100vw, 955px" /> <figcaption class="wp-caption-text">(Source: smarttechie.org)</figcaption></figure> 
+<img class="wp-image-1805 size-full" src="/wp-content/uploads/2018/09/Untitled.png" alt="" width="955" height="457" srcset="/wp-content/uploads/2018/09/Untitled.png 955w, /wp-content/uploads/2018/09/Untitled-300x144.png 300w, /wp-content/uploads/2018/09/Untitled-768x368.png 768w" sizes="(max-width: 955px) 100vw, 955px" /> <figcaption class="wp-caption-text">(Source: smarttechie.org)</figcaption></figure>
 
 &nbsp;
 
@@ -47,34 +47,34 @@ Có bao nhiêu Design Pattern? Rất rất nhiều, tương đương với việ
 
 Tập trung vào bài toán khởi tạo object một cách trừu tượng. Loại này gồm các patterns:
 
-  * Singleton Pattern
-  * Factory Pattern
-  * Builder Pattern
-  * Lazy Initialization Pattern
-  * Prototype Pattern
-  * &#8230;
+- Singleton Pattern
+- Factory Pattern
+- Builder Pattern
+- Lazy Initialization Pattern
+- Prototype Pattern
+- &#8230;
 
 ##### <span style="color: #3182d9;"><em><strong>Structural:</strong></em></span>
 
 Tập trung vào bài toán liên kết và quan hệ giữa các Class, Object. Loại này gồm các patterns:
 
-  * Adapter Pattern
-  * Bridge Pattern
-  * Decorator Pattern
-  * Façade Pattern
-  * Proxy Pattern
-  * Flyweight Pattern
-  * &#8230;.
+- Adapter Pattern
+- Bridge Pattern
+- Decorator Pattern
+- Façade Pattern
+- Proxy Pattern
+- Flyweight Pattern
+- &#8230;.
 
 ##### <span style="color: #3182d9;"><em><strong>Behavioral:</strong></em></span>
 
 Tập trung vào giải quyết bài toán giao tiếp giữa các Object. Loại này gồm các patterns:
 
-  * Iterator Pattern
-  * Chain of Responsibility Pattern
-  * Command Pattern
-  * Memento Pattern
-  * &#8230;.
+- Iterator Pattern
+- Chain of Responsibility Pattern
+- Command Pattern
+- Memento Pattern
+- &#8230;.
 
 Trong series của mình, tôi sẽ điều chỉnh nội dung và đề cập đến những Design Pattern mà tôi cho là cần thiết và có thường gặp đối với lập trình viên iOS. Cụ thể là pattern nào, chúng ra sao, xin hẹn trình bày ở các bài viết sau.
 
@@ -94,7 +94,7 @@ Tôi đã từng phỏng vấn một số lập trình viên, họ đều nói r
 
 Design Pattern trong OOP là template, concept phục vụ cho vấn đề thiết kế, chẳng có gì dễ hiểu và trực quan để nhìn nhận và nghiên cứu thiết kế bằng việc vẽ, thể hiện nó dưới dạng sơ đồ (Diagram) cả. Biểu đồ thường được dùng để minh họa cho Design Pattern có tên gọi Sơ đồ Lớp (Class Diagram).<figure id="attachment_1803" style="width: 917px" class="wp-caption aligncenter">
 
-<img class="wp-image-1803 size-full" src="/wp-content/uploads/2018/09/12-uml-class-diagram-example.png" alt="" width="917" height="436" srcset="/wp-content/uploads/2018/09/12-uml-class-diagram-example.png 917w, /wp-content/uploads/2018/09/12-uml-class-diagram-example-300x143.png 300w, /wp-content/uploads/2018/09/12-uml-class-diagram-example-768x365.png 768w" sizes="(max-width: 917px) 100vw, 917px" /> <figcaption class="wp-caption-text">(Source: visual-paradigm.com)</figcaption></figure> 
+<img class="wp-image-1803 size-full" src="/wp-content/uploads/2018/09/12-uml-class-diagram-example.png" alt="" width="917" height="436" srcset="/wp-content/uploads/2018/09/12-uml-class-diagram-example.png 917w, /wp-content/uploads/2018/09/12-uml-class-diagram-example-300x143.png 300w, /wp-content/uploads/2018/09/12-uml-class-diagram-example-768x365.png 768w" sizes="(max-width: 917px) 100vw, 917px" /> <figcaption class="wp-caption-text">(Source: visual-paradigm.com)</figcaption></figure>
 
 Ngoài lề chút, bạn cũng nên tìm hiểu về các UML Diagram khác (Class Diagram là 1 trong các UML Diagram).
 
@@ -104,13 +104,13 @@ Bộ não con người học hỏi tốt hơn nếu biết vận dụng 2 bán c
 
 Tài liệu về Design Pattern thì vô số, mình mới đọc một ít và chọn ra một số quyển khá ổn:
 
-  * Sách Design Patterns: Elements of Reusable Object-Oriented Software (dĩ nhiên, quyển này là bất hủ)
-  * Sách Pro Design Patterns in Swift
-  * Sách Swift Design Patterns.
-  * Sách Design Pattern của Ray Wenderlich
-  * [Series Design Pattern của AppCoda](https://www.appcoda.com/design-pattern-creational/)
-  * [Series Design Pattern của Ray Wenderlich](https://www.raywenderlich.com/477-design-patterns-on-ios-using-swift-part-1-2)
-  * [Tutorial Design Pattern của Tutorialspoint](https://www.tutorialspoint.com/design_pattern/index.htm)
+- Sách Design Patterns: Elements of Reusable Object-Oriented Software (dĩ nhiên, quyển này là bất hủ)
+- Sách Pro Design Patterns in Swift
+- Sách Swift Design Patterns.
+- Sách Design Pattern của Ray Wenderlich
+- [Series Design Pattern của AppCoda](https://www.appcoda.com/design-pattern-creational/)
+- [Series Design Pattern của Ray Wenderlich](https://www.raywenderlich.com/477-design-patterns-on-ios-using-swift-part-1-2)
+- [Tutorial Design Pattern của Tutorialspoint](https://www.tutorialspoint.com/design_pattern/index.htm)
 
 ### <span style="color: #d93829;"><strong>Lưu Ý Về Design Pattern</strong></span>
 

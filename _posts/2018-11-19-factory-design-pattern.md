@@ -6,9 +6,9 @@ author: starptit
 layout: post
 guid: http://swiftyvn.com/?p=1822
 permalink: /2018/11/factory-design-pattern/
-categories:
-  - Uncategorized
+categories: [Uncategorized, Swift]
 ---
+
 Một trong những design pattern mà quyển sách nào cũng đề cập, đó chính là Factory Pattern, điều đó đã chứng minh sự phổ biến của nó. Nếu bạn còn nhớ, ở bài viết trước, tôi có chia nhóm các loại design pattern khác nhau, bao gồm Creational, Structural và Behavioral. Factory Pattern thuộc loại Creational, do đó, vấn đề và nó giải quyết sẽ xoay quanh câu chuyện khởi tạo object, instantiation,&#8230; vân vân và mây mây. Bài viết này tương đối dài và nhiều chữ, thế nên hãy cố gắng kiên nhẫn đọc đến cuối nhé, vì theo tôi, đây là một pattern đơn giản, nhưng lại hỗn loạn về thông tin bậc nhất.
 
 Bài viết này nói về gì?
@@ -157,9 +157,9 @@ class FavoriteViewController: UIViewController {
 
 SuggestMatching là module đảm nhận business logic, User đại diện cho người dùng, PropertyList đại diện cho danh sách tiêu chí. Module này được sử dụng ở Favorite & HomeViewController để tìm ra danh sách gợi ý kết bạn. Vậy có vấn đề gì với những dòng code này ?
 
-  * Việc khởi tạo SuggestMatching module bị lặp lại.
-  * Rất có thể PropertyList sau này cập nhật và thay đổi, do đó có nguy cơ khá cao có thể phải sửa lại code.
-  * Ở góc nhìn của Home & FavoriteViewController, chúng hoàn toàn không quan tâm đến việc khởi tạo SuggestMatching.
+- Việc khởi tạo SuggestMatching module bị lặp lại.
+- Rất có thể PropertyList sau này cập nhật và thay đổi, do đó có nguy cơ khá cao có thể phải sửa lại code.
+- Ở góc nhìn của Home & FavoriteViewController, chúng hoàn toàn không quan tâm đến việc khởi tạo SuggestMatching.
 
 &#8211;> Rõ ràng SuggestMatching được khởi tạo phức tạp, hơn nữa 2 ViewController lại không cần quan tâm đến cái phức tạp đó. Nếu sử dụng Factory, bài toán trên sẽ có dạng như sau:
 
@@ -239,7 +239,7 @@ Thế nhưng, Hà Tây sát nhập vào Hà Nội, rồi Việt Nam thống nh�
 
 Cách đầu tiên là sử dụng một thủ thuật gọi là Simple Factory, cụ thể:
 
-<img class="size-full wp-image-1830 aligncenter" src="/wp-content/uploads/2018/11/Untitled-Diagram-2.png" alt="" width="974" height="296" srcset="/wp-content/uploads/2018/11/Untitled-Diagram-2.png 974w, /wp-content/uploads/2018/11/Untitled-Diagram-2-300x91.png 300w, /wp-content/uploads/2018/11/Untitled-Diagram-2-768x233.png 768w" sizes="(max-width: 974px) 100vw, 974px" /> 
+<img class="size-full wp-image-1830 aligncenter" src="/wp-content/uploads/2018/11/Untitled-Diagram-2.png" alt="" width="974" height="296" srcset="/wp-content/uploads/2018/11/Untitled-Diagram-2.png 974w, /wp-content/uploads/2018/11/Untitled-Diagram-2-300x91.png 300w, /wp-content/uploads/2018/11/Untitled-Diagram-2-768x233.png 768w" sizes="(max-width: 974px) 100vw, 974px" />
 
 <pre class="theme:xcode lang:swift decode:true">enum ConnectionType {
     case file
@@ -300,8 +300,8 @@ class ClientController: UIViewController {
 
 Vì nó là &#8220;Simple Factory&#8221;, nên ưu điểm của nó chính là tận dụng ưu điểm của Factory đã trình bày ở trên, tận dụng tốt đặc điểm đa hình trong OOP. Tuy nhiên cũng cần lưu ý:
 
-  * Simple Factory khá hữu dụng với các bài toán liên quan đến tính đa hình (với số lượng object chung nhiều).
-  * Simple Factory <span style="color: #ff0000;"><strong>KHÔNG</strong></span> được coi là Design Pattern.
+- Simple Factory khá hữu dụng với các bài toán liên quan đến tính đa hình (với số lượng object chung nhiều).
+- Simple Factory <span style="color: #ff0000;"><strong>KHÔNG</strong></span> được coi là Design Pattern.
 
 Simple Factory không hề phức tạp, chỉ là vận dụng linh hoạt tính đa hình để khởi tạo nên các class con, rõ ràng, chỉ là chút kiến thức căn bản về OOP mà thôi. Vì vậy tôi khuyên bạn, nếu còn chưa rõ về OOP, thì hãy tìm hiểu lại ngay đi.
 
@@ -341,27 +341,27 @@ Factory Method Pattern được đề cập đến trong quyển sách nổi ti�
 }
 
 extension PlaceConnectorFactory {
-    func loadPlaceList() {
-        let placeConnector = getPlaceConnector()
-        placeConnector.loadPlaceList()
-    }
+func loadPlaceList() {
+let placeConnector = getPlaceConnector()
+placeConnector.loadPlaceList()
+}
 }
 
 struct DatabaseConnectorFactory: PlaceConnectorFactory {
-    func getPlaceConnector() -> PlaceConnectorProtocol {
-        // Setup Database Environment
-        // Connect Database and return instance
-        DatabaseConnector()
-    }
+func getPlaceConnector() -> PlaceConnectorProtocol {
+// Setup Database Environment
+// Connect Database and return instance
+DatabaseConnector()
+}
 }
 
 struct APIConnectorFactory: PlaceConnectorFactory {
-    func getPlaceConnector() -> PlaceConnectorProtocol {
-        // Setup Request
-        // Request
-        // Response
-        APIPlaceConnector()
-    }
+func getPlaceConnector() -> PlaceConnectorProtocol {
+// Setup Request
+// Request
+// Response
+APIPlaceConnector()
+}
 }
 
 var placeConnector: PlaceConnectorFactory!
@@ -370,46 +370,47 @@ var placeConnector: PlaceConnectorFactory!
 placeConnector = APIConnectorFactory()
 
 placeConnector.loadPlaceList()</pre>
-      
-      <p>
-        Dễ dàng thấy Factory hiện tại đã được chia thành các sub-factory con (DatabaseConnectorFactory, APIConnectorFactory), và việc instantiate nó sẽ tùy thuộc vào từng hoàn cảnh để sử dụng. Có nhận xét gì về cách thực hiện trên ?
-      </p>
-      
-      <ul>
-        <li>
-          Việc class nào được instantiate phụ thuộc vào sub-factory, do đó có thể dễ dàng hoán đổi, ngay cả trong Runtime.
-        </li>
-        <li>
-          Có thể điều khiển việc khởi tạo dễ dàng hơn, và viết logic business cũng dễ dàng hơn (so với Simple Factory).
-        </li>
-        <li>
-          Do việc khởi tạo nằm ở các sub-factory, việc chỉnh sửa cũng sẽ đơn giản hơn, ví dụ: thêm dependency (vấn đề này rất hay xảy ra).
-        </li>
-        <li>
-          Có thể mở rộng các Factory mới, dựa trên các factory cũ. Đặc điểm này khá hay, nhất là khi bạn muốn viết các custom Factory, dựa trên các Factory sẵn có của thư viện, framework,&#8230;
-        </li>
-      </ul>
-      
-      <p>
-        Vậy khi nào chúng ta nên sử dụng Factory Method ?
-      </p>
-      
-      <ul>
-        <li>
-          Như định nghĩa: khi bạn muốn các sub-class quyết định cái nào sẽ được instantiate.
-        </li>
-        <li>
-          Khi bạn có 1 nhóm các class cùng tính đa hình (polymorphism) và chúng có nguy cơ sửa đổi cao trong quá trình develop và maintain.
-        </li>
-        <li>
-          Khi bạn muốn mở rộng hoặc thiết kế 1 module để sử dụng chung.
-        </li>
-      </ul>
-      
-      <p>
-        Từ Factory Method, người ta mở rộng và phát triển nó hơn nữa, thành một pattern khác trừu tượng hơn, đó chính là <em><strong><span style="color: #00ccff;">Abstract Factory</span></strong></em>. Tuy nhiên, pattern này được sử dụng cho các bài toán phức tạp, và tôi tin rằng nếu tôi đề cập nó ở bài viết này, bạn sẽ tẩu hỏa nhập ma ngay. Mặc khác,<span style="color: #00ccff;"><em><strong> Abstract Factory</strong></em></span> hoàn toàn có thể suy luận và tìm hiểu thông qua góc nhìn từ Factory Method, thế nên hãy hiểu kỹ Factory Method trước, việc còn lại sẽ đơn giản hơn nhiều.
-      </p>
-    </div>
+  
+ <p>
+Dễ dàng thấy Factory hiện tại đã được chia thành các sub-factory con (DatabaseConnectorFactory, APIConnectorFactory), và việc instantiate nó sẽ tùy thuộc vào từng hoàn cảnh để sử dụng. Có nhận xét gì về cách thực hiện trên ?
+</p>
+  
+ <ul>
+<li>
+Việc class nào được instantiate phụ thuộc vào sub-factory, do đó có thể dễ dàng hoán đổi, ngay cả trong Runtime.
+</li>
+<li>
+Có thể điều khiển việc khởi tạo dễ dàng hơn, và viết logic business cũng dễ dàng hơn (so với Simple Factory).
+</li>
+<li>
+Do việc khởi tạo nằm ở các sub-factory, việc chỉnh sửa cũng sẽ đơn giản hơn, ví dụ: thêm dependency (vấn đề này rất hay xảy ra).
+</li>
+<li>
+Có thể mở rộng các Factory mới, dựa trên các factory cũ. Đặc điểm này khá hay, nhất là khi bạn muốn viết các custom Factory, dựa trên các Factory sẵn có của thư viện, framework,&#8230;
+</li>
+</ul>
+  
+ <p>
+Vậy khi nào chúng ta nên sử dụng Factory Method ?
+</p>
+  
+ <ul>
+<li>
+Như định nghĩa: khi bạn muốn các sub-class quyết định cái nào sẽ được instantiate.
+</li>
+<li>
+Khi bạn có 1 nhóm các class cùng tính đa hình (polymorphism) và chúng có nguy cơ sửa đổi cao trong quá trình develop và maintain.
+</li>
+<li>
+Khi bạn muốn mở rộng hoặc thiết kế 1 module để sử dụng chung.
+</li>
+</ul>
+  
+ <p>
+Từ Factory Method, người ta mở rộng và phát triển nó hơn nữa, thành một pattern khác trừu tượng hơn, đó chính là <em><strong><span style="color: #00ccff;">Abstract Factory</span></strong></em>. Tuy nhiên, pattern này được sử dụng cho các bài toán phức tạp, và tôi tin rằng nếu tôi đề cập nó ở bài viết này, bạn sẽ tẩu hỏa nhập ma ngay. Mặc khác,<span style="color: #00ccff;"><em><strong> Abstract Factory</strong></em></span> hoàn toàn có thể suy luận và tìm hiểu thông qua góc nhìn từ Factory Method, thế nên hãy hiểu kỹ Factory Method trước, việc còn lại sẽ đơn giản hơn nhiều.
+</p>
+</div>
+
   </div>
 </div>
 
@@ -419,9 +420,9 @@ Qua bài viết, tôi đã trình bày cho các bạn cơ bản về Factory và
 
 Để ý kỹ, có thể thấy Factory khiến các module loằng ngoằng và phức tạp hơn, vì vậy, nó cũng có thể coi là 1 **<span style="color: #ff0000;">Anti-pattern</span>** (pattern không nên dùng), ví dụ như trong các trường hợp sau:
 
-  * Khi chỉ có mình bạn và duy nhất bạn code, phù hợp với các dự án nhỏ, pet project,&#8230;
-  * Khi số lượng class chung đặc điểm đa hình ít, và cũng ít có khả năng thay đổi ở tương lai, hoặc khả năng thay đổi (ở việc khởi tạo nó) tốn ít chi phí.
-  * Đừng sử dụng nó chỉ vì nó là 1 design pattern, một developer tốt cần phải biết cân nhắc chi phí giữa việc thực thi pattern, so với những gì nó mang lại, có thật sự là hiệu quả không.
+- Khi chỉ có mình bạn và duy nhất bạn code, phù hợp với các dự án nhỏ, pet project,&#8230;
+- Khi số lượng class chung đặc điểm đa hình ít, và cũng ít có khả năng thay đổi ở tương lai, hoặc khả năng thay đổi (ở việc khởi tạo nó) tốn ít chi phí.
+- Đừng sử dụng nó chỉ vì nó là 1 design pattern, một developer tốt cần phải biết cân nhắc chi phí giữa việc thực thi pattern, so với những gì nó mang lại, có thật sự là hiệu quả không.
 
 Đành rằng nó phổ biến, nhưng không có nghĩa nó là tốt ở mọi trường hợp, hãy phân tích và so sánh thật cẩn thận trước khi đưa ra quyết định. Với kinh nghiệm của tôi, tôi có xu hướng sử dụng Simple Factory hơn là Factory Method, lý do chính là vì nó đơn giản và các bài toán tôi gặp cũng không quá phức tạp. Tuy nhiên, khi phát triển một số tính năng phức tạp ở phía backend, thì tôi lại thường sử dụng Factory Method hơn, cũng có lần tôi maintain 1 source sử dụng Abstract Factory, phải công nhận là nó loằng ngoằng và tôi đánh giá là không cần thiết cho lắm, tuy nhiên, đó là phạm trù khác và topic khác.
 
