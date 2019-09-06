@@ -3,10 +3,10 @@ id: 1443
 title: Protocol-Oriented Programming trong Swift (phần 2)
 date: 2016-08-24T09:15:22+00:00
 author: starptit
-layout: post
+# layout: post
 guid: https://devislifeblog.wordpress.com/?p=320
 permalink: /2016/08/protocol-oriented-programming-trong-swift-phan-2/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 (If you are looking for English version, here you go: <a href="https://medium.com/@starptit/an-example-of-protocol-oriented-programming-in-swift-4c87804d4bd9#.c22prdn0v" target="_blank">POP English</a>)

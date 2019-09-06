@@ -3,10 +3,10 @@ id: 1801
 title: Tổng quan về Design Pattern
 date: 2018-09-07T09:05:23+00:00
 author: starptit
-layout: post
+# layout: post
 guid: http://swiftyvn.com/?p=1801
 permalink: /2018/09/tong-quan-ve-design-pattern/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Ra đời từ những năm 70 của thế kỉ trước, thực sự trở nên nổi tiếng và phổ biến thông qua cuốn sách &#8220;Design Patterns: Elements of Reusable Object-Oriented Software&#8221; (viết bởi 4 tác giả Erich Gamma, Richard Helm, Ralph Johnson và John Vlissides, còn được biết đến với tên gọi Gang of Four &#8211; GoF), Design Pattern dần dần trở thành tiêu chuẩn và là kiến thức buộc phải biết của mọi lập trình viên. Tôi chắc chắn rằng bạn đã từng nghe thuật ngữ này nhiều lần: khi tìm kiếm tài liệu, trong các cuộc thảo luận, trong các topics, quyển sách về lập trình,&#8230; Điều đó chứng minh tính hữu dụng và độ phổ biến của Design Pattern.

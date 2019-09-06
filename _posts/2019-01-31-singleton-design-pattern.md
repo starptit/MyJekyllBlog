@@ -3,10 +3,10 @@ id: 1837
 title: Singleton Design Pattern
 date: 2019-01-31T10:54:24+00:00
 author: starptit
-layout: post
+# layout: post
 guid: http://swiftyvn.com/?p=1837
 permalink: /2019/01/singleton-design-pattern/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Chủ đề lần này, tôi muốn viết về một loại Design Pattern khác cũng rất hay gặp, đó chính là Singleton Design Pattern. Tương tự như Factory Pattern, Singleton thuộc loại Creational, nó giải quyết bài toán liên quan đến vấn đề khởi tạo object (instation).

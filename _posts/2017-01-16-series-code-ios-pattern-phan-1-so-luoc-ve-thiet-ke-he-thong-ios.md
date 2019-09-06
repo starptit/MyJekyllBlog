@@ -3,10 +3,10 @@ id: 520
 title: "Series code iOS pattern: Phần 1: Sơ lược về thiết kế hệ thống iOS"
 date: 2017-01-16T10:37:01+00:00
 author: starptit
-layout: post
+# layout: post
 guid: https://devislifeblog.wordpress.com/?p=520
 permalink: /2017/01/series-code-ios-pattern-phan-1-so-luoc-ve-thiet-ke-he-thong-ios/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Bài viết này là bài mở đầu cho series về iOS Pattern, series này sẽ bao quát một số vấn đề về kiến trúc (architecture), thiết kế source code (design pattern) nhằm cải thiện chất lượng code và tư duy hệ thống của các bạn.

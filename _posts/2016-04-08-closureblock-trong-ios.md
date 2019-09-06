@@ -3,13 +3,13 @@ id: 85
 title: Closure/Block trong iOS
 date: 2016-04-08T13:49:56+00:00
 author: starptit
-layout: post
+# layout: post
 guid: https://devislifeblog.wordpress.com/?p=85
 permalink: /2016/04/closureblock-trong-ios/
 geo_public:
   - "0"
   - "0"
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Closure là một functional tuyệt vời mà Swift cung cấp cho lập trình viên, thật ra Closure không phải điều đặc biệt chỉ có trên Swift, các ngôn ngữ khác đều có closure, tuy nhiên được gọi bằng cái tên khác do nhà phát triển ngôn ngữ nghĩ ra mà thôi, ví dụ: closure tương ứng với block trong Objective-C, hoặc là lambda trong Java, delegates trong C# (trong JavaScript cũng gọi là Anonymous Function).

@@ -3,10 +3,10 @@ id: 958
 title: "iOS pattern: Phần 3: Nguyên lý S.O.L.I.D (chữ O )"
 date: 2017-07-07T10:45:43+00:00
 author: starptit
-layout: post
+# layout: post
 guid: https://devislifeblog.wordpress.com/?p=958
 permalink: /2017/07/ios-pattern-phan-3-nguyen-ly-s-o-l-i-d-chu-o/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Ở phần trước, chúng ta đã tìm hiểu về nguyên lý đầu tiên &#8211; SRP, một nguyên lý khá dễ hiểu nhưng không dễ để thực hiện. Trong bài viết này, mình sẽ tiếp tục giới thiệu về nguyên lý thứ 2, nguyên lý Open-Closed Principle (OCP &#8211; chữ O). Tuy nhiên trước khi đi vào chi tiết, mình cũng xin được nhắc lại cho các bạn, rằng S.O.L.I.D nằm ở mức nguyên lý (principle), chính vì vậy bạn không bắt buộc phải tuân thủ hay áp dụng nó triệt để. Tuy nhiên, những kiến thức về S.O.L.I.D rất hữu ích, nó là nền tảng cho việc clean code, củng cố thêm những hiểu biết về hệ thống kiến trúc, cách tổ chức, phân bố class, source code, module,.. trong một project. Hơn nữa, S.O.L.I.D và design pattern luôn là một trong những câu hỏi phổ biến của các nhà tuyển dụng, biết S.O.L.I.D không giúp bạn từ Junior thành Senior, nhưng nếu bạn là Senior, bắt buộc bạn phải có hiểu biết về S.O.L.I.D.

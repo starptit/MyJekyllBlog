@@ -3,10 +3,10 @@ id: 1690
 title: "iOS pattern: Phần 6: Nguyên lý S.O.L.I.D (chữ D )"
 date: 2018-03-22T16:31:28+00:00
 author: starptit
-layout: post
+# layout: post
 guid: http://www.swiftyvn.com/?p=1690
 permalink: /2018/03/ios-pattern-phan-6-nguyen-ly-s-o-l-i-d-chu-d/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Chào mừng các bạn đến với bài viết cuối cùng về chủ đề nguyên lý S.O.L.I.D. Cũng được một thời gian dài kể từ bài viết gần nhất của mình về S.O.L.I.D, vì vậy trước khi đi vào bài viết, mình khuyến khích các bạn đọc lại series này, từ phần đầu tiên, để có thể nhớ lại mục tiêu và phương pháp tiếp cận mà mình đã trình bày.

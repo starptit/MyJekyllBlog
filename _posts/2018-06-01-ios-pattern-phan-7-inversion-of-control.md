@@ -3,10 +3,10 @@ id: 1738
 title: "iOS pattern: Phần 7: Inversion of Control"
 date: 2018-06-01T16:54:59+00:00
 author: starptit
-layout: post
+# layout: post
 guid: http://www.swiftyvn.com/?p=1738
 permalink: /2018/06/ios-pattern-phan-7-inversion-of-control/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Ở 6 phần trước, mình đã lần lượt trình bày cho các bạn bộ nguyên tắc S.O.L.I.D. Để tiếp nối chủ đề này, bài viết hôm nay sẽ giới thiệu một nguyên lý khác cũng khá phổ biến không kém S.O.L.I.D, và được áp dụng rất rất nhiều. Đó chính là nguyên lý _**Inversion Of Control**_<!--more-->

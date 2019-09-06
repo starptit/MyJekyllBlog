@@ -3,10 +3,10 @@ id: 616
 title: "iOS pattern: Phần 2: Nguyên lý S.O.L.I.D (chữ S )"
 date: 2017-01-20T10:05:07+00:00
 author: starptit
-layout: post
+# layout: post
 guid: https://devislifeblog.wordpress.com/?p=616
 permalink: /2017/01/ios-pattern-phan-2-nguyen-ly-s-o-l-i-d-chu-s/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Nguyên lý S.O.L.I.D (hay Uncle Bob) là một nguyên lý cực kì phổ biến trong ngành công nghệ phần mềm, có thể nói là must-be-known bởi mọi lập trình viên. Nếu như bạn đã đọc phần tổng quan trước, đoạn mà mình đã đặt ra một số tiêu chí quan trọng khi thiết kế code, thì có thể nói SOLID sẽ giúp code của các bạn đáp ứng được hầu hết các tiêu chí mà mình đặt ra. Mặt khác, vì tính phổ biến của mình, SOLID rất hay được đề cập trong quá trình phỏng vấn xin việc ở các công ty, đặc biệt là trong ngành công nghiệp outsource ở Việt Nam. SOLID rất quan trọng, áp dụng vào thực tế hiệu quả, nhưng cũng khá khó nhai và khó để áp dụng đúng. Tuy nhiên, các bạn cần nhớ nó là <span style="color:#ff0000;"><strong>NGUYÊN LÝ</strong></span>, tức là không hề bắt buộc, bạn cần phải tỉnh táo khi áp dụng, miễn sao nó đáp ứng được bộ tiêu chí mà mình đã nêu ra là được. SOLID cũng có mặt trái, nó khiến code của bạn dài hơn (đi ngược lại tiêu chí write less), luồng xử lý loằng ngoằng hơn, có thể gây khó khăn khi tìm vết và debug. Nhìn về tổng thể, lợi ích mà SOLID đem lại lớn hơn rất nhiều so với mặt trái của nó, do đó SOLID tồn tại vững chãi và đi sâu vào mind-set của các lập trình viên. Các design pattern được suy luận và sinh ra từ nguyên lý SOLID. Chúng ta có thể nhìn nhận thế này:

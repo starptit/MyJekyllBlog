@@ -3,10 +3,10 @@ id: 1769
 title: "iOS Pattern Phần 8: Dependency Injection (Phần cuối)"
 date: 2018-07-11T16:07:31+00:00
 author: starptit
-layout: post
+# layout: post
 guid: http://www.swiftyvn.com/?p=1769
 permalink: /2018/07/ios-pattern-phan-8-dependency-injection-phan-cuoi/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Ở phần trước, tôi đã giới thiệu cho các bạn khái niệm về Inversion of Control, để tiếp nối mạch logic, tôi sẽ trình bày nốt về Dependency Injection &#8211; một kĩ thuật, phương pháp khá hay và phổ biến trong ngành lập trình. Vậy nó là gì? Nó làm sao? Dùng nó thế nào? Hãy đọc bài viết để có câu trả lời cho riêng mình nhé!

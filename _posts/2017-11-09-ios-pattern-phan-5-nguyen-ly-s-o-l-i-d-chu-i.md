@@ -3,10 +3,10 @@ id: 1632
 title: "iOS pattern: Phần 5: Nguyên lý S.O.L.I.D (chữ I )"
 date: 2017-11-09T15:54:07+00:00
 author: starptit
-layout: post
+# layout: post
 guid: http://www.swiftyvn.com/?p=1632
 permalink: /2017/11/ios-pattern-phan-5-nguyen-ly-s-o-l-i-d-chu-i/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Hôm trước trên group, có một bạn chia sẻ rằng đi phỏng vấn bị một anh hỏi xoáy về sự khác biệt giữa Delegate và DataSource trong iOS. Nếu là bạn thì bạn trả lời ra sao?  

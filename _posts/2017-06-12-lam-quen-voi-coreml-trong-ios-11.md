@@ -3,10 +3,10 @@ id: 959
 title: Làm quen với CoreML trong iOS 11
 date: 2017-06-12T08:03:44+00:00
 author: starptit
-layout: post
+# layout: post
 guid: https://devislifeblog.wordpress.com/?p=959
 permalink: /2017/06/lam-quen-voi-coreml-trong-ios-11/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Tại hội nghị WWDC 2017 đang diễn ra, Apple đã ra mắt một bộ kit mới, hỗ trợ cho việc tích hợp học máy (Machine Learning &#8211; ML), đó chính là CoreML. Bản thân mình cũng đang chân ướt chân ráo vào ML được một thời gian ngắn, nên mình quyết định viết blog này nhằm mục đích chia sẻ và giới thiệu những gì mình biết, mình hiểu, và hi vọng sẽ cung cấp được cho các bạn cái nhìn sơ khai nhất về ML và CoreML trong iOS.

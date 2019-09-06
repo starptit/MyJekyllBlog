@@ -3,11 +3,12 @@ id: 1870
 title: Builder Design Pattern
 date: 2019-05-10T10:11:33+00:00
 author: starptit
-layout: post
+# layout: post
 guid: http://swiftyvn.com/?p=1870
 permalink: /2019/05/builder-design-pattern/
-categories: [Uncategorized, Swift]
-comments: false
+# categories: [Uncategorized, Swift]
+# comments: false
+tags: Swift
 ---
 
 Đợt vừa rồi tôi có hơi bận viết blog nội bộ cho công ty nên có hơi bỏ bê trang này, nhưng không sao, SwiftyVN đã trở lại và đương nhiên là series về Design Pattern cũng sẽ quay lại 🤘. Vẫn tiếp nối chuỗi bài viết về loại Creational (khởi tạo), và cũng vẫn là một trong những pattern thuộc hàng phổ thông nhất, đó chính là **<span style="color: #993300;">Builder Design Pattern.</span>**

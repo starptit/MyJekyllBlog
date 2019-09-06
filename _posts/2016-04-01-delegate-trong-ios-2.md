@@ -3,10 +3,10 @@ id: 1440
 title: Delegate trong iOS
 date: 2016-04-01T08:38:27+00:00
 author: starptit
-layout: post
+# layout: post
 guid: https://devislifeblog.wordpress.com/?p=2
 permalink: /2016/04/delegate-trong-ios-2/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Mình để ý thấy trên các trang chia sẻ kiến thức và hướng dẫn lập trình trong iOS, có rất nhiều bạn đặt câu hỏi về cách sử dụng protocol/ delegate trong lập trình iOS (cả Objective-C và Swift). Mình không khẳng định mình hiểu biết toàn bộ về Protocol trong iOS, nhưng mình tin rằng những chia sẻ dưới đây của mình có thể giúp các bạn có cái nhìn dễ hiểu hơn đối với Protocol. Trong bài viết này, mình sẽ không đi sâu về protocol, mình sẽ chỉ trình bày cách hoạt động, ý nghĩa sử dụng, và khi nào thì nên sử dụng nó, hi vọng sau khi nắm được cơ bản, các bạn có thể tìm hiểu sâu hơn, và vận dụng được nó tốt hơn.

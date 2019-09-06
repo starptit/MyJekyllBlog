@@ -3,10 +3,10 @@ id: 1822
 title: Factory Design Pattern
 date: 2018-11-19T10:36:19+00:00
 author: starptit
-layout: post
+# layout: post
 guid: http://swiftyvn.com/?p=1822
 permalink: /2018/11/factory-design-pattern/
-categories: [Uncategorized, Swift]
+tags: [Uncategorized, Swift]
 ---
 
 Một trong những design pattern mà quyển sách nào cũng đề cập, đó chính là Factory Pattern, điều đó đã chứng minh sự phổ biến của nó. Nếu bạn còn nhớ, ở bài viết trước, tôi có chia nhóm các loại design pattern khác nhau, bao gồm Creational, Structural và Behavioral. Factory Pattern thuộc loại Creational, do đó, vấn đề và nó giải quyết sẽ xoay quanh câu chuyện khởi tạo object, instantiation,&#8230; vân vân và mây mây. Bài viết này tương đối dài và nhiều chữ, thế nên hãy cố gắng kiên nhẫn đọc đến cuối nhé, vì theo tôi, đây là một pattern đơn giản, nhưng lại hỗn loạn về thông tin bậc nhất.
