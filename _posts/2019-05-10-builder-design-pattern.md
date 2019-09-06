@@ -7,7 +7,7 @@ author: starptit
 guid: http://swiftyvn.com/?p=1870
 permalink: /2019/05/builder-design-pattern/
 # categories: [Uncategorized, Swift]
-# comments: false
+comments: true
 tags: Swift
 ---
 
