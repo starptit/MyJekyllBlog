@@ -59,7 +59,8 @@ Hiển nhiên việc đơn giản nhất là mỗi method, chúng ta chia nó ra
 
 Giả sử với bài post trên, chúng ta có thể: Like, Comment, Share, Download ảnh. Tương ứng, ta có Interface sau:
 
-<pre class="theme:sublime-text toolbar:2 lang:swift decode:true">protocol IFacebookContent{
+{% highlight swift %}
+protocol IFacebookContent{
     func like()
     func addComment()
     func shareContent()
@@ -83,12 +84,13 @@ class ImageHandler:IFacebookContent{
         //TODO: Download Image
     }
 }
-</pre>
+{% endhighlight %}
 
 Facebook muốn hỗ trợ Video và cho phép hiển thị content theo dạng Video:  
 [<img class=" wp-image-1649 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0968-576x1024.jpg" alt="" width="317" height="563" srcset="/wp-content/uploads/2017/11/IMG_0968-576x1024.jpg 576w, /wp-content/uploads/2017/11/IMG_0968-169x300.jpg 169w, /wp-content/uploads/2017/11/IMG_0968-768x1365.jpg 768w, /wp-content/uploads/2017/11/IMG_0968.jpg 1242w" sizes="(max-width: 317px) 100vw, 317px" />](http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0968.jpg)
 
-<pre class="theme:sublime-text toolbar:2 lang:swift decode:true">class VideoHandler:IFacebookContent{
+{% highlight swift %}
+class VideoHandler:IFacebookContent{
     func like(){
         //TODO: Like Video
     }
@@ -105,7 +107,7 @@ Facebook muốn hỗ trợ Video và cho phép hiển thị content theo dạng 
         //Oops, Facebook chưa cho phép người dùng tải Video
     }
 }
-</pre>
+{% endhighlight %}
 
 &#8211;> function downloadContent cho Video bị lỗi. Giả sử VideoHandler được gọi hoặc được sử dụng trong module A, module A lại được module B gọi,&#8230; &#8211;> rất tốn thời gian để dò lỗi và có thể ảnh hưởng lẫn nhau dẫn đến việc phải test lại.
 
@@ -115,7 +117,8 @@ Rồi một ngày anh Mark yêu cầu app của anh ấy phải đảm bảo đ�
 
 Như ảnh trên, ta thấy người dùng hiện tại chỉ có duy nhất quyền được share nội dung:
 
-<pre class="theme:sublime-text toolbar:2 lang:swift decode:true ">class PersonalContentHandler:IFacebookContent{
+{% highlight swift %}
+class PersonalContentHandler:IFacebookContent{
     func like(){
         //OOps, không phải bạn tôi, ai cho anh like
     }
@@ -132,13 +135,14 @@ Như ảnh trên, ta thấy người dùng hiện tại chỉ có duy nhất quy
         //OOps, không phải bạn tôi, ai cho anh download
     }
 }
-</pre>
+{% endhighlight %}
 
 ## **5. Cách khắc phục:**
 
 Tuân theo nguyên lý phân tách Interface (ISP), nhiệm vụ của ta là chia nhỏ Interface trên:
 
-<pre class="theme:sublime-text toolbar:2 lang:swift decode:true ">protocol ILikeContent{
+{% highlight swift %}
+protocol ILikeContent{
     func likeContent()
 }
 
@@ -153,11 +157,12 @@ protocol IShareContent{
 protocol IDownloadContent{
     func downloadContent()
 }
-</pre>
+{% endhighlight %}
 
 Các class/module con lúc này sẽ chỉ implement cái mà chúng cần:
 
-<pre class="theme:sublime-text toolbar:2 lang:swift decode:true">class ImageHandler:ILikeContent,ICommentContent,IShareContent,IDownloadContent{
+{% highlight swift %}
+class ImageHandler:ILikeContent,ICommentContent,IShareContent,IDownloadContent{
     func likeContent() {
         //TODO: Like Image
     }
@@ -194,7 +199,7 @@ class PersonalContentHandler:IShareContent{
         //TODO: Share Content
     }
 }
-</pre>
+{% endhighlight %}
 
 ## **6. Tổng kết:**
 

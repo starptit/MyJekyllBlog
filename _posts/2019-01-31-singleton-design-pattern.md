@@ -27,7 +27,8 @@ Xuất phát từ thực tế, một số class như xử lý cache, quản lý 
 
 Giả sử ứng dụng của tôi là dạng web-app, phần quan trọng bậc nhất đối với web-app là phải quản lý Cookies. Tôi hoàn toàn có thể code theo kiểu sau:
 
-<pre class="theme:xcode float-enable:true wrap-toggle:false plain:false lang:swift decode:true">class CookiesManager {
+{% highlight swift %}
+class CookiesManager {
     
     func saveCookies() {
         // do stuff
@@ -54,7 +55,7 @@ class ViewControllerB: UIViewController {
         let cookiesManager = CookiesManager()
         cookiesManager.refreshCookies()
     }
-}</pre>
+}{% endhighlight %}
 
 Tuy nhiên đoạn code trên cũng có vấn đề: Việc quản lý cookies cần được thực hiện trong suốt Runtime của ứng dụng, đồng nghĩa với việc CookiesManager có thể phải khởi tạo nhiều instance tại nhiều nơi.
 
@@ -68,7 +69,8 @@ Bước đầu tiên khi tìm hiểu về Design Pattern không có gì khác ng
 
 Biến đổi UML trên thành code:
 
-<pre class="theme:xcode float-enable:true wrap-toggle:false plain:false lang:swift decode:true">class Singleton {
+{% highlight swift %}
+class Singleton {
     
     init() {}
     
@@ -77,13 +79,14 @@ Biến đổi UML trên thành code:
     public static func getInstance() -> Singleton {
         return instance
     }
-}</pre>
+}{% endhighlight %}
 
 Code rất đơn giản, nếu muốn sử dụng instance của Singleton, ta chỉ cần gọi: <span style="color: #ff0000;"><strong><code>Singleton.getInstance()</code></strong></span> là xong. Cách implement trên khá phổ biển, nhất là với các ngôn ngữ Java, C#,&#8230; TUY NHIÊN, Swift là ngôn ngữ hiện đại và thông minh, do đó, với Swift, chúng ta có cách khác đơn giản và hiệu quả hơn:
 
-<pre class="theme:xcode float-enable:true wrap-toggle:false plain:false lang:swift decode:true">class Singleton {
+{% highlight swift %}
+class Singleton {
     static let shared: Singleton = Singleton()
-}</pre>
+}{% endhighlight %}
 
 Đơn giản hơn thì nhìn rõ rồi, nhưng tại sao lại nói hiệu quả hơn ?
 
@@ -97,7 +100,8 @@ UML của Singleton lúc này sẽ được update thành:
 
 Quay trở lại với trường hợp CookiesManager, áp dụng Singleton Pattern:
 
-<pre class="theme:xcode float-enable:true wrap-toggle:false plain:false lang:swift decode:true">class CookiesManager {
+{% highlight swift %}
+class CookiesManager {
     static let shared = CookiesManager()
     
     func saveCookies() {
@@ -123,19 +127,21 @@ class ViewControllerB: UIViewController {
     override func viewDidLoad() {
             CookiesManager.shared.refreshCookies()
     }
-}</pre>
+}{% endhighlight %}
 
 Thực tế, bạn rất dễ dàng bắt gặp Singleton Pattern được Apple áp dụng trong một số module thông dụng:
 
-<pre class="theme:xcode float-enable:true wrap-toggle:false plain:false lang:swift decode:true">UIApplication.shared
+{% highlight swift %}
+UIApplication.shared
 NotificationCenter.default
-UserDefaults.standard</pre>
+UserDefaults.standard{% endhighlight %}
 
 ### <span style="color: #ff6600;">Phân Tích Singleton Pattern</span>
 
 Singleton thường được đem ra so sánh với sử dụng thuộc tính **<span style="color: #ff0000;"><code>static</code></span>** trong class (tôi tạm gọi tắt là static class). Bản chất Singleton là cung cấp 1 instance duy nhất, đồng nghĩa function, variables, properties,&#8230; của nó cũng là duy nhất, điều này hoàn toàn có thể thực hiện bằng cách sử dụng static:
 
-<pre class="theme:xcode float-enable:true wrap-toggle:false plain:false lang:swift decode:true ">class CookiesManager {
+{% highlight swift %}
+class CookiesManager {
     static func saveCookies() {}
     static func loadCookies() {}
     static func refreshCookies() {}
@@ -145,7 +151,7 @@ class ViewControllerA: UIViewController {
     override func viewDidLoad() {
         CookiesManager.saveCookies()
     }
-}</pre>
+}{% endhighlight %}
 
 Hiển nhiên rằng Singleton phải có ưu điểm gì nổi trội hơn static class:
 

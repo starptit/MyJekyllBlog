@@ -39,12 +39,12 @@ Thuật ngữ này lần đầu tiên được đề cập trong quyển ***Des
 
 Với framework _UIKit_ của iOS, giả sử với bài toán, ấn một cái nút, và in ra dòng &#8216;Hello World&#8217; :
 
-<pre class="theme:solarized-dark toolbar:2 plain:false lang:default decode:true ">let button = UIButton()
+{% highlight swift %}let button = UIButton()
 button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
 
 func buttonTapped(_ sender: Any) {
     print("Hello World")
-}</pre>
+}{% endhighlight %}
 
 Có nhận xét gì về đoạn code trên ?
 
@@ -54,7 +54,8 @@ _Đúng, code của bạn được gọi_. Đó chính là điểm khác biệt 
 
 Ví dụ khác, chắc chắn ai cũng đã và đang sử dụng UITableView, thế nhưng bạn có từng để ý đến cách mà chúng ta làm việc với nó không?
 
-<pre class="theme:solarized-dark toolbar:2 plain:false lang:default decode:true ">extension ViewController: UITableViewDelegate, UITableViewDataSource {
+{% highlight swift %}
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
        return 1
     }
@@ -75,7 +76,7 @@ Ví dụ khác, chắc chắn ai cũng đã và đang sử dụng UITableView, t
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("tapped")
     }
-}</pre>
+}{% endhighlight %}
 
 Hãy quan sát theo hướng luồng điều khiển:
 

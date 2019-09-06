@@ -43,7 +43,8 @@ _<span style="color: #ff0000;"># Tại sao chúng ta lại cần phải có fact
 
 Giả sử bạn đang phải viết tính năng ghi log cho database, theo cách thông thường và đơn giản nhất, bạn sẽ viết như sau:
 
-<pre class="theme:xcode lang:swift decode:true">public struct DatabaseLogger {
+{% highlight swift %}
+public struct DatabaseLogger {
     public func writeLog(content: String) {
         // TODO: write log
     }
@@ -54,11 +55,12 @@ class CreateUserViewController: UIViewController {
         let logger = DatabaseLogger()
         logger.writeLog(content: log)
     }
-}</pre>
+}{% endhighlight %}
 
 Nhưng điều gì sẽ xảy ra, nếu như team bạn nhận thấy log database không thực sự cần thiết, và muốn chuyển sang ghi log phần Networking?
 
-<pre class="theme:xcode lang:swift decode:true">public struct DatabaseLogger {
+{% highlight swift %}
+public struct DatabaseLogger {
     public func writeLog(content: String) {
         // TODO: write log
     }
@@ -77,13 +79,14 @@ class CreateUserViewController: UIViewController {
         logger.writeLog(content: log)
     }
 }
-</pre>
+{% endhighlight %}
 
 Bạn phải thay thế hoặc chỉnh sửa những phần liên quan đến DatabaseLogger cũ, và vì Logger là function được sử dụng phổ biến trong ứng dụng, do đó bạn phải sửa đổi ở mọi nơi liên quan, điều này không hề dễ chịu gì phải không?
 
 Với Factory, mọi việc trở nên đơn giản hơn:
 
-<pre class="theme:xcode lang:swift decode:true ">public protocol ILogger {
+{% highlight swift %}
+public protocol ILogger {
     func writeLog(content: String)
 }
 
@@ -111,7 +114,7 @@ class CreateUserViewController: UIViewController {
         let logger = LoggerFactory.createLogger()
         logger.writeLog(content: "Log something")
     }
-}</pre>
+}{% endhighlight %}
 
 Việc khởi tạo ra Logger để sử dụng hoàn toàn nằm ở FactoryLogger, do đó, nếu cần sửa, chúng ta chỉ cần sửa ở mình nó mà thôi, tránh được hoàn toàn tình huống phải sửa ở nhiều chỗ kể trên.
 
@@ -121,7 +124,8 @@ Bản chất của Factory là return lại 1 instance, vì vậy, cái phức t
 
 Giả sử tôi đang thiết kế ứng dụng hẹn hò tương tự như Tinder, tôi muốn xây dựng module đưa ra gợi ý kết bạn cho User, việc đưa ra gợi ý được tùy chọn dựa trên danh sách các tiêu tiêu chí.
 
-<pre class="theme:xcode lang:swift decode:true">struct SuggesstMatching {
+{% highlight swift %}
+struct SuggesstMatching {
 
     init(user: User, list: PropertyList) {
     
@@ -153,7 +157,7 @@ class FavoriteViewController: UIViewController {
         let suggestingUser = suggestMatching.suggesst()
     }
 }
-</pre>
+{% endhighlight %}
 
 SuggestMatching là module đảm nhận business logic, User đại diện cho người dùng, PropertyList đại diện cho danh sách tiêu chí. Module này được sử dụng ở Favorite & HomeViewController để tìm ra danh sách gợi ý kết bạn. Vậy có vấn đề gì với những dòng code này ?
 
@@ -163,7 +167,8 @@ SuggestMatching là module đảm nhận business logic, User đại diện cho 
 
 &#8211;> Rõ ràng SuggestMatching được khởi tạo phức tạp, hơn nữa 2 ViewController lại không cần quan tâm đến cái phức tạp đó. Nếu sử dụng Factory, bài toán trên sẽ có dạng như sau:
 
-<pre class="theme:xcode lang:swift decode:true">struct SuggesstMatchingFactory {
+{% highlight swift %}
+struct SuggesstMatchingFactory {
     static func getSuggestMatching() -> SuggesstMatching {
         let user = User()
         let propertyList = PropertyList()
@@ -177,13 +182,14 @@ class HomeViewController: UIViewController {
         let suggestMatching = SuggesstMatchingFactory.getSuggestMatching()
         let suggestingUser = suggestMatching.suggesst()
     }
-}</pre>
+}{% endhighlight %}
 
 Việc làm thế nào để lấy ra SuggestMatching sẽ do Factory đảm nhiệm, tương đương với việc sửa đổi cũng chỉ nằm gọn trong cái Factory đó, các class / module khác cần thì chỉ việc gọi ra để dùng, đơn giản, thuận tiện và dễ quản lý hơn.
 
 Một vấn đề khác mà Factory có thể giải quyết được:
 
-<pre class="theme:xcode lang:swift decode:true">struct SuggesstMatching {
+{% highlight swift %}
+struct SuggesstMatching {
 
     init(user: User, list: PropertyList) {}
 
@@ -198,7 +204,7 @@ Một vấn đề khác mà Factory có thể giải quyết được:
         return []
     }
 }
-</pre>
+{% endhighlight %}
 
 Giả sử SuggestMatching có rất nhiều kiểu để instantiate, việc viết gọn vào Factory chắc chắn là một giải pháp tốt. Chưa kể đến những trường hợp cần kết hợp nhiều dependency để tạo ra 1 instance, các dependency đó lại có thêm nhiều kiểu để khởi tạo &#8211;> độ phức tạp sẽ tăng theo hàm mũ, và Factory sẽ giúp bạn ít đau đớn hơn khi phải sửa đổi chúng.
 
@@ -206,7 +212,8 @@ Giả sử SuggestMatching có rất nhiều kiểu để instantiate, việc vi
 
 Tôi đang phát triển tính năng cập nhật thông tin người dùng, trong đó có phần cập nhật địa chỉ (quận, huyện, tỉnh thành) nơi họ sinh sống. Tôi sẽ có 2 cách chính để lấy thông tin tỉnh thành sẵn có: lấy từ File, lấy từ Database.
 
-<pre class="theme:xcode lang:default decode:true">struct Place {
+{% highlight swift %}
+struct Place {
     private let id: Int
     private let name: String
     
@@ -231,7 +238,7 @@ struct DatabaseConnector {
         
         return placeDatabaesList
     }
-}</pre>
+}{% endhighlight %}
 
 Thế nhưng, Hà Tây sát nhập vào Hà Nội, rồi Việt Nam thống nhất Hoàng Sa, Trường Sa, dẫn đến team của tôi quyết định thêm phần lấy thông tin địa chỉ từ API để sửa đổi real-time dễ dàng hơn. Theo như những phân tích ở trên, sử dụng Factory ở trường hợp này là cần thiết và hợp lý. Tuy nhiên, sử dụng như thế nào ?
 
@@ -241,7 +248,8 @@ Cách đầu tiên là sử dụng một thủ thuật gọi là Simple Factory,
 
 <img class="size-full wp-image-1830 aligncenter" src="/wp-content/uploads/2018/11/Untitled-Diagram-2.png" alt="" width="974" height="296" srcset="/wp-content/uploads/2018/11/Untitled-Diagram-2.png 974w, /wp-content/uploads/2018/11/Untitled-Diagram-2-300x91.png 300w, /wp-content/uploads/2018/11/Untitled-Diagram-2-768x233.png 768w" sizes="(max-width: 974px) 100vw, 974px" />
 
-<pre class="theme:xcode lang:swift decode:true">enum ConnectionType {
+{% highlight swift %}
+enum ConnectionType {
     case file
     case api
     case database
@@ -296,7 +304,7 @@ class ClientController: UIViewController {
         let placeService: PlaceConnectorProtocol = PlaceConnectorFactory.getPlaceConnector(type: .file)
         placeService.loadPlaceList()
     }
-}</pre>
+}{% endhighlight %}
 
 Vì nó là &#8220;Simple Factory&#8221;, nên ưu điểm của nó chính là tận dụng ưu điểm của Factory đã trình bày ở trên, tận dụng tốt đặc điểm đa hình trong OOP. Tuy nhiên cũng cần lưu ý:
 
@@ -336,7 +344,8 @@ Factory Method Pattern được đề cập đến trong quyển sách nổi ti�
         <em>// Vì Swift không hỗ trợ Abstract Class như các ngôn ngữ khác, nên tôi sẽ dùng Protocol Extension để thay thế.</em>
       </p>
       
-      <pre class="theme:xcode lang:default decode:true">protocol PlaceConnectorFactory {
+      {% highlight swift %}
+      protocol PlaceConnectorFactory {
     func getPlaceConnector() -> PlaceConnectorProtocol
 }
 
@@ -369,7 +378,7 @@ var placeConnector: PlaceConnectorFactory!
 //placeConnector = DatabaseConnectorFactory()
 placeConnector = APIConnectorFactory()
 
-placeConnector.loadPlaceList()</pre>
+placeConnector.loadPlaceList(){% endhighlight %}
   
  <p>
 Dễ dàng thấy Factory hiện tại đã được chia thành các sub-factory con (DatabaseConnectorFactory, APIConnectorFactory), và việc instantiate nó sẽ tùy thuộc vào từng hoàn cảnh để sử dụng. Có nhận xét gì về cách thực hiện trên ?

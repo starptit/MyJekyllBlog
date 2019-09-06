@@ -21,7 +21,8 @@ Kĩ thuật chèn ở đây chính là việc chúng ta <span style="color: #993
 
 Ví dụ:
 
-<pre class="theme:sublime-text float-enable:true wrap-toggle:false plain:false lang:swift decode:true">class UserListViewController: UIViewController {
+{% highlight swift %}
+class UserListViewController: UIViewController {
     var userService: UserService!
     var dbService: DatabaseService!
     
@@ -36,7 +37,7 @@ Ví dụ:
     }
 }
 
-</pre>
+{% endhighlight %}
 
 Ở trên ta có 2 dependency là userService, và dbService, trong đó userService được sử dụng bằng cách khởi tạo trực tiếp bên trong UserListViewController, còn dbService được passing qua hàm setDatabaseService. Ở đây ta nói, ta đang sử dụng Dependency Injection với dbService.
 
@@ -53,7 +54,8 @@ Tóm lại, đọc đến đây, tôi muốn bạn hiểu và nắm được:
 
 So sánh 2 cách sử dụng dependency trên, rõ ràng ở trường hợp của userService, chúng ta đã vô tình kết dính userService vào UserListViewController, điều này là tối kị trong việc thiết kế code, vì nó sẽ làm giảm khả năng maintain, cũng như gây khó khăn khi sửa đổi source code. Ví dụ, giả sử UserService thay đổi constructor của nó:
 
-<pre class="theme:sublime-text float-enable:true plain:false lang:swift decode:true">class UserService {
+{% highlight swift %}
+class UserService {
     
     init(with identifier: String) {
         
@@ -79,13 +81,14 @@ class UserListViewController: UIViewController {
     }
 }
 
-</pre>
+{% endhighlight %}
 
 Ta phải thay đổi code trong viewDidLoad của UserListViewController tương ứng. Rõ ràng, thay đổi từ phía dendency buộc module sử dụng nó phải thay đổi theo, compile lại, test lại, không ổn một chút nào phải không?
 
 Với bài toán thay đổi DatabaseService thì sao?
 
-<pre class="theme:sublime-text float-enable:true plain:false lang:swift decode:true">class DatabaseService {
+{% highlight swift %}
+class DatabaseService {
     init(with identifier: String) {
         
     }
@@ -112,7 +115,7 @@ class UserListViewController: UIViewController {
     }
 }
 
-</pre>
+{% endhighlight %}
 
 Chẳng có gì thay đổi ở phía UserListViewController cả, bởi vì cái mà UserListViewController cần từ DatabaseService chỉ là 1 instance của nó, để có thể dùng instance đó thực hiện các logic và xử lý nó cần. Đứng trên quan điểm của UserListViewController: này anh DatabaseService, tôi là UserListViewController, tôi cần xử lý tác vụ về Database, do đó tôi mượn anh để thực hiện, tôi và anh là 2 người riêng biệt, do đó tôi không muốn quản lý hay liên quan gì đến nội tại hoạt động của anh, cái tôi cần là tôi giao anh 1 việc, anh trả tôi kết quả.
 
@@ -131,7 +134,8 @@ Bản chất của Injection là việc các bạn passing dependency đến cá
 
 Đây chính là phương pháp mà tôi đã thực hiện ở ví dụ đầu bài viết. Đối với các ngôn ngữ OOP nói chung, thông thường để đảm bảo tính đóng gói và bảo mật, các property thường được gán private, và truy cập trong thông qua cặp method getter/setter. Tuy nhiên, Swift không vậy, getter và setter của swift có thể được viết theo dạng closure, do đó, nếu muốn thực hiện inject thông qua setter, bạn buộc phải thực hiện theo template của các ngôn ngữ OOP khác:
 
-<pre class="theme:sublime-text float-enable:true plain:false lang:swift decode:true">class UserListViewController: UIViewController {
+{% highlight swift %}
+class UserListViewController: UIViewController {
     var userService: UserService!
     var dbService: DatabaseService!
     
@@ -145,7 +149,7 @@ Bản chất của Injection là việc các bạn passing dependency đến cá
     }
 }
 
-</pre>
+{% endhighlight %}
 
 Đặc điểm của phương pháp này là rất nhanh gọn và trực quan, vì hầu như các IDE đều hỗ trợ việc sinh ra getter và setter tự động.
 
@@ -153,7 +157,8 @@ Bản chất của Injection là việc các bạn passing dependency đến cá
 
 Tương tự như setter Injection, phương pháp này sử dụng các hàm khởi tạo để thực hiện inject:
 
-<pre class="theme:sublime-text float-enable:true plain:false lang:swift decode:true">class UserListViewController: UIViewController {
+{% highlight swift %}
+class UserListViewController: UIViewController {
     let userService: UserService
     let dbService: DatabaseService
     
@@ -169,7 +174,7 @@ Tương tự như setter Injection, phương pháp này sử dụng các hàm kh
     
 }
 
-</pre>
+{% endhighlight %}
 
 Constructor Injection cũng khá phổ biến, tuy nhiên nhược điểm của nó là:
 
@@ -179,9 +184,10 @@ Constructor Injection cũng khá phổ biến, tuy nhiên nhược điểm của
 
 Nhược điểm không tối ưu với lập trình iOS khá quan trọng, bởi vì các UIViewController trong iOS thường được khởi tạo từ xib/storyboard, thông qua hàm
 
-<pre class="theme:sublime-text float-enable:true plain:false lang:swift decode:true">func instantiateViewController(withIdentifier identifier: String) -> UIViewController
+{% highlight swift %}
+func instantiateViewController(withIdentifier identifier: String) -> UIViewController
 
-</pre>
+{% endhighlight %}
 
 Hàm này KHÔNG phải là hàm khởi tạo, do đó nó không tối ưu với UIViewController. Nếu bạn không inject module như Manager, Helper,&#8230; hoặc khởi tạo UIViewController bằng code, thì bạn hoàn toàn có thể sử dụng phương pháp này. Tuy nhiên, theo thói quen, tôi rất ít khi dùng constructor injection.
 
@@ -189,7 +195,8 @@ Hàm này KHÔNG phải là hàm khởi tạo, do đó nó không tối ưu vớ
 
 Interface Injection, nghĩa là bạn inject dependency của các bạn thông qua Interface:
 
-<pre class="theme:sublime-text float-enable:true plain:false lang:swift decode:true">protocol Injectable {
+{% highlight swift %}
+protocol Injectable {
     func inject(userService: UserService, dbService: DatabaseService)
 }
 
@@ -203,13 +210,14 @@ class UserListViewController: UIViewController, Injectable {
     }
 }
 
-</pre>
+{% endhighlight %}
 
 Lợi thế mà Interface đem lại chính là tính trừu tượng, bạn có thể hoán đổi hoặc tương tác với các module khác nếu chúng cùng tuân theo 1 Interface. Bản thân tôi thực tế không sử dụng nhiều phương pháp này, một phần vì tôi muốn tách biệt hẳn các module mặc dù chúng có thể hoán đổi, đây hoàn toàn là quan điểm cá nhân, cho nên các bạn hãy cứ thử sử dụng chúng nếu nó có lợi cho bài toàn của bạn.
 
 À quên, Swift là Protocol-Oriented Programming, hãy thêm một chút Swifty vào đoạn code trên nhé:
 
-<pre class="theme:sublime-text float-enable:true plain:false lang:swift decode:true">protocol Injectable {
+{% highlight swift %}
+protocol Injectable {
     var userService: UserService! { get set }
     var dbService: DatabaseService! { get set }
 }
@@ -229,7 +237,7 @@ class UserListViewController: UIViewController, Injectable {
 var userVC: Injectable = UserListViewController()
 userVC.inject(userService: UserService(), dbService: DatabaseService())
 
-</pre>
+{% endhighlight %}
 
 Okay, qua đoạn này, tôi muốn bạn phải hiểu được:
 
@@ -253,7 +261,8 @@ DI giúp việc inject &#8211; passing các low level vào các high level (từ
 
 Áp dụng nguyên lý D.I.P vào D.I khá đơn giản, công việc của chúng ta chỉ là chuyển phụ thuộc giữa 2 bên (inject và được inject) thành phụ thuộc trừu tượng là xong:
 
-<pre class="theme:sublime-text float-enable:true plain:false lang:swift decode:true ">protocol IUserService {
+{% highlight swift %}
+protocol IUserService {
     func getUser()
 }
 
@@ -308,7 +317,7 @@ class UserListViewControllerC: UIViewController, Injectable {
 var interfaceInjectUserListVC: Injectable = UserListViewControllerC()
 interfaceInjectUserListVC.inject(userService: UserService())
 
-</pre>
+{% endhighlight %}
 
 Việc kết hợp DI và D.I.P rất phổ biến, hầu như những project tôi tham gia thì 99% họ đều làm như vậy. Lợi ích của nó rất rõ ràng, giảm thiểu code kết dính, giúp dễ maintain, sửa đổi và test hơn. Tuy nhiên nó sẽ làm cho code của bạn loằng ngoằng và rối rắm hơn, khó khăn cho người mới join vào dự án.
 

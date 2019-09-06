@@ -24,7 +24,8 @@ Functions that use pointers or references to base classes must be able to use ob
 (Những hàm tham chiếu đến class cơ sở thì phải đảm bảo có thể sử dụng được trong các class con của nó).  
 Như vậy, nguyên lý chỉ ra rằng, mọi hàm (method) của class cha thì phải hoạt động được và đúng trên các class con kế thừa từ nó. Class cho có các behaviors nào, thì class con cũng phải có các behaviors đó. Mời bạn xem ví dụ nhỏ mô phỏng từ thực tế sau đây:
 
-<pre class="theme:sublime-text lang:swift decode:true " >class Bird{
+{% highlight swift %}
+class Bird{
     func fly(){
         // TODO: flying away
     }
@@ -41,7 +42,7 @@ class Penguin:Bird{
         //TODO: Flying away
         fatalError("Penguin cannot fly")
     }
-}</pre>
+}{% endhighlight %}
 
 Class Bird là class cha, có ý nghĩa đại diện cho lớp chim chóc, lớp cha này có định nghĩa một function là fly, đại diện cho hành vi “bay” của loài chim. Tiếp đến, mình có 1 class con là Eagle (đại bàng) kế thừa từ class Bird, đồng nghĩa với việc Eagle có khả năng thực hiện hành vi “bay” giống như class Bird. Ok, đến đây vẫn ổn. Thế nhưng bây giờ mình tạo một class khác đặt tên là class Penguin (chim cánh cụt), hiển nhiên rằng Penguin cũng là một loài chim –> kế thừa từ class Bird –> có khả năng “bay”. Oops, trên thực tế chim cánh cụt thực ra là loài chim không thể bay –> vi phạm nguyên lý Liskov.
 
@@ -49,7 +50,8 @@ Class Bird là class cha, có ý nghĩa đại diện cho lớp chim chóc, lớ
 
 Giả sử mình đang xây dựng một ứng dụng thương mại điện tử (e-commerce), cụ thể là module người sử dụng (User). Việc đầu tiên là ta cần tạo một Class User, và tiến hành phân tích nghiệp vụ cho class này, về cơ bản một user có quyền thực hiện 2 tác vụ chính là “thêm hàng vào giỏ hàng” và “thanh toán sản phẩm” :
 
-<pre class="theme:sublime-text lang:swift decode:true " >class User{
+{% highlight swift %}
+class User{
     
     var userId:Int!
     var userName:String!
@@ -63,11 +65,12 @@ Giả sử mình đang xây dựng một ứng dụng thương mại điện t�
         // TODO: pay the Cart
     }
 }
-</pre>
+{% endhighlight %}
 
 Thiết kế trên hoàn toàn chuẩn theo như những gì sách nói, class gồm có property và method, bla bla,… Sau một thời gian sử dụng, lượng người dùng tăng lên, và có 1 số nhỏ người dùng dành tiền chi tiêu vào ứng dụng e-commerce của chúng ta, họ được xếp vào nhóm người dùng Vàng, được một số quyền hạn ưu tiên như giảm giá, tặng quà,… Công việc của chúng ta lúc này là phải chuyển hóa lượng người dùng trên vào trong ứng dụng. Sửa lại class User? Không ổn, nó đang chạy tốt, sửa lại gây ra rủi ro rất lớn. Tính kế thừa lúc này phát huy tác dụng, chúng ta chỉ cần tạo một class con kế thừa từ class trên là xong – easy as pie. Ta tạm đặt class mới là PremiumUser, có thêm thuộc tính biểu thị cho ưu đãi giảm giá:
 
-<pre class="theme:sublime-text lang:swift decode:true " >class PremiumUser:User{
+{% highlight swift %}
+class PremiumUser:User{
     
     var discount:Int! // mã giảm giá cho User
     
@@ -82,13 +85,14 @@ Thiết kế trên hoàn toàn chuẩn theo như những gì sách nói, class g
         
     }
 }
-</pre>
+{% endhighlight %}
 
 Hàm addToCart() vẫn không có gì thay đổi, và tuân theo class cha User. Với hàm proceedCart(), kết quả cuối cùng của chúng ta phải thay đổi theo tỉ lệ giảm giá của User.
 
 Việc bắt user phải có tài khoản, mật khẩu,… rồi mới được mua hàng, đặt hàng vào giỏ gây cản trở cho quá trình mua hàng của những người lần đầu tiên sử dụng app, hay họ chưa kịp đăng ký. Từ nghiệp vụ, chúng ta phải bổ sung thêm một class nữa để đại diện cho những User chưa đăng ký này. Những User này có quyền xem và thêm hàng vào giỏ, nhưng lại không thanh toán được vì không đủ thông tin:
 
-<pre class="theme:sublime-text lang:swift decode:true " >class UnconfirmUser:User{
+{% highlight swift %}
+class UnconfirmUser:User{
     override func addToCart() { // thêm hàng vào giỏ hàng
         // TODO: add selected product to Cart
         super.addToCart()
@@ -99,7 +103,7 @@ Việc bắt user phải có tài khoản, mật khẩu,… rồi mới được
         fatalError("missing Logic")
     }
 }
-</pre>
+{% endhighlight %}
 
 –> vi phạm LSP. Hàm proceedCart() kế thừa từ class cha (User), không thể thực thi trong class con (UnconfirmUser).
 
@@ -114,7 +118,8 @@ Bản chất của vi phạm LSP là do các thuộc tính và phương thức c
 Program to an interface not an implementation  
 Thật vậy, bài toán lúc này khá đơn giản, bạn tập trung các method của class cha vào các interface cụ thể, và cho class con implement (nếu có thể). Giả sử với ví dụ ban đầu về class Bird, ta có thể viết nó lại như sau:
 
-<pre class="theme:sublime-text lang:swift decode:true " >protocol Flyable{
+{% highlight swift %}
+protocol Flyable{
     func fly()
 }
 
@@ -131,11 +136,12 @@ class Penguin:Bird{
     
 }
 
-</pre>
+{% endhighlight %}
 
 Ta tách hành vi bay ra thành 1 Protocol. Với class Eagle, nó có thể bay, nên ta cho phép nó implement protocl Flyable, class Penguin không thể bay –> ta không cho nó implement. Bài toán được giải quyết, hết sức đơn giản. Tương tự với bài toán User trong hệ thống thương mại điện tử trên:
 
-<pre class="theme:sublime-text lang:swift decode:true " >protocol ProceedingCart{
+{% highlight swift %}
+protocol ProceedingCart{
     func proceedCart()
 }
 
@@ -176,7 +182,7 @@ class UnconfirmUser:User{
         super.addToCart()
         
     }
-}</pre>
+}{% endhighlight %}
 
 **5. Tổng kết:**
 

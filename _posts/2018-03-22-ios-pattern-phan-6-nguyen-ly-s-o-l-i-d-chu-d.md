@@ -91,7 +91,8 @@ Tóm lại, phần này các bạn cần nhớ:
 
 Cùng xem xét ví dụ sau:
 
-<pre class="theme:sublime-text float-enable:true plain:false copy:false lang:default decode:true">class APIService {
+{% highlight swift %}
+class APIService {
     func fetchUserList() {
         // TODO: - Fetch User List by calling API
     }
@@ -105,7 +106,7 @@ class UserManager {
     }
 }
 
-</pre>
+{% endhighlight %}
 
 Rất tốt, bạn đã biết vận dụng nguyên lý SRP (phần 1) để tạo một class UserManager nhằm quản lý nghiệp vụ liên quan đến User. Từ các định nghĩa nêu ở trên, ta có thể xác định được:
 
@@ -123,7 +124,8 @@ Từ kết luận trên, ta có thể thấy rõ module chúng ta vừa lập tr
 
 Tạm thời phớt lờ những nhận xét trên, bạn tiếp tục sử dụng UserManager vào các module khác nữa:
 
-<pre class="theme:sublime-text plain:false lang:default decode:true">class APIService {
+{% highlight swift %}
+class APIService {
     func fetchUserList() {
         // TODO: - Fetch User List by calling API
     }
@@ -153,7 +155,7 @@ class ViewControllerB: UIViewController {
     }
 }
 
-</pre>
+{% endhighlight %}
 
 Hoàn thành công việc, bạn hoàn toàn hài lòng và yên tâm về những đoạn code trên, bạn nghĩ rằng chúng đã làm tốt phần việc của mình ?
 
@@ -163,7 +165,8 @@ Thư viện bạn dùng để gọi API Service thay đổi: cập nhật versio
 
 Đối với thách thức trên, bạn thường sẽ sửa lại như sau:
 
-<pre class="theme:sublime-text lang:default decode:true">class APIService {
+{% highlight swift %}
+class APIService {
     func fetchUserList() {
         // TODO: - Fetch User List by calling API
         
@@ -183,7 +186,7 @@ class UserManager {
     }
 }
 
-</pre>
+{% endhighlight %}
 
 class APIService đã thay đổi, kéo theo là UserManager, và UserViewControllerA, UserViewControllerB. Chi tiết này khiến cho bạn phải tiến hành test lại toàn bộ những class kéo theo trên. Hiển nhiên việc trên không hề dễ chịu chút nào, chưa kể trường hợp gặp lỗi, hoặc thay đổi kéo theo trên nhiều class khác nữa. Vì việc này nó là thói quen và tư duy lập trình thông thường của bạn, nên việc nó được áp dụng vào toàn bộ project, hoặc các module khác mà bạn phụ trách rất dễ xảy ra. Hãy thử tưởng tượng hậu quả nếu trường hợp trên xảy ra với tất cả những module bạn đã làm. Đa số những vấn đề kể trên bắt đầu phát sinh vào chu kỳ maintain hoặc giai đoạn fix bug, khi đó áp lực về công việc, thời gian, khách hàng,&#8230; sẽ cực kỳ kinh khủng, và với những module tệ hại đến mức sửa 1 hỏng 10 thì sao? Oops, Good Game Well Played !
 
@@ -191,7 +194,8 @@ Vậy khắc phục thế nào?
 
 Theo như nguyên lý, UserManager và APIService nên phụ thuộc chung 1 abstraction, ta hãy cứ tạm coi nguyên lý trên là đúng, và sửa lại đoạn code trên 1 chút:
 
-<pre class="theme:sublime-text plain:false copy:false lang:default decode:true">protocol IUserService{
+{% highlight swift %}
+protocol IUserService{
     func fetchUserList()
 }
 
@@ -238,7 +242,7 @@ class ViewControllerB: UIViewController {
     }
 }
 
-</pre>
+{% endhighlight %}
 
 Ở đây, ta tạo một protocol IUserService và định nghĩa hàm fetchUserList(). APIService là module cấp thấp, sẽ implement protocol trên, còn module cấp cao UserManager sẽ sử dụng protocol trên vào nghiệp vụ của mình. Điều này có lợi gì?
 
@@ -248,7 +252,8 @@ class ViewControllerB: UIViewController {
 
 Sau một thời gian phát triển, khách hàng yêu cầu ứng dụng phải hỗ trợ offline, nghĩa là dữ liệu phải được lưu và xử lý local, nói đơn giản hơn là bạn phải cung cấp tính năng fetchUser từ local. Với kiểu thiết kế như ban đầu, công việc của chúng ta lúc này lại cực kỳ phức tạp:
 
-<pre class="theme:sublime-text plain:false copy:false lang:default decode:true">class APIService {
+{% highlight swift %}
+class APIService {
     func fetchUserList() {
         // TODO: - Fetch User List by calling API
     }
@@ -292,11 +297,12 @@ class ViewControllerB: UIViewController {
     }
 }
 
-</pre>
+{% endhighlight %}
 
 So sánh với với cách thiết kế của phương pháp ứng dụng nguyên lý DIP:
 
-<pre class="theme:sublime-text plain:false lang:default decode:true">protocol IUserService{
+{% highlight swift %}
+protocol IUserService{
     func fetchUserList()
 }
 
@@ -343,7 +349,7 @@ class ViewControllerB: UIViewController {
     }
 }
 
-</pre>
+{% endhighlight %}
 
 Bạn có để ý thấy điều đặc biệt?
 
