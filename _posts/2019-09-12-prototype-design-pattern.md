@@ -10,7 +10,9 @@ categories: [Uncategorized, Swift]
 comments: true
 # tags: Swift
 ---
-# Dillinger
+Welcome back, series về Design Pattern xin được tiếp tục, với một Design Pattern phổ biến khác: Prototype Design Pattern.
+
+# Giới thiệu Prototype Pattern
 
 Prototype Design Pattern thuộc loại Creation, đồng nghĩa với việc nó sẽ giải quyết một vấn đề nào đó của bài toán khởi tạo Object. `Prototype` dịch ra nghĩa là nguyên mẫu, nguyên bản, kết hợp với suy luận trên, ta có thể ngầm tiên đoán rằng ý tưởng của Pattern này là xây dựng, khởi tạo nguyên mẫu, nguyên bản của Object. 
 Điều này có đúng không? Hãy thử so sánh với định nghĩa của nó:
@@ -20,7 +22,7 @@ Tạm dịch: Định rõ loại đối tượng cần khởi tạo bằng việ
 
 Đúng vậy, khởi tạo object thông qua các prototype của nó, và bằng cách copy chứ không initiate trực tiếp. Chắc hẳn trong đầu bạn đang có hàng tá câu hỏi kiểu như: tại sao lại là prototype, tại sao lại chọn cách copy,....?
 
-# Phân tích Prototype Design Pattern
+# Phân tích định nghĩa Prototype Design Pattern
 ## Tại sao lại copy mà không initiate trực tiếp?
 Ta sẽ đặt câu hỏi, tại sao lại phải copy, mà không trực tiếp initate instance khác, dựa trên instance hiện có, điều mà hiển nhiên đơn giản hơn. Phần lớn thời gian, bạn sẽ không cần phải copy object đâu, nhưng tại sao chúng ta lại phải sử dụng nó trong Prototype Pattern?
 Khi tìm hiểu thông tin trên mạng, tôi được kha khá tài liệu giải thích rằng: những object mà cần phải copy là các `complex object` (phức tạp) hoặc `cost on initiating`(chi phí khởi tạo cao).  
@@ -29,175 +31,209 @@ Thế nào là phức tạp, thế nào là chi phí cao, thì họ không nói 
 
 Thử tư duy ngược xem:
 
+Giả sử tôi có class như sau:
+```swift
 
+class Utility {
+    private let apiConnection: NetworkConnector
+    private let dbConnection: DatabaseConnector
+    
+    init() {
+        apiConnection = NetworkConnector()
+        dbConnection = DatabaseConnector()
+    }
+}
 
+let instance1 = Utility()
 
-# New Features!
- 
-  - Import a HTML file and watch it magically convert to Markdown
-  - Drag and drop images (requires your Dropbox account be linked)
-
-
-You can also:
-  - Import and save files from GitHub, Dropbox, Google Drive and One Drive
-  - Drag and drop markdown and HTML files into Dillinger
-  - Export documents as Markdown, HTML and PDF
-
-Markdown is a lightweight markup language based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site][df1]
-
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
-
-This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
-
-### Tech
-
-Dillinger uses a number of open source projects to work properly:
-
-* [AngularJS] - HTML enhanced for web apps!
-* [Ace Editor] - awesome web-based text editor
-* [markdown-it] - Markdown parser done right. Fast and easy to extend.
-* [Twitter Bootstrap] - great UI boilerplate for modern web apps
-* [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework [@tjholowaychuk]
-* [Gulp] - the streaming build system
-* [Breakdance](http://breakdance.io) - HTML to Markdown converter
-* [jQuery] - duh
-
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
-
-### Installation
-
-Dillinger requires [Node.js](https://nodejs.org/) v4+ to run.
-
-Install the dependencies and devDependencies and start the server.
-
-```sh
-$ cd dillinger
-$ npm install -d
-$ node app
 ```
 
-For production environments...
+Việc initiate class Utility, tương đương với việc phải khởi tạo đồng thời NetWorkConnector và DatabaseConnector. 2 class trên thực tế rất nặng, tương ứng với việc khởi tạo Utility cũng nặng, tức là, chi phí khởi tạo của nó cao. Như vậy, những class mà hàm khởi tạo cồng kềnh, hoặc yêu cầu các bước phức tạp, hoặc gây tốn nhiều tài nguyên khi khởi tạo,... là những class nên sử dụng Prototype.
 
-```sh
-$ npm install --production
-$ NODE_ENV=production node app
+Ví dụ khác:
+```swift
+
+class User {
+    private let name: String
+    private let age: Int
+    private let address: String
+    private let phone: String
+    
+    init(name: String,
+         age: Int,
+         address: String,
+         phone: String) {
+        self.name = name
+        self.age = age
+        self.address = address
+        self.phone = phone
+    }
+}
+
+let userA = User(name: "Shaw", age: 27, address: "Ha Noi", phone: "1900 1003")
+let copyUserA = User(name: userA.name, age: userA.age, address: userA.adress, phone: userA.phone)
+
 ```
 
-### Plugins
+compiler sẽ báo lỗi ở copyUserA, vì đơn giản rằng các property của class User được định nghĩa là private, bạn không thể truy cập vào chúng để lấy giá trị để khởi tọa nên bản copyUserA được. Bạn có thể phản biện rằng thực chất tôi có thể tạo ra hàm get/set cho các property như những ngôn ngữ khác, và lập luận trên không còn đúng nữa. Tuy nhiên, tôi phải nhắc bạn rằng, không phải property nào cũng nên có đầy đủ get/set, có trường hợp property chỉ cho phép set mà thôi, đặc biệt, trong môi trường Application Runtime, việc truy cập bừa bãi vào các property sẽ rất dễ gây ra lỗi bảo mật, hoặc các vấn đề khác nghiêm trọng hơn. Cụ thể ra sao, sang phần sau sẽ rõ.
 
-Dillinger is currently extended with the following plugins. Instructions on how to use them in your own application are linked below.
+<img class="wp-image-1879 aligncenter" src="/assets/images/post/prototype_copy_outside.png" alt="" width="600" height="300" srcset="/assets/images/post/prototype_copy_outside.png" sizes="(max-width: 300px) 100vw, 300px" />
+(Source: refactoring.guru)
 
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
+# Thực hiện Proptotype Pattern
+Tôi có bài toán giả định như sau, bạn đang xây dựng ứng dụng Mobile Banking (tương tự như mấy app Paypal, TPBank, BIDV, ...). Bất kì ứng dụng Mobile Banking nào cũng bao gồm chức năng chuyển tiền, thế nên tôi có class:
 
-
-### Development
-
-Want to contribute? Great!
-
-Dillinger uses Gulp + Webpack for fast developing.
-Make a change in your file and instantanously see your updates!
-
-Open your favorite Terminal and run these commands.
-
-First Tab:
-```sh
-$ node app
+```swift
+class PaymentDetail {
+    private var senderAccount: Account
+    private var receiverAccount: Account
+    private var amount: Float // in Dollar $
+    private var tax: Float // in percent
+    private var note: String
+    
+    init(senderAccount: Account, receiverAccount: Account,
+         amount: Float, tax: Float, note: String) {
+        self.senderAccount = senderAccount
+        self.receiverAccount  = receiverAccount
+        self.amount = amount
+        self.tax = tax
+        self.note = note
+    }
+}
 ```
 
-Second Tab:
-```sh
-$ gulp watch
+PaymentDetail thể hiện giao dịch giữa 2 bên người cho (senderAccount) và nhận (receiverAccount), một giao dịch được thực hiện thông qua một `phiên giao dịch (Transaction)`
+
+```swift
+
+class Transaction {
+    func createTransaction(withPayment payment: PaymentDetail) {
+        // send money via Payment
+        // do stuff
+    }
+}
 ```
 
-(optional) Third:
-```sh
-$ karma test
-```
-#### Building for source
-For production release:
-```sh
-$ gulp build --prod
-```
-Generating pre-built zip archives for distribution:
-```sh
-$ gulp build dist --prod
-```
-### Docker
-Dillinger is very easy to install and deploy in a Docker container.
+Hãy chú ý, đây là ứng dụng liên quan đến vấn đề chuyển tiền, việc tương tác với một PaymentDetail trực tiếp là cấm kỵ, có nhiều case phát sinh lỗi phức tạp (chuyển tiền không thành công, chuyển tiền vượt quá hạn mức, ....), thay vào đó, chúng ta nên tương tác với một bản copy tương ứng của nó, và đây là cơ hội để áp dụng Prototype Pattern. Bạn có thể nghi ngờ lại tại sao không dùng get/set và khởi tạo một object mới dựa trên object cũ, giống như đã tranh cãi ở trên phải không? Hãy nhớ, đây là ứng dụng yêu cầu tính bảo mật, các thông tin như tài khoản người gửi và người nhận không bao giờ có thể public được, vì trên môi trường Application Runtime, bạn không thể kiểm soát được hết tác nhân nào truy cập vào thông tin nhạy cảm đó.
 
-By default, the Docker will expose port 8080, so change this within the Dockerfile if necessary. When ready, simply use the Dockerfile to build the image.
+```swift
 
-```sh
-cd dillinger
-docker build -t joemccann/dillinger:${package.json.version} .
-```
-This will create the dillinger image and pull in the necessary dependencies. Be sure to swap out `${package.json.version}` with the actual version of Dillinger.
+/// CÁCH LÀM NÀY QUÁ NGÂY THƠ, SẼ BỊ CLOSE VÀ ĂN BLAME TRONG 1 NỐT NHẠC
 
-Once done, run the Docker image and map the port to whatever you wish on your host. In this example, we simply map port 8000 of the host to port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
+class PaymentDetail {
+    var senderAccount: Account // easy access
+    var receiverAccount: Account // easy access
+    private var amount: Float // in Dollar $
+    private var tax: Float // in percent
+    private var note: String
+    
+    init(senderAccount: Account, receiverAccount: Account,
+         amount: Float, tax: Float, note: String) {
+        self.senderAccount = senderAccount
+        self.receiverAccount  = receiverAccount
+        self.amount = amount
+        self.tax = tax
+        self.note = note
+    }
+}
 
-```sh
-docker run -d -p 8000:8080 --restart="always" <youruser>/dillinger:${package.json.version}
-```
 
-Verify the deployment by navigating to your server address in your preferred browser.
-
-```sh
-127.0.0.1:8000
+class Transaction {
+    func createTransaction(withPayment payment: PaymentDetail) {
+        let clone = PaymentDetail(senderAccount: payment.senderAccount, receiverAccount: payment.receiverAccount
+        ....
+        // do stuff
+    }
+}
 ```
 
-#### Kubernetes + Google Cloud
+Initiate trực tiếp không được, Initiate từ object khác cũng không được, vậy chúng ta làm thế nào? Theo Prototype Pattern, cách đơn giản nhất: **COPY**.
+Thật may mắn, Swift / Objective-C đã support sẵn cách copy object, thông qua NSCopying:
 
-See [KUBERNETES.md](https://github.com/joemccann/dillinger/blob/master/KUBERNETES.md)
+```swift
+class PaymentDetail: NSObject, NSCopying {
+    private var senderAccount: Account
+    private var receiverAccount: Account
+    private var amount: Float // in Dollar $
+    private var tax: Float // in percent
+    private var note: String
+    
+    init(senderAccount: Account, receiverAccount: Account,
+         amount: Float, tax: Float, note: String) {
+        self.senderAccount = senderAccount
+        self.receiverAccount  = receiverAccount
+        self.amount = amount
+        self.tax = tax
+        self.note = note
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let clone = PaymentDetail(senderAccount: senderAccount, receiverAccount: receiverAccount, amount: amount, tax: tax, note: note)
+        return clone
+    }
+}
 
+class Transaction {
+    func createTransaction(withPayment payment: PaymentDetail) {
+        let clone = payment.copy(with: nil)
+        // do stuff
+    }
+}
+```
+Đơn giản, dễ dùng, và quan trọng nhất là hiệu quả, đây chính là Prototype Pattern. Tương tự với trường hợp **`Utility class`** ở trên, ta chỉ cần sử dụng NSCopying là xong:
 
-### Todos
+```swift
+class Utility: NSCopying {
+    private let apiConnection: NetworkConnector
+    private let dbConnection: DatabaseConnector
 
- - Write MORE Tests
- - Add Night Mode
+    init() {
+        apiConnection = NetworkConnector()
+        dbConnection = DatabaseConnector()
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let clone = Utility()
+        return clone
+    }
+}
 
-License
-----
+let instance = Utility()
+let clone = instance.copy(with: nil)
+```
 
-MIT
+Ơ nhưng mà, sao không dùng STRUCT ? Không phải struct copy đơn giản hơn class rất rất nhiều không ?
+Câu trả lời đơn giản nhất là: không phải lúc nào bạn cũng có thể dùng struct, có nhiều lúc bạn buộc phải sử dụng class. Tuy nhiên, câu trả lời này là phần nổi của tảng băng chìm mà thôi, đoạn hay còn ở phía sau, cứ từ từ !
 
+# Có gì cần chú ý ?
+Chúng ta bàn nhiều về cách khởi tạo, và thống nhất có những trường hợp nên dùng Copy. Tuy nhiên, Copy như thế nào, và copy có gì đặc sắc cần để ý hay không, thì chúng ta chưa nhắc đến.
+Thực tế, phương pháp Copy được chia thành 2 loại: **Shallow Copy** và **Deep Copy**
 
-**Free Software, Hell Yeah!**
+## Shallow Copy vs Deep Copy
+**Shallow Copy** (sao chép bề mặt): giả sử ta có Object A, khi Object B sao chép Object A, ta sao chép toàn bộ property của A sang B, nếu property đó là primitive type (Int, String, Float,...) ta sẽ copy nó thành primitive type tương ứng, nếu như nó là *++reference++* (tham chiếu), thì *++reference++* cũng được copy, hay nói cách khác, A và B share reference, pointer sẽ trỏ đến cùng một vùng nhớ. Hệ quả là nếu A thay đổi thì B cũng thay đổi theo. Nghe quen quá nhỉ? Đúng, nó chính là ý tưởng của `Reference Type`, hay những Object được khởi tạo qua từ khóa Class trong Swift.
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+**Deep Copy** (sao chép sâu): cũng tương tự như Shallow copy, tuy nhiên chúng không share reference, thay vào đó, chúng sẽ khởi tạo reference hoàn toàn mới. Điều này khiến chi phí của Deep Copy sẽ lớn hơn Shallow Copy, tuy nhiên điểm lợi thế ở đây là reference sẽ hoàn toàn độc lập, thay đổi B sẽ không làm A thay đổi,... Vâng, và đó cũng là ý tưởng của `Value Tye`, tương ứng với Struct, Array, Tupble, String, Int,.... trong Swift.
 
+<img class="wp-image-1879 aligncenter" src="/assets/images/post/shallow_deep_copy.jpg" alt="" width="400" height="200" srcset="/assets/images/post/shallow_deep_copy.jpg" sizes="(max-width: 300px) 100vw, 300px" />
 
-   [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
-   [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
+(Source: stackoverflow)
 
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
+--> Nên dùng Shallow Copy hay Deep Copy ?
+
+Câu trả lời là ***TÙY***: tùy bài toán, tùy use case, tùy trường hợp,... cũng giống như việc nên dùng Class hay Struct vậy.
+
+Giả sử với bài toán Payment trên, nên dùng Deep Copy, hoặc những bài toán phức tạp như liên quan đến multithread,... thì nên dùng Deep Copy.
+
+Với cá nhân tôi, tôi thường sử dụng cơ chế Deep Copy khi áp dụng Prototype Design Pattern. Bạn có thể sẽ ngạc nhiên khi tôi nói thế, vì ở trên rõ ràng là tôi sử dụng ***`Class`*** trong cả 2 trường hợp mà. Tuy nhiên, ở trên tôi dùng `NSCopying`, đồng nghĩa với việc tôi biến các class copy lại nó trở thành dạng Deep Copy. Ngoài ra, bạn có thể dùng `Codable` trong Swift để có hiệu quả tương tự.
+
+# Tổng kết
+Tôi đã hoàn tất bài viết của mình về Prototype Pattern - một Design Pattern đơn giản, dễ thực hiện. Tuy nhiên, tôi vẫn lưu ý các bạn cần phải nhớ các điểm sau:
+
+- Khi ta cần khởi tạo các Object mà constructor của nó phức tạp, chi phí khởi tạo cao,... thì hãy nhớ đến Prototype Design Pattern. Còn phức tạp, chi phí khởi tạo cao là gì, thì mời đọc lại phần đầu của bài viết.
+- Phân biệt được Shallow Copy và Deep Copy, và hãy lựa chọn nó thích hợp nhất khi áp dụng Prototype Design Pattern.
+- Hãy tự đánh giá điểm mạnh, điểm yếu của Pattern này.
+
+Thực tế, ý tưởng về Prototype xuất hiện quanh ta, ví dụ nhé, sự phân bào sinh học:
+<img class="wp-image-1879 aligncenter" src="/assets/images/post/prototype_cell_division.png" alt="" width="600" height="300" srcset="/assets/images/post/prototype_cell_division.png" sizes="(max-width: 300px) 100vw, 300px" />
+
+(Source: refactoring.guru)
