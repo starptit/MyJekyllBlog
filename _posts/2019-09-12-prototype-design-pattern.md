@@ -6,9 +6,9 @@ author: starptit
 # layout: post
 guid: http://swiftyvn.com/?p=1871
 permalink: /2019/09/prototype-design-pattern/
-categories: [Uncategorized, Swift]
+# categories: [Uncategorized, Swift]
 comments: true
-# tags: Swift
+tags: Swift
 ---
 Welcome back, series về Design Pattern xin được tiếp tục, với một Design Pattern phổ biến khác: Prototype Design Pattern.
 
@@ -237,3 +237,5 @@ Thực tế, ý tưởng về Prototype xuất hiện quanh ta, ví dụ nhé, s
 <img class="wp-image-1879 aligncenter" src="/assets/images/post/prototype_cell_division.png" alt="" width="600" height="300" srcset="/assets/images/post/prototype_cell_division.png" sizes="(max-width: 300px) 100vw, 300px" />
 
 (Source: refactoring.guru)
+
+{%- include comments-providers/disqus.html -%}

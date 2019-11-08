@@ -1,13 +1,18 @@
 ---
-layout: page
-title: 404
+layout: articles
+title: Swift Collection
 show_title: false
+articles:
+  data_source: paginator.posts
+  article_type: BlogPosting
+  show_cover: false
+  show_excerpt: true
+  show_readmore: true
+  show_info: true
 ---
-<div class="layout--404">
-  <div class="sign">
-    <h1>404</h1>
-    <p>Page not found :(</p>
-  </div>
+<div class="layout--home">
+  {%- include paginator.html -%}
 </div>
-
-{{ content }}
+<script>
+  {%- include scripts/home.js -%}
+</script>
