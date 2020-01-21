@@ -237,3 +237,5 @@ Thực tế, ý tưởng về Prototype xuất hiện quanh ta, ví dụ nhé, s
 <img class="wp-image-1879 aligncenter" src="/assets/images/post/prototype_cell_division.png" alt="" width="600" height="300" srcset="/assets/images/post/prototype_cell_division.png" sizes="(max-width: 300px) 100vw, 300px" />
 
 (Source: refactoring.guru)
+
+<!-- {% include disqus_comments.html %} -->
