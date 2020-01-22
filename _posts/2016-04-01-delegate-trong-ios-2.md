@@ -73,3 +73,5 @@ Tóm lại là sau cái bài chia sẻ này, hi vọng các bạn nắm được
 - Cách implement: View nào cần gửi thông báo thì view đó cần 1 biến thể hiện delegate (ở ví dụ là view B- hình 1). Trong hàm thực hiện hành động của viewB, nhờ delegate gửi message bằng cách thực hiện method khai báo ở protocol của delegate. View A implement protocol, thực thi lại method mà view B vừa gửi.
 
 Xong rồi, hi vọng bài viết này giúp ích được cho các bạn. À mà mình nói luôn là các bạn sau khi đọc bài này, nên thử code lại, làm vài lần cho hiểu. Sau đó các bạn nên đọc thêm về protocol trong Objective-C/Swift nhé, vì bài viết của mình chỉ nhắm đến đối tượng các bạn code iOS thôi. Nếu bạn để ý kĩ thì thực ra cái bắt sự kiện này cũng giống như trên Java thôi, bạn có nhớ mấy cái ActionListener chứ??? Cái đó chính là interface đó. Rồi khi tìm hiểu sâu hơn bạn sẽ thấy cái mình vừa nói là phần nổi của protocol, sự thực thì protocol nó mạnh mẽ hơn nhiều, đặc biệt là trong Swift, và nó giống hệ interface luôn.
+
+{% include disqus_comments.html %}

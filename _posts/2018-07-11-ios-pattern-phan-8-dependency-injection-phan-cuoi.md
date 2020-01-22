@@ -342,3 +342,5 @@ Tài liệu tham khảo:
 - https://www.martinfowler.com/articles/injection.html#InterfaceInjection
 - https://marcosantadev.com/solid-principles-applied-swift/
 - https://medium.com/swift-programming/dependency-injection-with-the-cake-pattern-3cf87f9e97af
+
+{% include disqus_comments.html %}

@@ -183,3 +183,6 @@ a. Căn bản ML, nó là cái gì: nó là quan hệ toán học giữa đầu 
 b. CoreML là gì và làm gì? Nó là một framework được Apple giới thiệu nhằm tích hợp model vào trong ứng dụng của Apple.
 
 c. Dùng nó thế nào: Cần một model , import vào để nó gen class và dùng thôi.
+
+
+{% include disqus_comments.html %}

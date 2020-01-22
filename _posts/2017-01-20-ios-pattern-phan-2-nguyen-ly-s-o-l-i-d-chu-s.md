@@ -198,3 +198,6 @@ _**&#8211;> Nhược điểm:**_
 - Có thể khiến dự án phình to ra, vì phát sinh ra nhiều sub class và module hơn.
 
 Bài viết đến đây là kết thúc, xin cám ơn các bạn đã theo dõi.
+
+
+{% include disqus_comments.html %}

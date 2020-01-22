@@ -238,4 +238,4 @@ Thực tế, ý tưởng về Prototype xuất hiện quanh ta, ví dụ nhé, s
 
 (Source: refactoring.guru)
 
-<!-- {% include disqus_comments.html %} -->
+{% include disqus_comments.html %}

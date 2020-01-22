@@ -111,3 +111,6 @@ Struct (cấu trúc) và Class(lớp) trong Swift có nhiều điểm tương đ
 </div>
 
 &nbsp;
+
+
+{% include disqus_comments.html %}

@@ -204,3 +204,5 @@ class PersonalContentHandler:IShareContent{
 ## **6. Tổng kết:**
 
 Nguyên lý phân tách các Interface (ISP) là một nguyên lý cực kỳ phổ biến, mục tiêu chính của nó là chia một Interface cồng kềnh thành các Interface nhỏ, để dễ thao tác, xử lý cũng như maintain hơn. Việc chia nhỏ này cũng phù hợp với triết lý &#8220;Chia để trị&#8221; (Divide and conquer) nổi tiếng trong ngành phần mềm. Ý tưởng của ISP khá đơn giản và dễ tiếp cận, được ứng dụng trong hầu hết các framework hoặc thư viện lớn (ví dụ như Delegate & Datasource ở phần mở bài), tuy nhiên để sử dụng linh hoạt, đòi hỏi lập trình viên phải có kinh nghiệm, biết phân tích thiết kế sao cho phù hợp với yêu cầu của từng bài toán.
+
+{% include disqus_comments.html %}

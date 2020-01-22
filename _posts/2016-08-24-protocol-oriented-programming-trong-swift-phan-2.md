@@ -117,3 +117,6 @@ Một số link tham khảo:
 Hết.
 
 &nbsp;
+
+
+{% include disqus_comments.html %}

@@ -184,5 +184,5 @@ Link tham khảo:
 - https://sourcemaking.com/design_patterns/adapter
 - https://www.geeksforgeeks.org/adapter-pattern/
 
-<!-- {% include disqus_comments.html %} -->
+{% include disqus_comments.html %}
                             

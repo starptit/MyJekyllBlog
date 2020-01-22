@@ -106,3 +106,6 @@ Ta có thể thấy rằng nó không hề thay đổi gì hết, đồng nghĩa
 Nguyên lý OCP này rất dễ nhớ, chỉ bao gồm 2 phần liên quan chặt chẽ, đó là open for extension, và close for modification. Tuy nhiên, cũng như các nguyên lý S.O.L.I.D khác, OCP khá trừu tượng và chung chung, hiểu được thì rất dễ, nhưng áp dụng được nó thì không phải là vấn đề đơn giản. Các bạn cần nhớ cách mình trình bày ở đây chỉ là một trong những cách code tuân thủ theo OCP, bạn đừng có ghi nhớ dập khuôn, hay áp dụng bừa bãi.
 
 &nbsp;
+
+
+{% include disqus_comments.html %}

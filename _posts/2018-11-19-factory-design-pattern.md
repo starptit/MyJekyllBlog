@@ -436,3 +436,5 @@ Qua bài viết, tôi đã trình bày cho các bạn cơ bản về Factory và
 Đành rằng nó phổ biến, nhưng không có nghĩa nó là tốt ở mọi trường hợp, hãy phân tích và so sánh thật cẩn thận trước khi đưa ra quyết định. Với kinh nghiệm của tôi, tôi có xu hướng sử dụng Simple Factory hơn là Factory Method, lý do chính là vì nó đơn giản và các bài toán tôi gặp cũng không quá phức tạp. Tuy nhiên, khi phát triển một số tính năng phức tạp ở phía backend, thì tôi lại thường sử dụng Factory Method hơn, cũng có lần tôi maintain 1 source sử dụng Abstract Factory, phải công nhận là nó loằng ngoằng và tôi đánh giá là không cần thiết cho lắm, tuy nhiên, đó là phạm trù khác và topic khác.
 
 P.s: nếu có thời gian, hãy tìm hiểu thêm về Abstract Factory Design Pattern.
+
+{% include disqus_comments.html %}

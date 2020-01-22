@@ -189,3 +189,5 @@ Link tham khảo:
 - <https://krakendev.io/blog/the-right-way-to-write-a-singleton>
 - <https://gurunh.com/2018/05/singleton-dung-hay-khong/>
 - <http://coding-geek.com/design-pattern-singleton-prototype-and-builder/>
+
+{% include disqus_comments.html %}

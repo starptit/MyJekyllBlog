@@ -187,3 +187,5 @@ class UnconfirmUser:User{
 **5. Tổng kết:**
 
 Trong thực tế, chúng ta rất hay vi phạm nguyên lý LSP, hầu hết đều do suy nghĩ khi thiết kế class, đưa tư duy đời thường vào (ví dụ, rõ ràng chúng ta đều biết chim cánh cụt là lớp con của loài chim). Như mình đã trình bày ở trên, với các class nhỏ hoặc có ít class con, thì việc vi phạm LSP có thể chấp nhận được. Qua bài viết này, mình hi vọng các bạn có thể nắm bắt được cơ bản về nguyên lý LSP, và câu nói nổi tiếng mà mình đề cập ở mục 4. Thực tế, mình đã làm việc kha khá dự án, cùng kha khá người và mình để ý rằng các lập trình viên iOS khá lười viết protocol (trừ trường hợp xài delegate), việc này mình hoàn toàn không đồng ý, nhiều người thích nhét cả đống function vào một class rồi rải rác chúng ở các class khác, khiến cho việc debug và maintain rất khó khăn.
+
+{% include disqus_comments.html %}

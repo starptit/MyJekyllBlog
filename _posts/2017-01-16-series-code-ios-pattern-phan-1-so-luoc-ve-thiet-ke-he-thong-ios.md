@@ -40,3 +40,6 @@ Dài dòng đủ rồi, các nguyên tắc đó đây:
 - Modifying and Extending (chỉnh sửa và mở rộng): Một thiết kế tốt là thiết kế có thể giúp hạn chế việc chỉnh sửa các function cũ và có thể mở rộng thêm nhiều function mới bên cạnh function cũ. Các function cũ có thể đã được release hoặc code của người khác, sẽ thật là nguy hiểm nếu bạn có quyền chỉnh sửa code người khác, vì bạn không biết nó liên quan đến đâu, chẳng may sửa 1 cái mà sập cả hệ thống thì quỳ, nếu bạn muốn sửa hay bổ sung, hãy viết một function mới bên cạnh function cũ và sử dụng chúng cho công việc của bạn.
 
 Trên đây mình đã liệt kê một số nguyên tắc cần phải nhớ khi thiết kế code cho dự án của bạn, mình đã thử áp dụng và cũng đã trải nghiệm tính hiệu quả của nó qua một số dự án rồi. Phần 1 này mình chỉ viết sơ lược và tổng quan, chưa đến phần cụ thể nên nó vẫn còn khá là dễ nhai. Trong phần tiếp theo mình sẽ viết về nguyên lý S.O.L.I.D, hay còn gọi là luật Uncle Bob (Uncle Bob rules).
+
+
+{% include disqus_comments.html %}

@@ -370,3 +370,5 @@ Tham khảo:
 - https://gist.github.com/jazzbpn/afd9f178fe4d8a212d83750e1b4a5389#file-viper-noticerouter-swift
 - https://github.com/uber/RIBs/wiki/iOS-Tutorial-2
 - https://github.com/Alamofire/Alamofire/blob/master/Documentation/AdvancedUsage.md
+
+{% include disqus_comments.html %}

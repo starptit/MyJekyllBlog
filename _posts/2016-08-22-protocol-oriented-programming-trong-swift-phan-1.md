@@ -146,3 +146,6 @@ Thuật ngữ Protocol-Oriented Programming (POP) được giới thiệu lần 
 Ở trên mình đã trình bày 3 vấn đề về điểm yếu khi sử dụng Class (OOP) trong Swift. Tại phần sau mình sẽ đưa ra cách giải quyết những vấn đề trên bằng POP và Struct.
 
 Hết phần 1. [Link phần 2](https://devislifeblog.wordpress.com/2016/08/24/protocol-oriented-programming-trong-swift-phan-2/)
+
+
+{% include disqus_comments.html %}

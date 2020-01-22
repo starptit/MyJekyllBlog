@@ -107,3 +107,5 @@ Nếu bạn tinh ý, bạn sẽ thấy, cái ví dụ về NSURLConnection và N
 Ok, vậy là mình đã xong những khái niệm cơ bản về Closure, hi vọng blog này giúp cho các bạn hiểu rõ hơn về chúng, bạn chỉ cần nhớ 3 vấn đề cốt lõi mình đặt ra ở đầu blog là đủ.
 
 &nbsp;
+
+{% include disqus_comments.html %}

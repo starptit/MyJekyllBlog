@@ -138,3 +138,6 @@ Tài liệu tham khảo:
 - https://en.wikipedia.org/wiki/Inversion\_of\_control
 
 &nbsp;
+
+
+{% include disqus_comments.html %}

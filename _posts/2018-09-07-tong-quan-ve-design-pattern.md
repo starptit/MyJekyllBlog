@@ -133,3 +133,5 @@ Qua bài viết, bạn cần hiểu được: Tổng quan về Design Pattern, P
 P.s: Nếu nội dung bài viết có lỗi nào, hoặc bạn muốn tôi viết OOP và UML Diagram, thì hãy cứ mạnh dạn để lại comment, hoặc gửi tin nhắn inbox cho tôi. Tôi sẽ feedback ngay khi có thể.
 
 &nbsp;
+
+{% include disqus_comments.html %}
