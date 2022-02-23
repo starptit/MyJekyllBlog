@@ -1,0 +1,212 @@
+I"CD<p>Hôm trước trên group, có một bạn chia sẻ rằng đi phỏng vấn bị một anh hỏi xoáy về sự khác biệt giữa Delegate và DataSource trong iOS. Nếu là bạn thì bạn trả lời ra sao?<br />
+Với mình, câu hỏi trên hoàn toàn vô nghĩa, câu trả lời đơn giản là về bản chất nó chẳng khác gì nhau.<br />
+Khoan đợi đã, nếu không khác nhau thì tại sao họ lại phải chia ra?<br />
+–&gt; Đáp án chính là chủ đề của bài viết hôm nay: Interface Segregation Principle (ISP – chữ I), nguyên lý phân tách Interface.</p>
+
+<p>(Note: Interface là một khái niệm phổ biến trong lập trình hướng đối tượng, với Swift và Objective-C, Interface được thể hiện bằng keyword Protocol. Tuy nhiên, trong thiết kế và nghiên cứu về OOP, Interface là từ được sử dụng chung cho mọi ngôn ngữ, do đó trong blog của mình, mình vẫn ưu tiên dùng Interface thay cho Protocol.)</p>
+
+<h2 id="1-nguyên-lý-isp-là-gì-what-is-isp-"><strong>1. Nguyên lý ISP là gì (What is ISP) ?</strong></h2>
+
+<blockquote>
+  <p>CLIENTS SHOULD NOT BE FORCED TO DEPEND UPON INTERFACES<br />
+THAT THEY DO NOT USE.</p>
+</blockquote>
+
+<p>(Tạm dịch: “Clients” không nên bị “force” phải phụ thuộc vào những “Interfaces” mà Clients không sử dụng.)</p>
+
+<p>– Clients: không phải chỉ là người sử dụng, clients ở đây là các class/module implement các interface mà chúng ta thiết kế.<br />
+– force: ép buộc phải tuân theo, interface có một đặc điểm là khi implement, bạn buộc phải implement toàn bộ method đã dược define của nó (tuy nhiên với Swift/Objective-C, chúng ta có thể sử dụng keyword Optional để điều chỉnh việc này).</p>
+
+<h2 id="2-tại-sao-lại-cần-isp-why-isp-"><strong>2. Tại sao lại cần ISP (Why ISP) ?</strong></h2>
+
+<p>Ta thử đặt ngược lại câu hỏi? Nếu không có ISP thì sao? Nghĩa là Clients phụ thuộc vào các Interface mà nó không sử dụng.</p>
+
+<p>Hãy nhìn vào một ví dụ thực tế:<br />
+<a href="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/image.axd_.jpeg"><img class="size-full wp-image-1647 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/image.axd_.jpeg" alt="" width="486" height="484" srcset="/wp-content/uploads/2017/11/image.axd_.jpeg 486w, /wp-content/uploads/2017/11/image.axd_-150x150.jpeg 150w, /wp-content/uploads/2017/11/image.axd_-300x300.jpeg 300w, /wp-content/uploads/2017/11/image.axd_-100x100.jpeg 100w" sizes="(max-width: 486px) 100vw, 486px" /></a></p>
+
+<p>– Cái cổng nào mới là hợp lý để nhét vào cái iPhone bên cạnh?<br />
+– Cái iPhone chỉ có 1 cổng giao tiếp là Jack 3.5mm –&gt; còn đống HDMI, microUSB,… kia là thừa thãi, cồng kềnh, vướng víu, gây bất tiện khi sử dụng.</p>
+
+<p>Khi mapping vào việc Coding của chúng ta, khi nhận được một Interface to đùng, hiển nhiên chúng ta cũng sẽ nảy sinh trong đầu những câu hỏi tương tự:<br />
+– Cần dùng method nào?<br />
+– Các method còn lại thì sao?<br />
+– Chúng ta phải implement một đống method thừa thãi để làm gì?<br />
+– Complier phải tốn thời gian biên dịch những method không cần sử dụng đó.</p>
+
+<h2 id="3-sử-dụng-isp-như-thế-nào-how-to-use-isp-"><strong>3. Sử dụng ISP như thế nào (How to use ISP) ?</strong></h2>
+
+<p>Bản chất của vấn đề ở đây là việc chúng ta đã sử dụng một Interface quá to.<br />
+–&gt; Chúng ta chỉ cần chia nhỏ Interface đó ra, và lợi dụng tính chất Class có thể implement nhiều interface để kết hợp chúng lại nếu cần thiết.<br />
+<strong><em>Tuy nhiên, chia nhỏ thế nào?</em></strong><br />
+Hiển nhiên việc đơn giản nhất là mỗi method, chúng ta chia nó ra thành 1 Interface. Cách làm này về mặt lý thuyết là đúng, nhưng lại làm nảy sinh vấn đề khác, làm project phình to vì phải tạo nhiều Interface, và trên thực tế, để hiệu quả hơn, người ta thường nhóm một vài method lại, dựa trên tiêu chí chung nào đó phụ thuộc vào nhu cầu sử dụng của họ. Các tiêu chí nhóm này không phải luôn cố định, do đó độ hiệu quả của nguyên lý này phụ thuộc vào cách phân tích thiết kế và kinh nghiệm của lập trình viên. Thông thường, với mình, mình hay xét trên một số tiêu chí:<br />
+– Không quá 5 method trong một Interface ( 5 là con số mình tự đề ra, vì mình thấy nó là con số không quá to, cũng không quá nhỏ).<br />
+– Mục tiêu và nhiệm vụ của các method (ví dụ như nhóm các method xử lý login vào chung một interface, các method sử lý signup vào chung một interface).<br />
+– Những yêu cầu thay đổi, logic có thể phát sinh khiến interface thay đổi.<br />
+– Những use case, test case đặc biệt có thể khiến interface hoạt động sai.</p>
+
+<h2 id="4-ví-dụ-thực-tế"><strong>4. Ví dụ thực tế:</strong></h2>
+
+<p><a href="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0967.png"><img class=" wp-image-1648 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0967-576x1024.png" alt="" width="354" height="630" srcset="/wp-content/uploads/2017/11/IMG_0967-576x1024.png 576w, /wp-content/uploads/2017/11/IMG_0967-169x300.png 169w, /wp-content/uploads/2017/11/IMG_0967-768x1365.png 768w, /wp-content/uploads/2017/11/IMG_0967.png 1242w" sizes="(max-width: 354px) 100vw, 354px" /></a></p>
+
+<p>Giả sử với bài post trên, chúng ta có thể: Like, Comment, Share, Download ảnh. Tương ứng, ta có Interface sau:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="kt">IFacebookContent</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">like</span><span class="p">()</span>
+    <span class="kd">func</span> <span class="nf">addComment</span><span class="p">()</span>
+    <span class="kd">func</span> <span class="nf">shareContent</span><span class="p">()</span>
+    <span class="kd">func</span> <span class="nf">downloadContent</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">ImageHandler</span><span class="p">:</span><span class="kt">IFacebookContent</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">like</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Like Image</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">addComment</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Add Comment to Image</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">shareContent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Share Image</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">downloadContent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Download Image</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Facebook muốn hỗ trợ Video và cho phép hiển thị content theo dạng Video:<br />
+<a href="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0968.jpg"><img class=" wp-image-1649 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0968-576x1024.jpg" alt="" width="317" height="563" srcset="/wp-content/uploads/2017/11/IMG_0968-576x1024.jpg 576w, /wp-content/uploads/2017/11/IMG_0968-169x300.jpg 169w, /wp-content/uploads/2017/11/IMG_0968-768x1365.jpg 768w, /wp-content/uploads/2017/11/IMG_0968.jpg 1242w" sizes="(max-width: 317px) 100vw, 317px" /></a></p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">VideoHandler</span><span class="p">:</span><span class="kt">IFacebookContent</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">like</span><span class="p">(){</span>
+        <span class="c1">//TODO: Like Video</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">addComment</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Add Comment to Video</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">shareContent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Share Video</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">downloadContent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//Oops, Facebook chưa cho phép người dùng tải Video</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>–&gt; function downloadContent cho Video bị lỗi. Giả sử VideoHandler được gọi hoặc được sử dụng trong module A, module A lại được module B gọi,… –&gt; rất tốn thời gian để dò lỗi và có thể ảnh hưởng lẫn nhau dẫn đến việc phải test lại.</p>
+
+<p>Rồi một ngày anh Mark yêu cầu app của anh ấy phải đảm bảo được tính riêng tư và bảo mật, như là tôi là chủ tài khoản, tôi chỉ muốn cho bạn bè của tôi comment/like và tương tác với tôi:</p>
+
+<p><a href="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0969.png"><img class=" wp-image-1650 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2017/11/IMG_0969-576x1024.png" alt="" width="429" height="763" srcset="/wp-content/uploads/2017/11/IMG_0969-576x1024.png 576w, /wp-content/uploads/2017/11/IMG_0969-169x300.png 169w, /wp-content/uploads/2017/11/IMG_0969-768x1365.png 768w, /wp-content/uploads/2017/11/IMG_0969.png 1242w" sizes="(max-width: 429px) 100vw, 429px" /></a></p>
+
+<p>Như ảnh trên, ta thấy người dùng hiện tại chỉ có duy nhất quyền được share nội dung:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">PersonalContentHandler</span><span class="p">:</span><span class="kt">IFacebookContent</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">like</span><span class="p">(){</span>
+        <span class="c1">//OOps, không phải bạn tôi, ai cho anh like</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">addComment</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//OOps, không phải bạn tôi, ai cho anh comment</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">shareContent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Share Content</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">downloadContent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//OOps, không phải bạn tôi, ai cho anh download</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="5-cách-khắc-phục"><strong>5. Cách khắc phục:</strong></h2>
+
+<p>Tuân theo nguyên lý phân tách Interface (ISP), nhiệm vụ của ta là chia nhỏ Interface trên:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="kt">ILikeContent</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">likeContent</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">protocol</span> <span class="kt">ICommentContent</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">addComment</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">protocol</span> <span class="kt">IShareContent</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">shareContent</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">protocol</span> <span class="kt">IDownloadContent</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">downloadContent</span><span class="p">()</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Các class/module con lúc này sẽ chỉ implement cái mà chúng cần:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">ImageHandler</span><span class="p">:</span><span class="kt">ILikeContent</span><span class="p">,</span><span class="kt">ICommentContent</span><span class="p">,</span><span class="kt">IShareContent</span><span class="p">,</span><span class="kt">IDownloadContent</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">likeContent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Like Image</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">addComment</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Add Comment to Image</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">shareContent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Share Image</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">downloadContent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Download Image</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">VideoHandler</span><span class="p">:</span><span class="kt">ILikeContent</span><span class="p">,</span><span class="kt">ICommentContent</span><span class="p">,</span><span class="kt">IShareContent</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">likeContent</span><span class="p">(){</span>
+        <span class="c1">//TODO: Like Video</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">addComment</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Add Comment to Video</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">shareContent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Share Video</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">PersonalContentHandler</span><span class="p">:</span><span class="kt">IShareContent</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">shareContent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//TODO: Share Content</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="6-tổng-kết"><strong>6. Tổng kết:</strong></h2>
+
+<p>Nguyên lý phân tách các Interface (ISP) là một nguyên lý cực kỳ phổ biến, mục tiêu chính của nó là chia một Interface cồng kềnh thành các Interface nhỏ, để dễ thao tác, xử lý cũng như maintain hơn. Việc chia nhỏ này cũng phù hợp với triết lý “Chia để trị” (Divide and conquer) nổi tiếng trong ngành phần mềm. Ý tưởng của ISP khá đơn giản và dễ tiếp cận, được ứng dụng trong hầu hết các framework hoặc thư viện lớn (ví dụ như Delegate &amp; Datasource ở phần mở bài), tuy nhiên để sử dụng linh hoạt, đòi hỏi lập trình viên phải có kinh nghiệm, biết phân tích thiết kế sao cho phù hợp với yêu cầu của từng bài toán.</p>
+
+<script id="dsq-count-scr" src="//https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/count.js" async=""></script>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+:ET

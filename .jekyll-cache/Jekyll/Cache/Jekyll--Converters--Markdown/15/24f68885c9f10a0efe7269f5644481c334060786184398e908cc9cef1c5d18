@@ -1,0 +1,7 @@
+I"_<p>Ra đời từ những năm 70 của thế kỉ trước, thực sự trở nên nổi tiếng và phổ biến thông qua cuốn sách “Design Patterns: Elements of Reusable Object-Oriented Software” (viết bởi 4 tác giả Erich Gamma, Richard Helm, Ralph Johnson và John Vlissides, còn được biết đến với tên gọi Gang of Four – GoF), Design Pattern dần dần trở thành tiêu chuẩn và là kiến thức buộc phải biết của mọi lập trình viên. Tôi chắc chắn rằng bạn đã từng nghe thuật ngữ này nhiều lần: khi tìm kiếm tài liệu, trong các cuộc thảo luận, trong các topics, quyển sách về lập trình,… Điều đó chứng minh tính hữu dụng và độ phổ biến của Design Pattern.</p>
+
+<p>Vậy Design Pattern là gì? Nó có đặc điểm gì? Cần tìm hiểu nó như thế nào? Có những điều gì cần lưu ý khi nghiên cứu nó ?</p>
+
+<p>Những câu hỏi trên tôi sẽ cố gắng giải đáp trong bài viết này – bài viết mở đầu cho series về Design pattern trong Swift.</p>
+
+:ET

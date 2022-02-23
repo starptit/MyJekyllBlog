@@ -1,0 +1,192 @@
+I"�D<p>Tiếp nối chuỗi series về nguyên lý S.O.L.I.D, bài viết này sẽ giới thiệu nguyên lý thứ 3, tạm dịch là nguyên lý thay thế Liskov (Liskov substitution principle – LSP) – chữ L. Liskov ở đây là tên riêng của một nhà khoa học máy tính người Mỹ, bà Barbara Liskov – bà đã giới thiệu về đặc tính thay thế giữa các đối tượng trong một hội nghị khoa học. Về sau, Robert C. Martin (Uncle Bob – cha đẻ của S.O.L.I.D) đã viết ra nguyên lý thứ 3 này, dựa trên phát biểu của bà Liskov, nên ông đã trân trọng lấy tên của bà để đặt cho nguyên lý.</p>
+
+<p><strong>1. Nguyên lý thay thế Liskov là gì ?</strong></p>
+
+<p>Luận điểm ban đầu của Barbara Liskov:</p>
+
+<p>“Nếu S là subtype của T, thì T có thể dùng để thay thế S mà không làm mất đi tính đúng đắn của S”.</p>
+
+<p>Được phát biểu thành:</p>
+
+<p>Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.</p>
+
+<p>(Những hàm tham chiếu đến class cơ sở thì phải đảm bảo có thể sử dụng được trong các class con của nó).<br />
+Như vậy, nguyên lý chỉ ra rằng, mọi hàm (method) của class cha thì phải hoạt động được và đúng trên các class con kế thừa từ nó. Class cho có các behaviors nào, thì class con cũng phải có các behaviors đó. Mời bạn xem ví dụ nhỏ mô phỏng từ thực tế sau đây:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">Bird</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">fly</span><span class="p">(){</span>
+        <span class="c1">// TODO: flying away</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">Eagle</span><span class="p">:</span><span class="kt">Bird</span><span class="p">{</span>
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">fly</span><span class="p">(){</span>
+        <span class="c1">// TODO: flying away</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">Penguin</span><span class="p">:</span><span class="kt">Bird</span><span class="p">{</span>
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">fly</span><span class="p">(){</span>
+        <span class="c1">//TODO: Flying away</span>
+        <span class="nf">fatalError</span><span class="p">(</span><span class="s">"Penguin cannot fly"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Class Bird là class cha, có ý nghĩa đại diện cho lớp chim chóc, lớp cha này có định nghĩa một function là fly, đại diện cho hành vi “bay” của loài chim. Tiếp đến, mình có 1 class con là Eagle (đại bàng) kế thừa từ class Bird, đồng nghĩa với việc Eagle có khả năng thực hiện hành vi “bay” giống như class Bird. Ok, đến đây vẫn ổn. Thế nhưng bây giờ mình tạo một class khác đặt tên là class Penguin (chim cánh cụt), hiển nhiên rằng Penguin cũng là một loài chim –&gt; kế thừa từ class Bird –&gt; có khả năng “bay”. Oops, trên thực tế chim cánh cụt thực ra là loài chim không thể bay –&gt; vi phạm nguyên lý Liskov.</p>
+
+<p><strong>2. Ví dụ về LSP trong iOS?</strong></p>
+
+<p>Giả sử mình đang xây dựng một ứng dụng thương mại điện tử (e-commerce), cụ thể là module người sử dụng (User). Việc đầu tiên là ta cần tạo một Class User, và tiến hành phân tích nghiệp vụ cho class này, về cơ bản một user có quyền thực hiện 2 tác vụ chính là “thêm hàng vào giỏ hàng” và “thanh toán sản phẩm” :</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">User</span><span class="p">{</span>
+    
+    <span class="k">var</span> <span class="nv">userId</span><span class="p">:</span><span class="kt">Int</span><span class="o">!</span>
+    <span class="k">var</span> <span class="nv">userName</span><span class="p">:</span><span class="kt">String</span><span class="o">!</span>
+    <span class="k">var</span> <span class="nv">password</span><span class="p">:</span><span class="kt">String</span><span class="o">!</span>
+    
+    <span class="kd">func</span> <span class="nf">addToCart</span><span class="p">(){</span> <span class="c1">// thêm hàng vào giỏ hàng</span>
+        <span class="c1">// TODO: add selected product to Cart</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">proceedCart</span><span class="p">(){</span> <span class="c1">// thanh toán giỏ hàng</span>
+        <span class="c1">// TODO: pay the Cart</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Thiết kế trên hoàn toàn chuẩn theo như những gì sách nói, class gồm có property và method, bla bla,… Sau một thời gian sử dụng, lượng người dùng tăng lên, và có 1 số nhỏ người dùng dành tiền chi tiêu vào ứng dụng e-commerce của chúng ta, họ được xếp vào nhóm người dùng Vàng, được một số quyền hạn ưu tiên như giảm giá, tặng quà,… Công việc của chúng ta lúc này là phải chuyển hóa lượng người dùng trên vào trong ứng dụng. Sửa lại class User? Không ổn, nó đang chạy tốt, sửa lại gây ra rủi ro rất lớn. Tính kế thừa lúc này phát huy tác dụng, chúng ta chỉ cần tạo một class con kế thừa từ class trên là xong – easy as pie. Ta tạm đặt class mới là PremiumUser, có thêm thuộc tính biểu thị cho ưu đãi giảm giá:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">PremiumUser</span><span class="p">:</span><span class="kt">User</span><span class="p">{</span>
+    
+    <span class="k">var</span> <span class="nv">discount</span><span class="p">:</span><span class="kt">Int</span><span class="o">!</span> <span class="c1">// mã giảm giá cho User</span>
+    
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">addToCart</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// thêm hàng vào giỏ hàng</span>
+        <span class="c1">// TODO: add selected product to Cart</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">addToCart</span><span class="p">()</span>
+        
+    <span class="p">}</span>
+    
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">proceedCart</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// thanh toán giỏ hàng</span>
+        <span class="c1">// TODO: pay the Cart with the Discount value</span>
+        
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Hàm addToCart() vẫn không có gì thay đổi, và tuân theo class cha User. Với hàm proceedCart(), kết quả cuối cùng của chúng ta phải thay đổi theo tỉ lệ giảm giá của User.</p>
+
+<p>Việc bắt user phải có tài khoản, mật khẩu,… rồi mới được mua hàng, đặt hàng vào giỏ gây cản trở cho quá trình mua hàng của những người lần đầu tiên sử dụng app, hay họ chưa kịp đăng ký. Từ nghiệp vụ, chúng ta phải bổ sung thêm một class nữa để đại diện cho những User chưa đăng ký này. Những User này có quyền xem và thêm hàng vào giỏ, nhưng lại không thanh toán được vì không đủ thông tin:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">UnconfirmUser</span><span class="p">:</span><span class="kt">User</span><span class="p">{</span>
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">addToCart</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// thêm hàng vào giỏ hàng</span>
+        <span class="c1">// TODO: add selected product to Cart</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">addToCart</span><span class="p">()</span>
+        
+    <span class="p">}</span>
+    
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">proceedCart</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// thanh toán giỏ hàng</span>
+        <span class="nf">fatalError</span><span class="p">(</span><span class="s">"missing Logic"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>–&gt; vi phạm LSP. Hàm proceedCart() kế thừa từ class cha (User), không thể thực thi trong class con (UnconfirmUser).</p>
+
+<p><strong>3. Tại sao lại cần phải tránh vi phạm LSP?</strong></p>
+
+<p>Ta hãy đặt câu hỏi ngược lại, nếu như vi phạm LSP thì sao? Điều gì sẽ xảy ra, hoặc ảnh hưởng đến dự án thế nào?</p>
+
+<p>Viêc một class con không tuân thủ theo thiết kế ban đầu của class cha có thể gây ra lỗ hổng về mặt logic, có thể khiến cho app hoạt động không đúng, cũng như gây khó khăn trong việc debug và maintain. Vì bản chất của tính kế thừa là kế thừa thuộc tính và phương thức, nhưng một số thuộc tính và phương thức ở trong trường hợp này lại không hoạt động, dẫn đến khó khăn trong việc truy tìm dấu vết. Với các dự án nhỏ hoặc các class đơn giản thì bạn có thể không cần quan tâm đến nguyên lý này, nhưng nếu với các class to hoặc kế thừa chồng (ông &lt;- cha &lt;- cháu,…) thì việc vi phạm LSP nguy hại hơn nhiều lần, chưa kể tình trạng chia sẻ class giữa các module, hoặc class được dùng chung hoặc được maintain bởi các thành viên trong team. <strong>4. Làm thế nào để tránh vi phạm LSP?</strong></p>
+
+<p>Bản chất của vi phạm LSP là do các thuộc tính và phương thức của class cha không được class con kế thừa hoàn toàn lại. Trong lập trình hướng đối tượng (OOP), có cách nào để nhiều class thực hiện lại cùng phương thức không? Đó chính là implement các Interface (với iOS là protocol). Trong ngành lập trình, có một câu nói cực kỳ nổi tiếng mà bạn buộc phải biết :</p>
+
+<p>Program to an interface not an implementation<br />
+Thật vậy, bài toán lúc này khá đơn giản, bạn tập trung các method của class cha vào các interface cụ thể, và cho class con implement (nếu có thể). Giả sử với ví dụ ban đầu về class Bird, ta có thể viết nó lại như sau:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="kt">Flyable</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">fly</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">Bird</span><span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">Eagle</span><span class="p">:</span><span class="kt">Bird</span><span class="p">,</span><span class="kt">Flyable</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">fly</span><span class="p">()</span> <span class="p">{</span>
+        
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">Penguin</span><span class="p">:</span><span class="kt">Bird</span><span class="p">{</span>
+    
+<span class="p">}</span></code></pre></figure>
+
+<p>Ta tách hành vi bay ra thành 1 Protocol. Với class Eagle, nó có thể bay, nên ta cho phép nó implement protocl Flyable, class Penguin không thể bay –&gt; ta không cho nó implement. Bài toán được giải quyết, hết sức đơn giản. Tương tự với bài toán User trong hệ thống thương mại điện tử trên:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">protocol</span> <span class="kt">ProceedingCart</span><span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">proceedCart</span><span class="p">()</span>
+<span class="p">}</span>
+
+
+<span class="kd">class</span> <span class="kt">User</span><span class="p">{</span>
+    
+    <span class="k">var</span> <span class="nv">userId</span><span class="p">:</span><span class="kt">Int</span><span class="o">!</span>
+    <span class="k">var</span> <span class="nv">userName</span><span class="p">:</span><span class="kt">String</span><span class="o">!</span>
+    <span class="k">var</span> <span class="nv">password</span><span class="p">:</span><span class="kt">String</span><span class="o">!</span>
+    
+    <span class="kd">func</span> <span class="nf">addToCart</span><span class="p">(){</span> <span class="c1">// thêm hàng vào giỏ hàng</span>
+        <span class="c1">// TODO: add selected product to Cart</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+
+<span class="kd">class</span> <span class="kt">PremiumUser</span><span class="p">:</span><span class="kt">User</span><span class="p">,</span><span class="kt">ProceedingCart</span><span class="p">{</span>
+    
+    <span class="k">var</span> <span class="nv">discount</span><span class="p">:</span><span class="kt">Int</span><span class="o">!</span> <span class="c1">// mã giảm giá cho User</span>
+    
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">addToCart</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// thêm hàng vào giỏ hàng</span>
+        <span class="c1">// TODO: add selected product to Cart</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">addToCart</span><span class="p">()</span>
+        
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">proceedCart</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// thanh toán giỏ hàng</span>
+        <span class="c1">// TODO: pay the Cart with the Discount value</span>
+        
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kd">class</span> <span class="kt">UnconfirmUser</span><span class="p">:</span><span class="kt">User</span><span class="p">{</span>
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">addToCart</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// thêm hàng vào giỏ hàng</span>
+        <span class="c1">// TODO: add selected product to Cart</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">addToCart</span><span class="p">()</span>
+        
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><strong>5. Tổng kết:</strong></p>
+
+<p>Trong thực tế, chúng ta rất hay vi phạm nguyên lý LSP, hầu hết đều do suy nghĩ khi thiết kế class, đưa tư duy đời thường vào (ví dụ, rõ ràng chúng ta đều biết chim cánh cụt là lớp con của loài chim). Như mình đã trình bày ở trên, với các class nhỏ hoặc có ít class con, thì việc vi phạm LSP có thể chấp nhận được. Qua bài viết này, mình hi vọng các bạn có thể nắm bắt được cơ bản về nguyên lý LSP, và câu nói nổi tiếng mà mình đề cập ở mục 4. Thực tế, mình đã làm việc kha khá dự án, cùng kha khá người và mình để ý rằng các lập trình viên iOS khá lười viết protocol (trừ trường hợp xài delegate), việc này mình hoàn toàn không đồng ý, nhiều người thích nhét cả đống function vào một class rồi rải rác chúng ở các class khác, khiến cho việc debug và maintain rất khó khăn.</p>
+
+<script id="dsq-count-scr" src="//https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/count.js" async=""></script>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+:ET

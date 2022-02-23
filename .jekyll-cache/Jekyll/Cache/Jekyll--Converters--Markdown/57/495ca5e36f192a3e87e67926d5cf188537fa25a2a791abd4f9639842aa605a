@@ -1,0 +1,259 @@
+I"�u<p>Welcome back, series về Design Pattern xin được tiếp tục, với một Design Pattern phổ biến khác: Prototype Design Pattern.</p>
+
+<h1 id="giới-thiệu-prototype-pattern">Giới thiệu Prototype Pattern</h1>
+
+<p>Prototype Design Pattern thuộc loại Creation, đồng nghĩa với việc nó sẽ giải quyết một vấn đề nào đó của bài toán khởi tạo Object. <code class="language-plaintext highlighter-rouge">Prototype</code> dịch ra nghĩa là nguyên mẫu, nguyên bản, kết hợp với suy luận trên, ta có thể ngầm tiên đoán rằng ý tưởng của Pattern này là xây dựng, khởi tạo nguyên mẫu, nguyên bản của Object.
+Điều này có đúng không? Hãy thử so sánh với định nghĩa của nó:</p>
+
+<blockquote>
+  <p>“Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.”</p>
+</blockquote>
+
+<p>Tạm dịch: Định rõ loại đối tượng cần khởi tạo bằng việc sử dụng nguyên mẫu, và khởi tạo bằng cách sao chép nguyên mẫu đó. (bản dịch này hơi cùi ಠ_ಠ) .</p>
+
+<p>Đúng vậy, khởi tạo object thông qua các prototype của nó, và bằng cách copy chứ không initiate trực tiếp. Chắc hẳn trong đầu bạn đang có hàng tá câu hỏi kiểu như: tại sao lại là prototype, tại sao lại chọn cách copy,….?</p>
+
+<h1 id="phân-tích-định-nghĩa-prototype-design-pattern">Phân tích định nghĩa Prototype Design Pattern</h1>
+
+<h2 id="tại-sao-lại-copy-mà-không-initiate-trực-tiếp">Tại sao lại copy mà không initiate trực tiếp?</h2>
+
+<p>Ta sẽ đặt câu hỏi, tại sao lại phải copy, mà không trực tiếp initate instance khác, dựa trên instance hiện có, điều mà hiển nhiên đơn giản hơn. Phần lớn thời gian, bạn sẽ không cần phải copy object đâu, nhưng tại sao chúng ta lại phải sử dụng nó trong Prototype Pattern?
+Khi tìm hiểu thông tin trên mạng, tôi được kha khá tài liệu giải thích rằng: những object mà cần phải copy là các <code class="language-plaintext highlighter-rouge">complex object</code> (phức tạp) hoặc <code class="language-plaintext highlighter-rouge">cost on initiating</code>(chi phí khởi tạo cao).</p>
+
+<p>Thế nào là phức tạp, thế nào là chi phí cao, thì họ không nói (╯°□°）╯︵ ┻━┻</p>
+
+<p>Thử tư duy ngược xem:</p>
+
+<p>Giả sử tôi có class như sau:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">class</span> <span class="kt">Utility</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">apiConnection</span><span class="p">:</span> <span class="kt">NetworkConnector</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">dbConnection</span><span class="p">:</span> <span class="kt">DatabaseConnector</span>
+
+    <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">apiConnection</span> <span class="o">=</span> <span class="kt">NetworkConnector</span><span class="p">()</span>
+        <span class="n">dbConnection</span> <span class="o">=</span> <span class="kt">DatabaseConnector</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">instance1</span> <span class="o">=</span> <span class="kt">Utility</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<p>Việc initiate class Utility, tương đương với việc phải khởi tạo đồng thời NetWorkConnector và DatabaseConnector. 2 class trên thực tế rất nặng, tương ứng với việc khởi tạo Utility cũng nặng, tức là, chi phí khởi tạo của nó cao. Như vậy, những class mà hàm khởi tạo cồng kềnh, hoặc yêu cầu các bước phức tạp, hoặc gây tốn nhiều tài nguyên khi khởi tạo,… là những class nên sử dụng Prototype.</p>
+
+<p>Ví dụ khác:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">class</span> <span class="kt">User</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">address</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">phone</span><span class="p">:</span> <span class="kt">String</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+         <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+         <span class="nv">address</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+         <span class="nv">phone</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">address</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">phone</span> <span class="o">=</span> <span class="n">phone</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">userA</span> <span class="o">=</span> <span class="kt">User</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Shaw"</span><span class="p">,</span> <span class="nv">age</span><span class="p">:</span> <span class="mi">27</span><span class="p">,</span> <span class="nv">address</span><span class="p">:</span> <span class="s">"Ha Noi"</span><span class="p">,</span> <span class="nv">phone</span><span class="p">:</span> <span class="s">"1900 1003"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">copyUserA</span> <span class="o">=</span> <span class="kt">User</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="n">userA</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nv">age</span><span class="p">:</span> <span class="n">userA</span><span class="o">.</span><span class="n">age</span><span class="p">,</span> <span class="nv">address</span><span class="p">:</span> <span class="n">userA</span><span class="o">.</span><span class="n">adress</span><span class="p">,</span> <span class="nv">phone</span><span class="p">:</span> <span class="n">userA</span><span class="o">.</span><span class="n">phone</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>compiler sẽ báo lỗi ở copyUserA, vì đơn giản rằng các property của class User được định nghĩa là private, bạn không thể truy cập vào chúng để lấy giá trị để khởi tọa nên bản copyUserA được. Bạn có thể phản biện rằng thực chất tôi có thể tạo ra hàm get/set cho các property như những ngôn ngữ khác, và lập luận trên không còn đúng nữa. Tuy nhiên, tôi phải nhắc bạn rằng, không phải property nào cũng nên có đầy đủ get/set, có trường hợp property chỉ cho phép set mà thôi, đặc biệt, trong môi trường Application Runtime, việc truy cập bừa bãi vào các property sẽ rất dễ gây ra lỗi bảo mật, hoặc các vấn đề khác nghiêm trọng hơn. Cụ thể ra sao, sang phần sau sẽ rõ.</p>
+
+<p><img class="wp-image-1879 aligncenter" src="/assets/images/post/prototype_copy_outside.png" alt="" width="600" height="300" srcset="/assets/images/post/prototype_copy_outside.png" sizes="(max-width: 300px) 100vw, 300px" />
+(Source: refactoring.guru)</p>
+
+<h1 id="thực-hiện-proptotype-pattern">Thực hiện Proptotype Pattern</h1>
+
+<p>Tôi có bài toán giả định như sau, bạn đang xây dựng ứng dụng Mobile Banking (tương tự như mấy app Paypal, TPBank, BIDV, …). Bất kì ứng dụng Mobile Banking nào cũng bao gồm chức năng chuyển tiền, thế nên tôi có class:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">PaymentDetail</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">senderAccount</span><span class="p">:</span> <span class="kt">Account</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">receiverAccount</span><span class="p">:</span> <span class="kt">Account</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">Float</span> <span class="c1">// in Dollar $</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">tax</span><span class="p">:</span> <span class="kt">Float</span> <span class="c1">// in percent</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">note</span><span class="p">:</span> <span class="kt">String</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">senderAccount</span><span class="p">:</span> <span class="kt">Account</span><span class="p">,</span> <span class="nv">receiverAccount</span><span class="p">:</span> <span class="kt">Account</span><span class="p">,</span>
+         <span class="nv">amount</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">tax</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">note</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">senderAccount</span> <span class="o">=</span> <span class="n">senderAccount</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">receiverAccount</span>  <span class="o">=</span> <span class="n">receiverAccount</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="n">amount</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">tax</span> <span class="o">=</span> <span class="n">tax</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">note</span> <span class="o">=</span> <span class="n">note</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>PaymentDetail thể hiện giao dịch giữa 2 bên người cho (senderAccount) và nhận (receiverAccount), một giao dịch được thực hiện thông qua một <code class="language-plaintext highlighter-rouge">phiên giao dịch (Transaction)</code></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">class</span> <span class="kt">Transaction</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">createTransaction</span><span class="p">(</span><span class="n">withPayment</span> <span class="nv">payment</span><span class="p">:</span> <span class="kt">PaymentDetail</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// send money via Payment</span>
+        <span class="c1">// do stuff</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Hãy chú ý, đây là ứng dụng liên quan đến vấn đề chuyển tiền, việc tương tác với một PaymentDetail trực tiếp là cấm kỵ, có nhiều case phát sinh lỗi phức tạp (chuyển tiền không thành công, chuyển tiền vượt quá hạn mức, ….), thay vào đó, chúng ta nên tương tác với một bản copy tương ứng của nó, và đây là cơ hội để áp dụng Prototype Pattern. Bạn có thể nghi ngờ lại tại sao không dùng get/set và khởi tạo một object mới dựa trên object cũ, giống như đã tranh cãi ở trên phải không? Hãy nhớ, đây là ứng dụng yêu cầu tính bảo mật, các thông tin như tài khoản người gửi và người nhận không bao giờ có thể public được, vì trên môi trường Application Runtime, bạn không thể kiểm soát được hết tác nhân nào truy cập vào thông tin nhạy cảm đó.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">/// CÁCH LÀM NÀY QUÁ NGÂY THƠ, SẼ BỊ CLOSE VÀ ĂN BLAME TRONG 1 NỐT NHẠC</span>
+
+<span class="kd">class</span> <span class="kt">PaymentDetail</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">senderAccount</span><span class="p">:</span> <span class="kt">Account</span> <span class="c1">// easy access</span>
+    <span class="k">var</span> <span class="nv">receiverAccount</span><span class="p">:</span> <span class="kt">Account</span> <span class="c1">// easy access</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">Float</span> <span class="c1">// in Dollar $</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">tax</span><span class="p">:</span> <span class="kt">Float</span> <span class="c1">// in percent</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">note</span><span class="p">:</span> <span class="kt">String</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">senderAccount</span><span class="p">:</span> <span class="kt">Account</span><span class="p">,</span> <span class="nv">receiverAccount</span><span class="p">:</span> <span class="kt">Account</span><span class="p">,</span>
+         <span class="nv">amount</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">tax</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">note</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">senderAccount</span> <span class="o">=</span> <span class="n">senderAccount</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">receiverAccount</span>  <span class="o">=</span> <span class="n">receiverAccount</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="n">amount</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">tax</span> <span class="o">=</span> <span class="n">tax</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">note</span> <span class="o">=</span> <span class="n">note</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kd">class</span> <span class="kt">Transaction</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">createTransaction</span><span class="p">(</span><span class="n">withPayment</span> <span class="nv">payment</span><span class="p">:</span> <span class="kt">PaymentDetail</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">clone</span> <span class="o">=</span> <span class="kt">PaymentDetail</span><span class="p">(</span><span class="nv">senderAccount</span><span class="p">:</span> <span class="n">payment</span><span class="o">.</span><span class="n">senderAccount</span><span class="p">,</span> <span class="nv">receiverAccount</span><span class="p">:</span> <span class="n">payment</span><span class="o">.</span><span class="n">receiverAccount</span>
+        <span class="o">....</span>
+        <span class="c1">// do stuff</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Initiate trực tiếp không được, Initiate từ object khác cũng không được, vậy chúng ta làm thế nào? Theo Prototype Pattern, cách đơn giản nhất: <strong>COPY</strong>.
+Thật may mắn, Swift / Objective-C đã support sẵn cách copy object, thông qua NSCopying:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">PaymentDetail</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">NSCopying</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">senderAccount</span><span class="p">:</span> <span class="kt">Account</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">receiverAccount</span><span class="p">:</span> <span class="kt">Account</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">amount</span><span class="p">:</span> <span class="kt">Float</span> <span class="c1">// in Dollar $</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">tax</span><span class="p">:</span> <span class="kt">Float</span> <span class="c1">// in percent</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">note</span><span class="p">:</span> <span class="kt">String</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">senderAccount</span><span class="p">:</span> <span class="kt">Account</span><span class="p">,</span> <span class="nv">receiverAccount</span><span class="p">:</span> <span class="kt">Account</span><span class="p">,</span>
+         <span class="nv">amount</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">tax</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">note</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">senderAccount</span> <span class="o">=</span> <span class="n">senderAccount</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">receiverAccount</span>  <span class="o">=</span> <span class="n">receiverAccount</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="n">amount</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">tax</span> <span class="o">=</span> <span class="n">tax</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">note</span> <span class="o">=</span> <span class="n">note</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">copy</span><span class="p">(</span><span class="n">with</span> <span class="nv">zone</span><span class="p">:</span> <span class="kt">NSZone</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">clone</span> <span class="o">=</span> <span class="kt">PaymentDetail</span><span class="p">(</span><span class="nv">senderAccount</span><span class="p">:</span> <span class="n">senderAccount</span><span class="p">,</span> <span class="nv">receiverAccount</span><span class="p">:</span> <span class="n">receiverAccount</span><span class="p">,</span> <span class="nv">amount</span><span class="p">:</span> <span class="n">amount</span><span class="p">,</span> <span class="nv">tax</span><span class="p">:</span> <span class="n">tax</span><span class="p">,</span> <span class="nv">note</span><span class="p">:</span> <span class="n">note</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">clone</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">Transaction</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">createTransaction</span><span class="p">(</span><span class="n">withPayment</span> <span class="nv">payment</span><span class="p">:</span> <span class="kt">PaymentDetail</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">clone</span> <span class="o">=</span> <span class="n">payment</span><span class="o">.</span><span class="nf">copy</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+        <span class="c1">// do stuff</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Đơn giản, dễ dùng, và quan trọng nhất là hiệu quả, đây chính là Prototype Pattern. Tương tự với trường hợp <strong><code class="language-plaintext highlighter-rouge">Utility class</code></strong> ở trên, ta chỉ cần sử dụng NSCopying là xong:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">Utility</span><span class="p">:</span> <span class="kt">NSCopying</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">apiConnection</span><span class="p">:</span> <span class="kt">NetworkConnector</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">dbConnection</span><span class="p">:</span> <span class="kt">DatabaseConnector</span>
+
+    <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">apiConnection</span> <span class="o">=</span> <span class="kt">NetworkConnector</span><span class="p">()</span>
+        <span class="n">dbConnection</span> <span class="o">=</span> <span class="kt">DatabaseConnector</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">copy</span><span class="p">(</span><span class="n">with</span> <span class="nv">zone</span><span class="p">:</span> <span class="kt">NSZone</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">clone</span> <span class="o">=</span> <span class="kt">Utility</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">clone</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">instance</span> <span class="o">=</span> <span class="kt">Utility</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">clone</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="nf">copy</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Ơ nhưng mà, sao không dùng STRUCT ? Không phải struct copy đơn giản hơn class rất rất nhiều không ?
+Câu trả lời đơn giản nhất là: không phải lúc nào bạn cũng có thể dùng struct, có nhiều lúc bạn buộc phải sử dụng class. Tuy nhiên, câu trả lời này là phần nổi của tảng băng chìm mà thôi, đoạn hay còn ở phía sau, cứ từ từ !</p>
+
+<h1 id="có-gì-cần-chú-ý-">Có gì cần chú ý ?</h1>
+
+<p>Chúng ta bàn nhiều về cách khởi tạo, và thống nhất có những trường hợp nên dùng Copy. Tuy nhiên, Copy như thế nào, và copy có gì đặc sắc cần để ý hay không, thì chúng ta chưa nhắc đến.
+Thực tế, phương pháp Copy được chia thành 2 loại: <strong>Shallow Copy</strong> và <strong>Deep Copy</strong></p>
+
+<h2 id="shallow-copy-vs-deep-copy">Shallow Copy vs Deep Copy</h2>
+
+<p><strong>Shallow Copy</strong> (sao chép bề mặt): giả sử ta có Object A, khi Object B sao chép Object A, ta sao chép toàn bộ property của A sang B, nếu property đó là primitive type (Int, String, Float,…) ta sẽ copy nó thành primitive type tương ứng, nếu như nó là <em>++reference++</em> (tham chiếu), thì <em>++reference++</em> cũng được copy, hay nói cách khác, A và B share reference, pointer sẽ trỏ đến cùng một vùng nhớ. Hệ quả là nếu A thay đổi thì B cũng thay đổi theo. Nghe quen quá nhỉ? Đúng, nó chính là ý tưởng của <code class="language-plaintext highlighter-rouge">Reference Type</code>, hay những Object được khởi tạo qua từ khóa Class trong Swift.</p>
+
+<p><strong>Deep Copy</strong> (sao chép sâu): cũng tương tự như Shallow copy, tuy nhiên chúng không share reference, thay vào đó, chúng sẽ khởi tạo reference hoàn toàn mới. Điều này khiến chi phí của Deep Copy sẽ lớn hơn Shallow Copy, tuy nhiên điểm lợi thế ở đây là reference sẽ hoàn toàn độc lập, thay đổi B sẽ không làm A thay đổi,… Vâng, và đó cũng là ý tưởng của <code class="language-plaintext highlighter-rouge">Value Tye</code>, tương ứng với Struct, Array, Tupble, String, Int,…. trong Swift.</p>
+
+<p><img class="wp-image-1879 aligncenter" src="/assets/images/post/shallow_deep_copy.jpg" alt="" width="400" height="200" srcset="/assets/images/post/shallow_deep_copy.jpg" sizes="(max-width: 300px) 100vw, 300px" /></p>
+
+<p>(Source: stackoverflow)</p>
+
+<p>–&gt; Nên dùng Shallow Copy hay Deep Copy ?</p>
+
+<p>Câu trả lời là <strong><em>TÙY</em></strong>: tùy bài toán, tùy use case, tùy trường hợp,… cũng giống như việc nên dùng Class hay Struct vậy.</p>
+
+<p>Giả sử với bài toán Payment trên, nên dùng Deep Copy, hoặc những bài toán phức tạp như liên quan đến multithread,… thì nên dùng Deep Copy.</p>
+
+<p>Với cá nhân tôi, tôi thường sử dụng cơ chế Deep Copy khi áp dụng Prototype Design Pattern. Bạn có thể sẽ ngạc nhiên khi tôi nói thế, vì ở trên rõ ràng là tôi sử dụng <strong><em><code class="language-plaintext highlighter-rouge">Class</code></em></strong> trong cả 2 trường hợp mà. Tuy nhiên, ở trên tôi dùng <code class="language-plaintext highlighter-rouge">NSCopying</code>, đồng nghĩa với việc tôi biến các class copy lại nó trở thành dạng Deep Copy. Ngoài ra, bạn có thể dùng <code class="language-plaintext highlighter-rouge">Codable</code> trong Swift để có hiệu quả tương tự.</p>
+
+<h1 id="tổng-kết">Tổng kết</h1>
+
+<p>Tôi đã hoàn tất bài viết của mình về Prototype Pattern - một Design Pattern đơn giản, dễ thực hiện. Tuy nhiên, tôi vẫn lưu ý các bạn cần phải nhớ các điểm sau:</p>
+
+<ul>
+  <li>Khi ta cần khởi tạo các Object mà constructor của nó phức tạp, chi phí khởi tạo cao,… thì hãy nhớ đến Prototype Design Pattern. Còn phức tạp, chi phí khởi tạo cao là gì, thì mời đọc lại phần đầu của bài viết.</li>
+  <li>Phân biệt được Shallow Copy và Deep Copy, và hãy lựa chọn nó thích hợp nhất khi áp dụng Prototype Design Pattern.</li>
+  <li>Hãy tự đánh giá điểm mạnh, điểm yếu của Pattern này.</li>
+</ul>
+
+<p>Thực tế, ý tưởng về Prototype xuất hiện quanh ta, ví dụ nhé, sự phân bào sinh học:
+<img class="wp-image-1879 aligncenter" src="/assets/images/post/prototype_cell_division.png" alt="" width="600" height="300" srcset="/assets/images/post/prototype_cell_division.png" sizes="(max-width: 300px) 100vw, 300px" /></p>
+
+<p>(Source: refactoring.guru)</p>
+
+<script id="dsq-count-scr" src="//https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/count.js" async=""></script>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+:ET

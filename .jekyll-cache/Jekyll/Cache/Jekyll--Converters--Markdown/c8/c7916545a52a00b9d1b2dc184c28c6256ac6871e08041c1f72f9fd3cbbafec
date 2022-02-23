@@ -1,0 +1,11 @@
+I"c<p>Closure là một functional tuyệt vời mà Swift cung cấp cho lập trình viên, thật ra Closure không phải điều đặc biệt chỉ có trên Swift, các ngôn ngữ khác đều có closure, tuy nhiên được gọi bằng cái tên khác do nhà phát triển ngôn ngữ nghĩ ra mà thôi, ví dụ: closure tương ứng với block trong Objective-C, hoặc là lambda trong Java, delegates trong C# (trong JavaScript cũng gọi là Anonymous Function).</p>
+
+<p>Bài viết dưới đây, mình sẽ giới thiệu về Closure theo cách nhìn nhận của bản thân mình, mình sẽ tập trung vào trả lời các câu hỏi sau cho các bạn dễ hình dung:</p>
+
+<ul>
+  <li>Closure là cái gì?</li>
+  <li>Tại sao phải dùng Closure? Vai trò của nó là gì?</li>
+  <li>Sử dụng Closure như thế nào?</li>
+</ul>
+
+:ET

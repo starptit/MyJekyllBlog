@@ -1,0 +1,17 @@
+I"V<p>Struct (cấu trúc) và Class(lớp) trong Swift có nhiều điểm tương đồng với nhau, Apple đã mô tả sự tương đồng giữa chúng như sau:</p>
+
+<div class="page" title="Page 141">
+  <div class="layoutArea">
+    <div class="column">
+      <p>
+        &#8220;Classes and structures are general-purpose, flexible constructs that become the building blocks of your program&#8217;s code. You define properties and methods to add functionality to your classes and structures by using the already familiar syntax of constants, variables, and functions.&#8221;
+      </p>
+      
+      <p>
+        Khái niệm về Struct và Class không mới, 2 khái niệm này xuất hiện trong ngôn ngữ lập trình bậc trung  và ngôn ngữ hướng đối tượng như C/C++. Tuy nhiên, Struct và Class trong Swift lại có chút khác biệt, đặc biệt là Struct. Struct trong C/C++ chỉ có property và function, còn trong Swift, Struct được nâng cấp thêm nhiều feature mới, gần gũi với Class hơn.
+      </p>
+      
+      <p>
+        
+</p></div></div></div>
+:ET

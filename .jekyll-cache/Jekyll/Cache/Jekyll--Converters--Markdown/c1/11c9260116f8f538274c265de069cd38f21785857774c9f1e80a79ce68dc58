@@ -1,0 +1,394 @@
+I"�<p>Đợt vừa rồi tôi có hơi bận viết blog nội bộ cho công ty nên có hơi bỏ bê trang này, nhưng không sao, SwiftyVN đã trở lại và đương nhiên là series về Design Pattern cũng sẽ quay lại 🤘. Vẫn tiếp nối chuỗi bài viết về loại Creational (khởi tạo), và cũng vẫn là một trong những pattern thuộc hàng phổ thông nhất, đó chính là <strong><span style="color: #993300;">Builder Design Pattern.</span></strong></p>
+
+<p><img class="aligncenter wp-image-1878" src="/wp-content/uploads/2019/05/xfa1323749768.jpg" alt="" width="600" height="399" srcset="/wp-content/uploads/2019/05/xfa1323749768.jpg 800w, /wp-content/uploads/2019/05/xfa1323749768-300x200.jpg 300w, /wp-content/uploads/2019/05/xfa1323749768-768x511.jpg 768w" sizes="(max-width: 600px) 100vw, 600px" /></p>
+
+<!--more-->
+
+<h3 id="builder-design-pattern-là-gì"><span style="color: #ff9900;">Builder Design Pattern là gì?</span></h3>
+
+<p>Trong OOP, <span style="color: #993300;"><strong>Builder pattern</strong></span> thuộc loại <strong><span style="color: #993300;">creational</span></strong> (khởi tạo), chính vì vậy mục tiêu chính sẽ nhằm giải quyết vấn đề liên quan đến việc khởi tạo đối tượng. Cụ thể hơn, Builder pattern sẽ chia nhỏ <strong><em>construction</em></strong> (khởi tạo) của một object phức tạp. Tôi giữ nguyên từ construction không phải để khoe tiếng Anh, mà hãy để ý thêm chút, construction có khiến bạn liên tưởng đến cái gì trong OOP không? Đó chính là constructor (hàm khởi tạo), vì lẽ  đó, phương pháp chia nhỏ của Builder pattern sẽ liên quan đến constructor trong Class. Builder pattern đặt logic và cấu hình mặc định (default configuration) liên quan đến việc khởi tạo object từ class ra bên ngoài, vào trong Builder class. Đặt ra ngoài thế nào, builder class và chi tiết ra sao? Xin mời đọc tiếp.</p>
+
+<h3 id="nó-giải-quyết-vấn-đề-gì"><span style="color: #ff9900;">Nó giải quyết vấn đề gì?</span></h3>
+
+<p>Để trả lời cho câu hỏi ở đề mục, hãy cùng tôi xem xét bài toán sau:</p>
+
+<p>Giả sử tôi đang tạo chương trình quản lý cho quán trà sữa, một trong những core function trong ứng dụng của tôi đó là lấy yêu cầu đặt trà sữa từ khách hàng và lập hóa đơn thanh toán cho họ:</p>
+
+<p><img class="wp-image-1879 aligncenter" src="/wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-1024x1024.jpg" alt="" width="300" height="300" srcset="/wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-1024x1024.jpg 1024w, /wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-150x150.jpg 150w, /wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-300x300.jpg 300w, /wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5-768x768.jpg 768w, /wp-content/uploads/2019/05/BFV41761_DeliciousAsianDrinks_FBFINAL_v5.jpg 1080w" sizes="(max-width: 300px) 100vw, 300px" /></p>
+
+<!-- <pre class="theme:xcode plain:false plain-toggle:false lang:swift decode:true"> -->
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MilkTea</span> <span class="p">{</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">taste</span><span class="p">:</span> <span class="kt">String</span> <span class="c1">// vị trà sữa: peach, origin, orange, kumquat,...
+</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">String</span> <span class="c1">// S-M-L
+</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">toppings</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="c1">// coconut, ....
+</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">sugarPercent</span><span class="p">:</span> <span class="kt">Double</span> <span class="c1">// phần trăm đường: 100% - 80% - 50 %
+</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">icyPercent</span><span class="p">:</span> <span class="kt">Double</span> <span class="c1">// phần trăm đá 100% - 80% - 50 %
+</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="nv">size</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="nv">toppings</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">],</span>
+        <span class="nv">sugarPercent</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span>
+        <span class="nv">icyPercent</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">taste</span> <span class="o">=</span> <span class="n">taste</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">toppings</span> <span class="o">=</span> <span class="n">toppings</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">sugarPercent</span> <span class="o">=</span> <span class="n">sugarPercent</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">icyPercent</span> <span class="o">=</span> <span class="n">icyPercent</span>
+    <span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<!-- </pre> -->
+
+<p>Có nhận xét gì về đoạn code trên:</p>
+
+<ul>
+  <li>Constructor (hàm init) khá phức tạp.</li>
+  <li>Sẽ luôn có thuộc tính ít cần giá trị mặc định: ví dụ: Size – M, 100% đường, 100% đá,…</li>
+</ul>
+
+<p>Vì có những thuộc tính mặc định ít thay đổi, do đó không tránh khỏi việc phải lặp:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">bigOrigin</span> <span class="o">=</span> <span class="kt">MilkTea</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="s">"Origin"</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="s">"L"</span><span class="p">,</span> <span class="nv">toppings</span><span class="p">:</span> <span class="p">[],</span> <span class="nv">sugarPercent</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="nv">icyPercent</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">smallOriginDecreaseSuger</span> <span class="o">=</span> <span class="kt">MilkTea</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="s">"Origin"</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="s">"M"</span><span class="p">,</span> <span class="nv">toppings</span><span class="p">:</span> <span class="p">[],</span> <span class="nv">sugarPercent</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nv">icyPercent</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">bigOriginWithToppings</span> <span class="o">=</span> <span class="kt">MilkTea</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="s">"Origin"</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="s">"L"</span><span class="p">,</span> <span class="nv">toppings</span><span class="p">:</span> <span class="p">[</span><span class="s">"coconut"</span><span class="p">],</span> <span class="nv">sugarPercent</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="nv">icyPercent</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span></code></pre></figure>
+
+<p>Duplicate thật xấu xí, và không khi nào là tốt cả. Do đó, người ta sử dụng Builder Pattern.</p>
+
+<h3 id="dùng-nó-thế-nào"><span style="color: #ff9900;">Dùng nó thế nào?</span></h3>
+
+<p>Vẫn theo format cũ, trước khi đi vào cụ thể, hãy tạm dừng để ngó qua Class Diagram của nó đã:</p>
+
+<p><img class="size-large wp-image-1874 aligncenter" src="/wp-content/uploads/2019/05/Untitled-Diagram-1024x320.png" alt="" width="768" height="240" srcset="/wp-content/uploads/2019/05/Untitled-Diagram-1024x320.png 1024w, /wp-content/uploads/2019/05/Untitled-Diagram-300x94.png 300w, /wp-content/uploads/2019/05/Untitled-Diagram-768x240.png 768w, /wp-content/uploads/2019/05/Untitled-Diagram.png 1314w" sizes="(max-width: 768px) 100vw, 768px" /></p>
+
+<p>Phân tích Diagram trên:</p>
+
+<ol>
+  <li><strong><span style="color: #993300;">Director</span></strong>: đại diện cho class / module cần kết quả từ việc khởi tạo MilkTea.</li>
+  <li><strong><span style="color: #993300;">Builder</span></strong>: thiết kế trừu tượng cho các Builder, phục vụ cho việc Director có thể tương tác mà không cần quan tâm đến implementation của nó là gì. Mục đích typehint / swap / hoán đổi implementation mà không ảnh hưởng đến Director.</li>
+  <li><strong><span style="color: #993300;">MilkTeaBuilder</span></strong>: class implement InterfaceBuilder, có nhiệm vụ khởi tạo Object MilkTea, thông qua hàm build().</li>
+  <li><strong><span style="color: #993300;">MilkTea</span></strong>: object cần để khởi tạo.</li>
+</ol>
+
+<p>Để đơn giản hóa và vì mục đích demo, nên tôi sẽ loại bỏ <code class="language-plaintext highlighter-rouge">interface Builder</code>. Như vậy, Director thay vì tương tác trực tiếp với MilkTea, thì giờ sẽ tương tác thông qua <strong><span style="color: #993300;">MilkTeaBuilder</span></strong>:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">MilkTeaBuilder</span> <span class="p">{</span>
+<span class="kd">private</span> <span class="k">var</span> <span class="nv">taste</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"origin"</span>
+<span class="kd">private</span> <span class="k">var</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"M"</span>
+<span class="kd">private</span> <span class="k">var</span> <span class="nv">toppings</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="kd">private</span> <span class="k">var</span> <span class="nv">sugarPercent</span><span class="p">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="kd">private</span> <span class="k">var</span> <span class="nv">icyPercent</span><span class="p">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">chooseTaste</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span> <span class="k">self</span><span class="o">.</span><span class="n">taste</span> <span class="o">=</span> <span class="n">taste</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">chooseSize</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span> <span class="k">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">addTopping</span><span class="p">(</span><span class="nv">topping</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span> <span class="k">self</span><span class="o">.</span><span class="n">toppings</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="n">topping</span><span class="p">)</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">chooseSugarPercent</span><span class="p">(</span><span class="nv">percent</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="p">{</span> <span class="k">self</span><span class="o">.</span><span class="n">sugarPercent</span> <span class="o">=</span> <span class="n">percent</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">func</span> <span class="nf">chooseIcyPercent</span><span class="p">(</span><span class="nv">percent</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="p">{</span> <span class="k">self</span><span class="o">.</span><span class="n">icyPercent</span> <span class="o">=</span> <span class="n">percent</span> <span class="p">}</span>
+
+     <span class="kd">public</span> <span class="kd">func</span> <span class="nf">build</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">MilkTea</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kt">MilkTea</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="n">taste</span><span class="p">,</span>
+                        <span class="nv">size</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span> <span class="nv">toppings</span><span class="p">:</span> <span class="n">toppings</span><span class="p">,</span>
+                        <span class="nv">sugarPercent</span><span class="p">:</span> <span class="n">sugarPercent</span><span class="p">,</span>
+                        <span class="nv">icyPercent</span><span class="p">:</span> <span class="n">icyPercent</span><span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">Order</span> <span class="p">{</span>
+<span class="k">let</span> <span class="nv">customerName</span><span class="p">:</span> <span class="kt">String</span>
+<span class="k">let</span> <span class="nv">products</span><span class="p">:</span> <span class="p">[</span><span class="kt">MilkTea</span><span class="p">]</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">customerName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">products</span><span class="p">:</span> <span class="p">[</span><span class="kt">MilkTea</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">customerName</span> <span class="o">=</span> <span class="n">customerName</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">products</span> <span class="o">=</span> <span class="n">products</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">milkTeaBuilder</span> <span class="o">=</span> <span class="kt">MilkTeaBuilder</span><span class="p">()</span>
+
+<span class="c1">// Customer 1
+</span>
+<span class="k">let</span> <span class="nv">customer1Name</span> <span class="o">=</span> <span class="s">"Shaw Vu"</span>
+<span class="n">milkTeaBuilder</span><span class="o">.</span><span class="nf">chooseTaste</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="s">"Peach"</span><span class="p">)</span>
+<span class="n">milkTeaBuilder</span><span class="o">.</span><span class="nf">chooseSize</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="s">"L"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">product1</span> <span class="o">=</span> <span class="n">milkTeaBuilder</span><span class="o">.</span><span class="nf">build</span><span class="p">()</span>
+
+<span class="k">let</span> <span class="nv">order1</span> <span class="o">=</span> <span class="kt">Order</span><span class="p">(</span><span class="nv">customerName</span><span class="p">:</span> <span class="n">customer1Name</span><span class="p">,</span> <span class="nv">products</span><span class="p">:</span> <span class="p">[</span><span class="n">product1</span><span class="p">])</span>
+
+<span class="c1">// Customer 2
+</span>
+<span class="k">let</span> <span class="nv">customer2Name</span> <span class="o">=</span> <span class="s">"Swifty VN"</span>
+<span class="n">milkTeaBuilder</span><span class="o">.</span><span class="nf">chooseTaste</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="s">"Origin"</span><span class="p">)</span>
+<span class="n">milkTeaBuilder</span><span class="o">.</span><span class="nf">chooseSize</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="s">"M"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">order2</span> <span class="o">=</span> <span class="kt">Order</span><span class="p">(</span><span class="nv">customerName</span><span class="p">:</span> <span class="n">customer2Name</span><span class="p">,</span> <span class="nv">products</span><span class="p">:</span> <span class="p">[</span><span class="n">milkTeaBuilder</span><span class="o">.</span><span class="nf">build</span><span class="p">()])</span></code></pre></figure>
+
+<p>Order ở đây nắm vai trò tương đương Director trong Diagram trên. Rõ ràng, việc khởi tạo MilkTea với thông số mặc định đã đơn giản, gọn nhẹ hơn rất nhiều phải không? Và đó chính là cách viết Builder tuân theo Builder Design Pattern, không có gì to tát hay khó khăn.</p>
+
+<p>Cách thực hiện trên bản chất là chia nhỏ các properties của MilkTea ra thành các getter, setter được thiết lập trong class Builder, và sau đó tuần tự lần lượt thực hiện set giá trị cho chúng (chooseTaste,  chooseSize, addTopping,…), rồi khởi tạo object thông qua hàm build().</p>
+
+<p>Nghe thật đơn giản nhi? Đọc tiếp đi.</p>
+
+<h3 id="có-gì-chú-ý"><span style="color: #ff9900;">Có gì chú ý?</span></h3>
+
+<p>Được rồi, dừng lại tại đây, hãy dành 5 phút cuộc đời để đọc và ngẫm nghĩ lại bài viết này từ đầu, bạn có nhận ra điều gì không?</p>
+
+<p>Nếu như tôi nhận được Pull Request kiểu này từ các thành viên trong team, tôi sẽ chẳng ngần ngại mà close và bắt người đó phải xóa đi viết lại ngay lập tức.</p>
+
+<p>Thực tế mà nói, chủ đề Builder Pattern nhan nhản trên mạng, bạn có thể search 1 lúc, sẽ thấy cả tá bài viết với lối mòn như tôi vừa làm. Lý do tôi yêu cầu bạn dành 5 phút đọc lại bài viết là vì tôi muốn bạn có thể phản biện được cách xây dựng Builder Pattern của tôi. (Trong thời đại thông tin bùng nổ này, thiết nghĩ tư duy phản biện và phân tích thông tin là cực kỳ quan trọng, vì vậy, tôi hi vọng bạn cũng nên dừng lại và phân tích nội dung các thông tin mà mình kiếm được)</p>
+
+<p>Okay, đi hơi xa rồi đó, cách làm trên thay vì được khuyến khích, trái lại trở thành <strong><span style="color: #ff0000;">Anti-pattern</span></strong>, tức là nên tránh làm theo. Lý giải cho điều này, vâng, xin mời bạn đọc tiếp.</p>
+
+<p>(Builder Pattern xây dựng theo cách trên thực ra thường dùng để tránh vấn đề <span style="color: #993300;"><strong><em>Telescoping Initializer / Telescoping Constructor</em></strong><span style="color: #000000;">)</span></span></p>
+
+<p><span style="color: #339966;"><em><strong>Telescoping Initializer</strong></em></span></p>
+
+<p>Telescoping Initializer là trường hợp khi một Class có quá nhiều initializer / constructor theo định dạng kiểu như sau:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MilkTea</span> <span class="p">{</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">taste</span><span class="p">:</span> <span class="kt">String</span> <span class="c1">// vị trà sữa: peach, origin, orange, kumquat,...
+</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">String</span> <span class="c1">// S-M-L
+</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">toppings</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="c1">// coconut, ....
+</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">sugarPercent</span><span class="p">:</span> <span class="kt">Double</span> <span class="c1">// phần trăm đường: 100% - 80% - 50 %
+</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">icyPercent</span><span class="p">:</span> <span class="kt">Double</span> <span class="c1">// phần trăm đá 100% - 80% - 50 %
+</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="nv">size</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+        <span class="nv">toppings</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">],</span>
+        <span class="nv">sugarPercent</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span>
+        <span class="nv">icyPercent</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">taste</span> <span class="o">=</span> <span class="n">taste</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">toppings</span> <span class="o">=</span> <span class="n">toppings</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">sugarPercent</span> <span class="o">=</span> <span class="n">sugarPercent</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">icyPercent</span> <span class="o">=</span> <span class="n">icyPercent</span>
+    <span class="p">}</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">taste</span> <span class="o">=</span> <span class="n">taste</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="s">"M"</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">toppings</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">sugarPercent</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">icyPercent</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="p">}</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">taste</span> <span class="o">=</span> <span class="n">taste</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">toppings</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">sugarPercent</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">icyPercent</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="p">}</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">taste</span> <span class="o">=</span> <span class="s">"origin"</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">toppings</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">sugarPercent</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">icyPercent</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="p">}</span>
+
+<span class="o">....</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Nên nhớ, Builder Pattern được giới thiệu lần đầu từ cuốn sách của Gang of Four, ngôn ngữ họ sử dụng là C++, và lại xuất bản từ 30-40 năm trước. Swift là ngôn ngữ hiện đại, vấn đề Telescoping Initializer này không còn là trở ngại nữa, tương đương với cách xây dựng Builder Pattern mà tôi đã cất công trình bày là vô dụng.</p>
+
+<p><span style="color: #339966;"><strong><em>Anti-pattern</em></strong></span></p>
+
+<p>Telescoping Initializer không còn là vấn đề -&gt; Builder Pattern như trên vô dụng -&gt; không cần thiết -&gt; anti-pattern. Swift cung cấp feature <span style="color: #ff0000;"><strong><code>default parameters</code></strong></span>, và nhờ vào feature này, chúng ta hoàn toàn có thể loại bỏ Builder:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MilkTea</span> <span class="p">{</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">taste</span><span class="p">:</span> <span class="kt">String</span> <span class="c1">// vị trà sữa: peach, origin, orange, kumquat,...
+</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">String</span> <span class="c1">// S-M-L
+</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">toppings</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="c1">// coconut, ....
+</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">sugarPercent</span><span class="p">:</span> <span class="kt">Double</span> <span class="c1">// phần trăm đường: 100% - 80% - 50 %
+</span>
+<span class="kd">private</span> <span class="k">let</span> <span class="nv">icyPercent</span><span class="p">:</span> <span class="kt">Double</span> <span class="c1">// phần trăm đá 100% - 80% - 50 %
+</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"origin"</span><span class="p">,</span>
+        <span class="nv">size</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"M"</span><span class="p">,</span>
+        <span class="nv">toppings</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="nv">sugarPercent</span><span class="p">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="nv">icyPercent</span><span class="p">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">taste</span> <span class="o">=</span> <span class="n">taste</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">toppings</span> <span class="o">=</span> <span class="n">toppings</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">sugarPercent</span> <span class="o">=</span> <span class="n">sugarPercent</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">icyPercent</span> <span class="o">=</span> <span class="n">icyPercent</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="kt">MilkTea</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="s">"peach"</span><span class="p">)</span>
+<span class="kt">MilkTea</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="s">"L"</span><span class="p">)</span>
+<span class="kt">MilkTea</span><span class="p">(</span><span class="nv">taste</span><span class="p">:</span> <span class="s">"Kumquat"</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="s">"S"</span><span class="p">,</span> <span class="nv">toppings</span><span class="p">:</span> <span class="p">[])</span></code></pre></figure>
+
+<p><span style="color: #339966;"><em><strong>Builder Pattern trong Swift là vô dụng?</strong></em></span></p>
+
+<p>Câu trả lời là không. Tôi muốn trình bày kĩ vì bản thân tôi cũng bị ngáo ngơ khi tìm hiểu về Builder trong Swift, vì như trên, các tài liệu trên mạng thường trùng lặp và hướng người đọc vào vấn đề Telescoping – vấn đề thường gặp ở các ngôn ngữ cổ điển.</p>
+
+<p>Cái hay của Builder ở nằm ở việc giảm thiểu sự phức tạp khi khơi tạo Object, thông qua hàm <span style="color: #993300;"><code>build() -&gt; Type</code></span> – bản chất là việc đóng gói quá trình khởi tạo này lại, bạn có thể thực hiện các logic, làm abcxyz gì đó, rồi mới trả về Object sau cùng. Đặc điểm quan trọng này là lý do chính khiến Builder Pattern vẫn đã và đang được ứng dụng trong Swift iOS.</p>
+
+<h3 id="ứng-dụng-trong-ios"><span style="color: #ff9900;">Ứng dụng trong iOS?</span></h3>
+
+<p>Challenge 1 chút, có ví dụ đơn giản nào mà constructor của class phức tạp không?</p>
+
+<p>Đó chính là trường hợp Constructor Dependency Injection:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">apiService</span><span class="p">:</span> <span class="kt">IAPIService</span><span class="p">,</span>
+         <span class="nv">databaseService</span><span class="p">:</span> <span class="kt">IDBService</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">ViewControllerBuilder</span> <span class="p">{</span>
+
+    <span class="kd">func</span> <span class="nf">build</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">ViewController</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">apiService</span> <span class="o">=</span> <span class="kt">APIService</span><span class="p">(</span><span class="n">alamofire</span><span class="p">,</span> <span class="n">environment</span><span class="p">)</span>
+        <span class="c1">// do stuff
+</span>
+        <span class="k">let</span> <span class="nv">dbService</span> <span class="o">=</span> <span class="kt">DBService</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="kt">ViewController</span><span class="p">(</span>
+            <span class="nv">apiService</span><span class="p">:</span> <span class="n">apiService</span><span class="p">,</span>
+            <span class="nv">databaseService</span><span class="p">:</span> <span class="n">dbService</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>Có rất nhiều dependencies phức tạp, theo kiểu khởi tạo dựa theo các dependency khác, đồng nghĩa với việc không thể sử dụng default parameters. Hơn nữa, vì nó phức tạp, cho nên chúng ta nghĩ đến việc tách riêng nó ra để xử lý, và Builder là một trong những cách tiếp cận đáng xem xét.</p>
+
+<p>Tư tưởng Builder được áp dụng trong module Router / Navigator / Coordinator trong các dự án iOS, ví dụ: Router trong kiến trúc V-I-P-E-R, hoặc RIBs (hàng của UBer), Alamofire / Moya,….</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kt">Source</span><span class="p">:</span> <span class="nv">https</span><span class="p">:</span><span class="c1">//gist.github.com/jazzbpn/afd9f178fe4d8a212d83750e1b4a5389#file-viper-noticerouter-swift // Router in VIPER architectur
+</span>
+
+<span class="kd">class</span> <span class="kt">NoticeRouter</span><span class="p">:</span><span class="kt">PresenterToRouterProtocol</span> <span class="p">{</span>
+
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">createModule</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NoticeViewController</span> <span class="p">{</span>
+
+        <span class="k">let</span> <span class="nv">view</span> <span class="o">=</span> <span class="n">mainstoryboard</span><span class="o">.</span><span class="nf">instantiateViewController</span><span class="p">(</span><span class="nv">withIdentifier</span><span class="p">:</span> <span class="s">"MyViewController"</span><span class="p">)</span> <span class="k">as!</span> <span class="kt">NoticeViewController</span>
+
+        <span class="k">let</span> <span class="nv">presenter</span><span class="p">:</span> <span class="kt">ViewToPresenterProtocol</span> <span class="o">&amp;</span> <span class="kt">InteractorToPresenterProtocol</span> <span class="o">=</span> <span class="kt">NoticePresenter</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">interactor</span><span class="p">:</span> <span class="kt">PresenterToInteractorProtocol</span> <span class="o">=</span> <span class="kt">NoticeInteractor</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">router</span><span class="p">:</span><span class="kt">PresenterToRouterProtocol</span> <span class="o">=</span> <span class="kt">NoticeRouter</span><span class="p">()</span>
+
+        <span class="n">view</span><span class="o">.</span><span class="n">presentor</span> <span class="o">=</span> <span class="n">presenter</span>
+        <span class="n">presenter</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">view</span>
+        <span class="n">presenter</span><span class="o">.</span><span class="n">router</span> <span class="o">=</span> <span class="n">router</span>
+        <span class="n">presenter</span><span class="o">.</span><span class="n">interactor</span> <span class="o">=</span> <span class="n">interactor</span>
+        <span class="n">interactor</span><span class="o">.</span><span class="n">presenter</span> <span class="o">=</span> <span class="n">presenter</span>
+
+        <span class="k">return</span> <span class="n">view</span>
+    <span class="p">}</span>
+
+    <span class="kd">static</span> <span class="k">var</span> <span class="nv">mainstoryboard</span><span class="p">:</span> <span class="kt">UIStoryboard</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kt">UIStoryboard</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span><span class="s">"Main"</span><span class="p">,</span><span class="nv">bundle</span><span class="p">:</span> <span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">pushToMovieScreen</span><span class="p">(</span><span class="n">navigationConroller</span> <span class="nv">navigationController</span><span class="p">:</span><span class="kt">UINavigationController</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">let</span> <span class="nv">movieModue</span> <span class="o">=</span> <span class="kt">MovieRouter</span><span class="o">.</span><span class="nf">createMovieModule</span><span class="p">()</span>
+        <span class="n">navigationController</span><span class="o">.</span><span class="nf">pushViewController</span><span class="p">(</span><span class="n">movieModue</span><span class="p">,</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+
+    <span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// Uber/RIBs - Router example
+</span>
+<span class="kd">protocol</span> <span class="kt">RootBuildable</span><span class="p">:</span> <span class="kt">Buildable</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">build</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LaunchRouting</span>
+<span class="p">}</span>
+
+<span class="kd">final</span> <span class="kd">class</span> <span class="kt">RootBuilder</span><span class="p">:</span> <span class="kt">Builder</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">RootDependency</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;,</span> <span class="kt">RootBuildable</span> <span class="p">{</span>
+
+    <span class="k">override</span> <span class="nf">init</span><span class="p">(</span><span class="nv">dependency</span><span class="p">:</span> <span class="kt">RootDependency</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">dependency</span><span class="p">:</span> <span class="n">dependency</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">build</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">LaunchRouting</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">viewController</span> <span class="o">=</span> <span class="kt">RootViewController</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">component</span> <span class="o">=</span> <span class="kt">RootComponent</span><span class="p">(</span><span class="nv">dependency</span><span class="p">:</span> <span class="n">dependency</span><span class="p">,</span> <span class="nv">rootViewController</span><span class="p">:</span> <span class="n">viewController</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">interactor</span> <span class="o">=</span> <span class="kt">RootInteractor</span><span class="p">(</span><span class="nv">presenter</span><span class="p">:</span> <span class="n">viewController</span><span class="p">)</span>
+
+        <span class="k">let</span> <span class="nv">loggedOutBuilder</span> <span class="o">=</span> <span class="kt">LoggedOutBuilder</span><span class="p">(</span><span class="nv">dependency</span><span class="p">:</span> <span class="n">component</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">loggedInBuilder</span> <span class="o">=</span> <span class="kt">LoggedInBuilder</span><span class="p">(</span><span class="nv">dependency</span><span class="p">:</span> <span class="n">component</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kt">RootRouter</span><span class="p">(</span><span class="nv">interactor</span><span class="p">:</span> <span class="n">interactor</span><span class="p">,</span>
+                          <span class="nv">viewController</span><span class="p">:</span> <span class="n">viewController</span><span class="p">,</span>
+                          <span class="nv">loggedOutBuilder</span><span class="p">:</span> <span class="n">loggedOutBuilder</span><span class="p">,</span>
+                          <span class="nv">loggedInBuilder</span><span class="p">:</span> <span class="n">loggedInBuilder</span><span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="kết-luận"><span style="color: #ff9900;">Kết luận</span></h3>
+
+<p>Builder Design Pattern tuy là pattern đơn giản và dễ thực hiện, nhưng trong Swift, nó vẫn hoàn toàn có thể là anti-pattern như tôi đã phân tích ở trên. Tôi vẫn luôn khuyến khích bạn đọc tiếp cận được với tư duy và ý tưởng của Pattern hơn là cách implement của nó.  Không nên áp dụng một pattern nào đó chỉ vì có người bảo rằng bạn nên làm vậy.</p>
+
+<p>Tóm lại, qua bài viết này, tôi cần bạn phải nắm được:</p>
+
+<ul>
+  <li>Builder Pattern là gì? Tư tưởng của nó là gì?</li>
+  <li>Thực hiện Builder Pattern như thế nào?</li>
+  <li>Telescoping initializer và trường hợp Builder pattern trở thành anti-pattern</li>
+  <li>Người ta đang sử dụng Builder Pattern như nào?</li>
+</ul>
+
+<p>Cám ơn các bạn đã dành thời gian đọc đến tận dòng này.</p>
+
+<p>Tham khảo:</p>
+
+<ul>
+  <li>Prodesign Pattern in Swift</li>
+  <li>Design Pattern by Tutorial</li>
+  <li>https://gist.github.com/jazzbpn/afd9f178fe4d8a212d83750e1b4a5389#file-viper-noticerouter-swift</li>
+  <li>https://github.com/uber/RIBs/wiki/iOS-Tutorial-2</li>
+  <li>https://github.com/Alamofire/Alamofire/blob/master/Documentation/AdvancedUsage.md</li>
+</ul>
+
+<script id="dsq-count-scr" src="//https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/count.js" async=""></script>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+:ET
