@@ -61,6 +61,7 @@ Tuy nhiên sự thật là Đường Tăng lại là 1 PO chuẩn mực, hãy nh
 <p>Nếu tinh ý, Bát Giới lại có thể dạy cho chúng ta bài học về Sprint. Mỗi khi nghe tin sư phụ của mình đã bị yêu quái ăn thịt, Bát Giới luôn là người hăng hái nhất trong công việc chia hành lý và bán ngựa. Nhiệm vụ của các đồ đệ là hộ tống sư phụ sang Tây Trúc, tức đó là Sprint Goal của họ, giờ thì sư phụ không còn, tức là không còn lý do gì để tiếp tục Sprint nữa, vậy cách tốt nhất là cancel Sprint rồi. (Ấy tôi viết vậy, nhưng đừng có nghĩ là lúc nào cũng ý
 kiến cancel sprint nhé, PO đấm cho không trượt phát nào thì tôi không chịu trách nhiệm).</p>
 <p>Sa Ngộ Tĩnh là thanh niên siêng năng chăm chỉ, không có cá tính nổi loạn như đại sư huynh, cũng không lười nhác như nhị sư huynh, chỉ cần được giao task là bắt tay vào làm, không kêu ca phàn nàn. Do đó, Sa Tăng là mẫu nhân viên được nhiều công ty yêu thích nhất.</p>
+3 ông: ông farm quái, ông xin cơm dắt ngựa, ông ôm hành lý, lại có thể kết hợp được với nhau để hoàn thành mục tiêu ban đầu.
 
 <div style="display: flex; align-items: center; justify-content: center;">
   <img class="wp-image-1879 aligncenter" src="/assets/images/post/3_do_de.jpeg" alt="" width="500" height="700" srcset="/assets/images/post/3_do_de.jpeg" sizes="(max-width: 500px) 100vw, 700px" />
