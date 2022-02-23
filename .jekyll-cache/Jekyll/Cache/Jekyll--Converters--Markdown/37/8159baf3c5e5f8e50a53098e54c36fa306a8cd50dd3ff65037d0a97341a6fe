@@ -1,0 +1,159 @@
+I" 8<p>Ở 6 phần trước, mình đã lần lượt trình bày cho các bạn bộ nguyên tắc S.O.L.I.D. Để tiếp nối chủ đề này, bài viết hôm nay sẽ giới thiệu một nguyên lý khác cũng khá phổ biến không kém S.O.L.I.D, và được áp dụng rất rất nhiều. Đó chính là nguyên lý <em><strong>Inversion Of Control</strong></em><!--more--></p>
+
+<h1 id="inversion-of-control"><em>Inversion of Control</em></h1>
+
+<p>Trước khi đi vào vấn đề chính, hãy thử trả lời câu hỏi sau:</p>
+
+<p>Bạn làm gì vào ngày cuối tuần?</p>
+
+<p>Đi cafe, chơi Dota, đọc sách, xem phim, picnic, quay tay,…</p>
+
+<p>Vậy còn ngày thường thì sao?</p>
+
+<p>Do hợp đồng lao động, bạn phải đi làm và có mặt lúc 8h, code, ăn trưa 1 tiếng, họp, báo cáo,….</p>
+
+<p>=&gt; Bạn có nhận thấy điểm khác biệt ? Chính là khả năng <em>điều khiển lịch hoạt động</em> trong ngày.</p>
+
+<p>Vào ngày cuối tuần, bạn được tự do lựa chọn, còn ngày thường thì sao? Bạn không còn tự quyết định, lịch hoạt động của bạn phụ thuộc vào chỉ thị của người khác – sếp của bạn. Có thể nói, lịch trình của bạn đã bị đảo ngược, từ tự điều khiển sang bị điều khiển.</p>
+
+<h1 id="inversion-of-control-là-gì"><em>Inversion of Control Là Gì?</em></h1>
+
+<p><strong>Inversion of Control (IoC)</strong> tạm dịch là đảo ngược điều khiển, vậy đảo ngược điều khiển của cái gì ?</p>
+
+<p>Đó chính là luồng (flow control) của ứng dụng.</p>
+
+<p>Thuật ngữ này lần đầu tiên được đề cập trong quyển <strong><em>Design Patterns: Elements of Reusable Object-Oriented Software,</em></strong> về sau được <strong>Martin Fowle</strong>r bàn luận trong blog của mình. Theo như <strong>Martin Fowler</strong>, IoC là kiến thức trừu tượng, ông lý giải bằng việc chỉ ra sự khác biệt giữa Framework và Library: Code của chúng ta sẽ gọi Library để thực thi, còn Framework thì thực thi và gọi ngược code của chúng ta.</p>
+
+<h1 id="ví-dụ-về-ioc"><em>Ví Dụ Về IoC:</em></h1>
+
+<p>Với framework <em>UIKit</em> của iOS, giả sử với bài toán, ấn một cái nút, và in ra dòng ‘Hello World’ :</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">button</span> <span class="o">=</span> <span class="kt">UIButton</span><span class="p">()</span>
+<span class="n">button</span><span class="o">.</span><span class="nf">addTarget</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">buttonTapped(_:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">touchUpInside</span><span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">buttonTapped</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Hello World"</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Có nhận xét gì về đoạn code trên ?</p>
+
+<p>Khi User tap vào nút, UIKit sẽ nắm bắt sự kiện này, xử lý, và sau đó sẽ in ra dòng chữ “Hello World” bằng việc gọi code của bạn thông qua hàm buttonTapped(_:).</p>
+
+<p><em>Đúng, code của bạn được gọi</em>. Đó chính là điểm khác biệt của framework: xây dựng xương sống, điều khiển luồng bên trong, và gọi code của bạn khi cần.</p>
+
+<p>Ví dụ khác, chắc chắn ai cũng đã và đang sử dụng UITableView, thế nhưng bạn có từng để ý đến cách mà chúng ta làm việc với nó không?</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">extension</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UITableViewDelegate</span><span class="p">,</span> <span class="kt">UITableViewDataSource</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">numberOfSections</span><span class="p">(</span><span class="k">in</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="mi">1</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">numberOfRowsInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">userList</span><span class="o">.</span><span class="n">count</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">heightForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kt">UITableViewAutomaticDimension</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">cellForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UITableViewCell</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">reuseCell</span><span class="p">:</span> <span class="kt">UITableViewCell</span> <span class="o">=</span> <span class="n">tableView</span><span class="o">.</span><span class="nf">dequeueReusableCell</span><span class="p">(</span><span class="nv">withIdentifier</span><span class="p">:</span> <span class="s">"reuseCell"</span><span class="p">)</span><span class="o">!</span>
+        <span class="k">return</span> <span class="n">reuseCell</span>
+    <span class="p">}</span>
+    
+    <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">didSelectRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"tapped"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Hãy quan sát theo hướng luồng điều khiển:</p>
+
+<p>UITableView khi khởi tạo, gọi đến numberOfSection, numberOfRow, khi chuẩn bị renderCell, sẽ gọi đến cellForRow, wilDisplayCell,… . Bạn có điều khiển gì về cách nó render, nó lấy dữ liệu như thế nào, nó điền dữ liệu đó vào đâu không?</p>
+
+<p>Rõ ràng là không, bạn đơn thuần chỉ định nghĩa các thông tin dựa trên UITableViewDataSource mà thôi. Việc gọi thế nào và khi nào được gọi, hoàn toàn nằm ở UIKit và UITableView &lt;=&gt; quyền điều khiển không phải là ở bạn.</p>
+
+<p>Chính từ ví dụ về Framework này, Martin Fowler đã kết luận hóm hỉnh: “Don’t call us, we will call you”. Kết luận trên còn được biết đến với tên gọi là Holloywood’s Principle (định luật Hollywood), vì vậy khi tìm hiểu các tài liệu tham khảo, bạn sẽ rất dễ thấy định luật trên xuất hiện. (Định luật Hollywood bắt nguồn từ việc tuyển diễn viên của các nhà làm phim Hollywood, được dùng ở đây vì là cách chơi chữ tiếng Anh).</p>
+
+<h1 id="ý-nghĩa-của-ioc"><em>Ý Nghĩa Của IoC?</em></h1>
+
+<p>Ý nghĩa lớn nhất của IoC là giảm kết dính (decoupling). Hãy thử nhìn lại 2 ví dụ trên, khi quyền điều khiển không còn nằm ở phía bạn, đồng nghĩa với việc bạn không cần phải quan tâm và không có trách nhiệm với những gì đang hoạt động bên trong. Qua đó, nếu lỗi hoặc sửa đổi phát sinh ở phía nào, bạn chỉ việc sửa đổi ở phía đó, không làm ảnh hưởng đến những chỗ khác.</p>
+
+<p>Đặc điểm và ý nghĩa này khiến cho nhiều người cho rằng, IoC là một trong những cách để thể hiện nguyên lý Dependency Inversion (phần 6).</p>
+
+<p style="text-align: center;">
+  <a href="http://206.189.90.168/wordpress/wp-content/uploads/2018/06/ioc-and-mapper-in-c-6-638.jpg"><img class="size-full wp-image-1750 aligncenter" src="http://206.189.90.168/wordpress/wp-content/uploads/2018/06/ioc-and-mapper-in-c-6-638.jpg" alt="" width="638" height="479" srcset="/wp-content/uploads/2018/06/ioc-and-mapper-in-c-6-638.jpg 638w, /wp-content/uploads/2018/06/ioc-and-mapper-in-c-6-638-300x225.jpg 300w" sizes="(max-width: 638px) 100vw, 638px" />(Nguồn ảnh: Google)</a>
+</p>
+
+<p>Theo mình, D.I.P tập trung vào vấn đề Dependency, nghĩa là giữa module cấp cao và cấp thấp với nhau, còn IoC thì tập trung vào vấn đề luồng dữ liệu (flow control), do đó không đúng khi nói IoC là một cách để đảm bảo D.I.P. Bản thân Martin Fowler cũng từng nói IoC  là nguyên lý tổng quát, ông thể hiện nó thông qua ServiceLocator cùng với Dependency Injection pattern, chứ không bàn luận về Dependency Inversion. Mặt khác, mình không tìm thấy tài liệu nào đủ sức thuyết phục để chứng minh hoặc phủ nhận mối liên hệ giữa D.I.P và IoC. Do đó, quan điểm cá nhân của mình không thừa nhận IoC là con của D.I.P như biểu đồ trên.</p>
+
+<h1 id="thực-hiện-ioc"><em>Thực Hiện IoC?</em></h1>
+
+<p>Để thực hiện IoC, chúng ta có thể sử dụng một số pattern sau:</p>
+
+<ul>
+  <li>Delegate</li>
+  <li>Template Method</li>
+  <li>Service Locator</li>
+  <li>Dependency Injection</li>
+  <li>…</li>
+</ul>
+
+<p>Delegate mình đã trình bày rồi, bạn có thể tìm đọc lại. Hiệu quả của delegate được thể hiện rõ nhất thông qua ví dụ về UITableViewDataSource &amp; UITableViewDelegate kể trên.</p>
+
+<p>Template Method, để tránh hiểu nhầm, mình sẽ trình bày ở series về Design Pattern sau này.</p>
+
+<p>Service Locator &amp; Dependency Injection là 2 design pattern phổ biến và đặc trưng để minh họa cho IoC, cụ thể mình sẽ trình bày trong bài viết tới.</p>
+
+<p>Chú ý, ở đây là Dependency Injection, chứ không phải là Inversion nhé, đừng nhầm lẫn.</p>
+
+<h1 id="kết-luận"><em>Kết Luận</em></h1>
+
+<p>Rút ra được gì qua bài viết?</p>
+
+<ul>
+  <li>IoC là gì?</li>
+  <li>Định luật HollyWood</li>
+  <li>IoC làm gì</li>
+  <li>IoC và D.I.P</li>
+</ul>
+
+<p>IoC trừu tượng và tổng quát, gây rối cho khá nhiều người khi tìm hiểu. Thế nhưng IoC lại cực kỳ phổ biến trong ngành lập trình, việc nắm bắt và vận dụng được nó luôn luôn cần thiết. Một số framework nổi tiếng áp dụng ý tưởng từ IoC: Spring (java), Unity (C#),….</p>
+
+<p>Mọi thứ đều có 2 mặt, IoC không phải là hoàn toàn tốt, áp dụng quá đà IoC có thể khiến project của bạn rối rắm, và khó nắm bắt được luồng hoạt động. IoC thường được tiếp cận thông qua tìm hiểu các pattern như: Dependency Injection, Service Locator,…  (đã được liệt kê ở trên, và sẽ được trình bày ở những bài viết sau).</p>
+
+<p>Cám ơn các bạn đã dành thời gian đọc bài !</p>
+
+<p>Tài liệu tham khảo:</p>
+
+<ul>
+  <li>https://martinfowler.com/articles/injection.html#ConstructorInjectionWithPicocontainer</li>
+  <li>https://martinfowler.com/bliki/InversionOfControl.html</li>
+  <li>https://en.wikipedia.org/wiki/Inversion_of_control</li>
+</ul>
+
+<p> </p>
+
+<script id="dsq-count-scr" src="//https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/count.js" async=""></script>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+:ET

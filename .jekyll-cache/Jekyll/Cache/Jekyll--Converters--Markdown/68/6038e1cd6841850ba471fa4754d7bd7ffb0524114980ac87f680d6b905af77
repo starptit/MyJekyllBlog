@@ -1,0 +1,9 @@
+I"�<p>Bài viết này là bài mở đầu cho series về iOS Pattern, series này sẽ bao quát một số vấn đề về kiến trúc (architecture), thiết kế source code (design pattern) nhằm cải thiện chất lượng code và tư duy hệ thống của các bạn.</p>
+
+<p>Nếu các bạn là junior developers mà tiến đến xa hơn Senior hoặc team lead, thì các bạn bắt buộc phải tìm hiểu những vấn đề mà mình nêu ra.</p>
+
+<p>Mình đọc một số topic trên mạng về series này rồi, họ viết khá hay và dễ hiểu, tuy nhiên chưa có case nào cụ thể cho lập trình iOS, hoặc các ví dụ họ đưa ra khá đơn giản, nhưng lại viết bằng ngôn ngữ abc nào đó, khiến cho các bạn newbie khá khó khăn trong việc vận hành cũng như áp dụng vào source iOS của mình. Cuối cùng mình đưa ra quyết định thực hiện lại nó theo phong cách iOS (Swift), một phần cũng để tự củng cố thêm kiến thức, cộng thêm hi vọng chỉ giáo từ các bạn khá hơn, vì phần này mình hoàn toàn tự đọc hiểu, không có thầy thợ hướng dẫn, sai sót hoặc nhầm lẫn là điều bình thường, mong được góp ý để hoàn thiện hơn.</p>
+
+<p>*** Chú ý: từ hệ thống mình dùng trong bài có ý nghĩa là source code, template, pattern, …</p>
+
+:ET

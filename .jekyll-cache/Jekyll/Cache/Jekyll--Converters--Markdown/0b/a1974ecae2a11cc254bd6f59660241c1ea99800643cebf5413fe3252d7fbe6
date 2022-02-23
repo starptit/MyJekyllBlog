@@ -1,0 +1,23 @@
+I"�<p>(If you are looking for English version, here you go: <a href="https://medium.com/@starptit/an-example-of-protocol-oriented-programming-in-swift-4c87804d4bd9#.c22prdn0v" target="_blank">POP English</a>)</p>
+
+<p>Trong phần 2, mình sẽ trình bày cách sử dụng Protocol-Oriented Programming kết hợp với Struct để giải quyết một số vấn đề của Class đã trình bày trước đó.</p>
+
+<p>–&gt; Mục tiêu của phần này sẽ là:</p>
+
+<ol>
+  <li>HOW CAN WE USE POP OVER OOP IN SWIFT?</li>
+</ol>
+
+<p style="padding-left:30px;">
+  a. Implicit Sharing Data:
+</p>
+
+<p style="padding-left:30px;">
+  Bản chất của Implicit Sharing Data chính là dựa trên cơ chế truyền tham chiếu của Class, do đó, chúng ta chỉ cần thay thế Class bằng Struct:
+</p>
+
+<p style="padding-left:30px;">
+  <img class=" size-full wp-image-384 aligncenter" src="https://devislifeblog.files.wordpress.com/2016/08/screen-shot-2016-08-24-at-3-07-21-pm.png" alt="Screen Shot 2016-08-24 at 3.07.21 PM.png" width="367" height="238" srcset="/wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-21-pm.png 367w, /wp-content/uploads/2016/08/screen-shot-2016-08-24-at-3-07-21-pm-300x195.png 300w" sizes="(max-width: 367px) 100vw, 367px" />
+</p>
+
+:ET

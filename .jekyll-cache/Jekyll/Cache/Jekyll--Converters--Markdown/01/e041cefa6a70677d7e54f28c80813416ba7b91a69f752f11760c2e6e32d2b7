@@ -1,0 +1,73 @@
+I"r<p>Bài viết về Prototype đã khép lại phần giới thiệu cho loại Pattern đầu tiên: Creational. Và để tiếp nối chuỗi bài viết về chủ đề này, tôi xin được tiếp tục giới thiệu loại Pattern thứ 2: Structural. Mở đầu cho Structural và cũng là chủ đề chính của bài viết lần này, là một loại Pattern quen thuộc khác, mà khi nhắc đến tên, chắc chắn ai dù làm Lập trình viên hay không, đều đã nghe qua: Adapter Design Pattern.</p>
+
+<h1 id="-structural-design-pattern-"><span style="color: #ff9900;"> Structural Design Pattern </span></h1>
+
+<p><strong><span style="color: #993300;">Structural (structure)</span></strong> dịch ra là cấu trúc, mà nếu nói đến cấu trúc, thì ta có thể ngầm hiểu rằng chúng ta phải tiến hành xây dựng, liên kết, kết hợp,… cái gì đó để tạo nên một chỉnh thể khác to lớn hơn. Tham chiếu vào lĩnh vực lập trình hướng đối tượng, với đối tượng (Object) là trọng tâm, kết hợp với việc đây là <strong><span style="color: #993300;">Design Pattern</span></strong>, ta tiên đoán được <strong><span style="color: #993300;">Structural Design Pattern</span></strong> sẽ là tập hợp những Pattern xoay quanh giải quyết bài toán xây dựng các mối quan hệ giữa các Class (vì nó là abstract của Object) với nhau, để cấu thành nên một cấu trúc hoàn chỉnh, hiệu quả. Thật vậy, nếu như Creational Design Pattern đến giải quyết các bài toán liên quan đến việc khởi tạo Object, thì Structural Design Pattern lại trọng tâm đến kết hợp Class để hình thành cấu trúc tốt hơn.</p>
+
+<h1 id="adapter-design-pattern-"><span style="color: #ff9900;">Adapter Design Pattern </span></h1>
+
+<h2 id="giới-thiệu-pattern"><span style="color: #3BC651;">Giới thiệu Pattern</span></h2>
+
+<p>Có lẽ đây là Pattern dễ giới thiệu và cũng dễ để mọi người hình dung ra nhất, vì đơn giản nó xuất hiện quá quá nhiều, không phải chỉ ở lĩnh vực phần mềm, mà là chính trong cuộc sống đời thường của chúng ta. Chính vì vậy, để giải thích và minh họa cho bài viết lần này, tôi sẽ cố gắng viết theo lối viết giản dị, không hoa mỹ, và gắn với cuộc sống nhất có thể.
+Nào, thử nghĩ xem, bạn bắt gặp cụm từ Adapter này ở những đâu rồi?</p>
+
+<p>Để sạc điện thoại, ta có dây sạc và một cục hình trụ cắm vào ổ điện, cục đó gọi là Adapter.</p>
+
+<p>Để xuất dữ liệu lên màn hình thông qua cổng HDMI ở máy Mac đời gần đây, ta cũng có một cục giúp ta làm việc đó, ta gọi đó là Adapter.</p>
+
+<p>Những thiết bị điện theo chuẩn Âu (3 chấu), ta muốn chuyển nó về dạng 2 chân để dùng ở Việt Nam, ta cần một thiết bị hỗ trợ việc chuyển đổi đó, ta gọi đó nó là Adapter.</p>
+
+<p>Để xài tai nghe jack 3.5mm trên iPhone đời mới, ta cần phải chuyển đổi nó sang cổng Li-ning, và thiết bị giúp ta làm việc đó, ta cũng gọi nó là Adapter.</p>
+
+<p>…</p>
+
+<p>Vậy Adapter bản chất là một unit gắn kết 2 bộ phận không tương thích, giúp chúng có khả năng giao tiếp và làm việc với nhau.</p>
+
+<p>Định nghĩa hơi xịn (trích từ sách):</p>
+
+<blockquote>
+  <p>Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.</p>
+</blockquote>
+
+<p>Tạm dịch:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Chuyển đổi giao tiếp của một class thành giao tiếp của class khác (class client).
+Adapter giúp các class vốn không hoạt động được với nhau vì lý do không tương thích giao tiếp, giờ có thể tương tác được với nhau.
+</code></pre></div></div>
+
+<p>Bình thường ở các blog trước, tôi không dịch từ Interface vì ý nghĩa trừu tượng của nó, nhưng trong trường hợp này, việc dịch nghĩa giúp ích cho việc tiếp thu. Có một số blog dịch từ Interface thành giao diện, cái này tôi cực không đồng ý, vì nó làm sai lệch hoàn toàn ý nghĩa và có thể khiến người đọc cảm thấy bối rối.</p>
+
+<h2 id="phân-tích-định-nghĩa"><span style="color: #3BC651;">Phân tích định nghĩa</span></h2>
+
+<p>Thế nào là Inteface (giao tiếp)?</p>
+
+<p>Giao tiếp là input / output dữ liệu của một vật thể nào đó. Ví dụ: tôi nói / viết (output) và nghe / đọc (input) tiếng Việt Nam, nên giao tiếp của tôi là tiếng Việt Nam. Bạn nói và nghe tiếng Anh, giao tiếp
+của bạn là tiếng Anh. Hiển nhiên, tôi không thể tương tác với bạn được, để làm được việc này, tôi cần phải có một công cụ nào đó nhận tiếng Việt và trả ra tiếng Anh cho bạn, hoặc ngược lại. Vì vậy, chúng ta có Goolge Translate, hay thông dịch viên, kĩ sư cầu nối,… đóng vai trò là các Adapter.</p>
+
+<p>Nghe vĩ mô quá nhỉ, hãy thử đơn giản hóa với ví dụ jack 3.5mm ở trên nhé. Với cái tai nghe, nó chỉ có thể trao đổi thông qua cổng kết nối 3.5mm, còn với cái iPhone, nó chỉ có thể tiếp nhận trao đổi qua cổng Lighting, không nhận cái khác. Trời không chịu đất, đất cũng chẳng chịu trời, vậy phải làm sao ạ?
+Ta có Adapter, với 2 đầu, 1 đầu là jack 3.5mm để kết nối với tai nghe, đầu còn lại là Lighting để nói chuyện được với iPhone (việc bên trong cái adapter đó xử lý cái gì, chuyển đổi tín hiệu ra sao thì ta không bàn ở đây, vì nó thuần kĩ thuật, hãy chú trọng đến mô hình - concept của nó để hiểu trước đã).</p>
+
+<script id="dsq-count-scr" src="//https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/count.js" async=""></script>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+:ET

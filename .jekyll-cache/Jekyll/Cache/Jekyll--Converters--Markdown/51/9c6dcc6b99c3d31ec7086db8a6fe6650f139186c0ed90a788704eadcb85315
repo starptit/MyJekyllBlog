@@ -1,0 +1,98 @@
+I"�.<p>Bài viết đầu tiên về chủ đề non-tech, do career path của tôi giờ đã chuyển sang hướng mới, nên nhân tiện một buổi tìm kiếm tài liệu và chuẩn bị cho buổi training về Agile/Scrum cho công ty, tôi cũng note lại vài dòng vào cái blog cũ kỹ này, hy vọng nếu bạn có đọc thì ủng hộ swiftyvn tiếp nha.</p>
+
+<p>Chủ đề lần này tôi sẽ bàn luận một số điểm thú vị tôi nhận thấy giữa Scrum Team và Team Tây Du Ký - 2 team nghe rất khác nhưng lại có nhiều điểm chung. Có một sự thật rằng người Trung Quốc họ khá là thần tượng Tây Du Ký, họ coi đây là dream team mà nhiều công ty mong muốn xây dựng đội ngũ theo mô hình này (quan điểm này được Jack Ma nhấn mạnh cho Alibaba, ngoài ra còn 10cent, Baidu,…). Vậy thì ta có thể thấy điều gì đặc biệt từ team Tây Du, mà khiến cho người Trung họ mê mẩn đến vậy?</p>
+
+<h1 id="-scrum-team-và-team-tây-du-"><span style="color: #ff9900;"> Scrum Team và Team Tây Du </span></h1>
+
+<p>Theo Scrum Guide, bản cũ gọi team phát triển trong mô hình Scrum là Development team, hiện tại gọi là Developers, tuy nhiên tôi thích cách gọi Dev team kiểu cũ hơn nên tôi sẽ dùng thuật ngữ này trong toàn bộ bài viết của mình, về bản chất bạn có thể hiểu nó là một. Đặc điểm của Dev team trong mô hình Scrum được quy định rất rõ trong Scrum Guide, đó là một team tự tổ chức (self-organized / self-managing) và liên chức năng (cross-functional). Team tự tổ chức thì đơn giản rồi, là một team tự quyết định mình làm gì, khi nào, và làm thế nào.</p>
+
+<p>Vậy team liên chức năng là gì?
+Đó không phải là một team mà ai trong team cũng có thể một mình làm nhiều việc được, định nghĩa của nó là một team mà mọi người trong team cùng với nhau có đủ khả năng và kiến thức để hoàn thành các công việc cần thiết. Tức là trong team tôi không cần 2 ông dev fullstack vừa code backend, vừa code frontend được, mà tôi chỉ cần 1 ông backend và 1 ông frontend là cũng có thể form với nhau được rồi.</p>
+
+<p>Team Tây Du thì sao?
+Đó có phải là team tự tổ chức không? Họ tự quyết định lộ trình của mình, miễn là điểm đến là đất Phật và thỉnh chân kinh, họ tự quyết định làm gì trong hành trình của mình, miễn không vi phạm quy tắc đã đề ra từ trước (không phạm sắc giới). Vậy team Tây Du là team tự tổ chức.
+Đó có phải là team liên chức năng không?
+Thông thường, mọi spotlight sẽ đổ dồn về Tôn Ngộ Không - thần thông quảng đại, siêu nhân cân team. Tuy nhiên có ai chú ý đến các nhân vật còn lại điển hình là Bát Giới và Sa Tăng không? Bát Giới tham ăn tục uống, nên suốt ngày nhận nhiệm vụ đi xin cơm, an ủi, giảng hòa các thành viên, làm hậu cần cho cả team. Còn thanh niên lầm lì Sa Tăng thì quanh năm quang gồng ghánh đống hành lý vượt ngàn dặm cũng đâu có than ai? Rõ ràng, dù ít hay nhiều thì cũng không thể phủ nhận sự đóng góp của Bát Giới, Sa Tăng, hay Bạch Mã Long trong hành trình thỉnh kinh của team được.</p>
+
+<p>Thực tế hiện tại các doanh nghiệp đều mong muốn tuyển dụng các Tôn Ngộ Không về team của mình, với kì vọng là 3 ông Tôn Ngộ Không sẽ phò tá được Đường Tăng đến Tây Trúc. Thực tế có phò tá được hay không thì tôi không chắc, vì chưa bản Tây Du Ký nào viết về nó, tuy nhiên, chỉ 1 anh Tôn thôi cũng đã 3 lần bị đuổi khỏi team rồi, vậy với 3 thánh Tôn thì sẽ phức tạp thế nào đây?
+Nên nhớ, ai cũng đòi làm Tôn Ngộ Không thì ai sẽ đi xin cơm, ai sẽ xách hành lý, ai sẽ để sư phụ cưỡi đây?</p>
+
+<p>Lý do team Tây Du được coi là dream team là vì họ không phải là tập hợp những người kiệt xuất nhất, trái lại, hình tượng của họ được xây dựng dựa trên đầy đủ các đức tính tốt và xấu, tham-sân-si của con người. Ấy vậy mà họ vẫn kết hợp được với nhau thành một đội ngũ hoàn chỉnh và thành công hoàn thành nhiệm vụ thỉnh chân kinh.</p>
+
+<h1 id="-học-được-gì-từ-team-tây-du-"><span style="color: #ff9900;"> Học được gì từ team Tây Du </span></h1>
+
+<h2 id="đường-tăng"><span style="color: #3BC651;">Đường Tăng</span></h2>
+
+<p>Nhiệm vụ của Đường Tăng là lãnh đạo và điều hành cả team hoàn thành đại nghiệp truyền kinh, ngoài ra còn phải uốn nắn, giáo dục các đồ đệ quay về chính đạo. Trong Scrum Team có một vị trí cũng tương đương với ngài Tam Tạng, đó chính là Product Owner. PO thường được coi là thuyền trưởng, là người lèo lái cả team thống nhất để đi theo đúng business từ vision của mình.</p>
+
+<p>============</p>
+
+<p><strong><span style="color: #993300;">Structural (structure)</span></strong> dịch ra là cấu trúc, mà nếu nói đến cấu trúc, thì ta có thể ngầm hiểu rằng chúng ta phải tiến hành xây dựng, liên kết, kết hợp,… cái gì đó để tạo nên một chỉnh thể khác to lớn hơn. Tham chiếu vào lĩnh vực lập trình hướng đối tượng, với đối tượng (Object) là trọng tâm, kết hợp với việc đây là <strong><span style="color: #993300;">Design Pattern</span></strong>, ta tiên đoán được <strong><span style="color: #993300;">Structural Design Pattern</span></strong> sẽ là tập hợp những Pattern xoay quanh giải quyết bài toán xây dựng các mối quan hệ giữa các Class (vì nó là abstract của Object) với nhau, để cấu thành nên một cấu trúc hoàn chỉnh, hiệu quả. Thật vậy, nếu như Creational Design Pattern đến giải quyết các bài toán liên quan đến việc khởi tạo Object, thì Structural Design Pattern lại trọng tâm đến kết hợp Class để hình thành cấu trúc tốt hơn.</p>
+
+<h1 id="adapter-design-pattern-"><span style="color: #ff9900;">Adapter Design Pattern </span></h1>
+
+<h2 id="giới-thiệu-pattern"><span style="color: #3BC651;">Giới thiệu Pattern</span></h2>
+
+<p>Có lẽ đây là Pattern dễ giới thiệu và cũng dễ để mọi người hình dung ra nhất, vì đơn giản nó xuất hiện quá quá nhiều, không phải chỉ ở lĩnh vực phần mềm, mà là chính trong cuộc sống đời thường của chúng ta. Chính vì vậy, để giải thích và minh họa cho bài viết lần này, tôi sẽ cố gắng viết theo lối viết giản dị, không hoa mỹ, và gắn với cuộc sống nhất có thể.
+Nào, thử nghĩ xem, bạn bắt gặp cụm từ Adapter này ở những đâu rồi?</p>
+
+<p>Để sạc điện thoại, ta có dây sạc và một cục hình trụ cắm vào ổ điện, cục đó gọi là Adapter.</p>
+
+<p>Để xuất dữ liệu lên màn hình thông qua cổng HDMI ở máy Mac đời gần đây, ta cũng có một cục giúp ta làm việc đó, ta gọi đó là Adapter.</p>
+
+<p>Những thiết bị điện theo chuẩn Âu (3 chấu), ta muốn chuyển nó về dạng 2 chân để dùng ở Việt Nam, ta cần một thiết bị hỗ trợ việc chuyển đổi đó, ta gọi đó nó là Adapter.</p>
+
+<p>Để xài tai nghe jack 3.5mm trên iPhone đời mới, ta cần phải chuyển đổi nó sang cổng Li-ning, và thiết bị giúp ta làm việc đó, ta cũng gọi nó là Adapter.</p>
+
+<p>…</p>
+
+<p>Vậy Adapter bản chất là một unit gắn kết 2 bộ phận không tương thích, giúp chúng có khả năng giao tiếp và làm việc với nhau.</p>
+
+<p>Định nghĩa hơi xịn (trích từ sách):</p>
+
+<blockquote>
+  <p>Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.</p>
+</blockquote>
+
+<p>Tạm dịch:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Chuyển đổi giao tiếp của một class thành giao tiếp của class khác (class client).
+Adapter giúp các class vốn không hoạt động được với nhau vì lý do không tương thích giao tiếp, giờ có thể tương tác được với nhau.
+</code></pre></div></div>
+
+<p>Bình thường ở các blog trước, tôi không dịch từ Interface vì ý nghĩa trừu tượng của nó, nhưng trong trường hợp này, việc dịch nghĩa giúp ích cho việc tiếp thu. Có một số blog dịch từ Interface thành giao diện, cái này tôi cực không đồng ý, vì nó làm sai lệch hoàn toàn ý nghĩa và có thể khiến người đọc cảm thấy bối rối.</p>
+
+<h2 id="phân-tích-định-nghĩa"><span style="color: #3BC651;">Phân tích định nghĩa</span></h2>
+
+<p>Thế nào là Inteface (giao tiếp)?</p>
+
+<p>Giao tiếp là input / output dữ liệu của một vật thể nào đó. Ví dụ: tôi nói / viết (output) và nghe / đọc (input) tiếng Việt Nam, nên giao tiếp của tôi là tiếng Việt Nam. Bạn nói và nghe tiếng Anh, giao tiếp
+của bạn là tiếng Anh. Hiển nhiên, tôi không thể tương tác với bạn được, để làm được việc này, tôi cần phải có một công cụ nào đó nhận tiếng Việt và trả ra tiếng Anh cho bạn, hoặc ngược lại. Vì vậy, chúng ta có Goolge Translate, hay thông dịch viên, kĩ sư cầu nối,… đóng vai trò là các Adapter.</p>
+
+<p>Nghe vĩ mô quá nhỉ, hãy thử đơn giản hóa với ví dụ jack 3.5mm ở trên nhé. Với cái tai nghe, nó chỉ có thể trao đổi thông qua cổng kết nối 3.5mm, còn với cái iPhone, nó chỉ có thể tiếp nhận trao đổi qua cổng Lighting, không nhận cái khác. Trời không chịu đất, đất cũng chẳng chịu trời, vậy phải làm sao ạ?
+Ta có Adapter, với 2 đầu, 1 đầu là jack 3.5mm để kết nối với tai nghe, đầu còn lại là Lighting để nói chuyện được với iPhone (việc bên trong cái adapter đó xử lý cái gì, chuyển đổi tín hiệu ra sao thì ta không bàn ở đây, vì nó thuần kĩ thuật, hãy chú trọng đến mô hình - concept của nó để hiểu trước đã).</p>
+
+<script id="dsq-count-scr" src="//https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/count.js" async=""></script>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://https-vigorous-sinoussi-c377b6-netlify-com.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+:ET
