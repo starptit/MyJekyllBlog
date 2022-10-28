@@ -49,7 +49,7 @@ Rõ ràng, nghĩ nhiều so với việc xắn tay vào làm, thì việc xắn 
 
 Vậy suy nghĩ nhiều là xấu?
 
-Không phải vậy, về sau khi challenge phổ biến, thì người chiến thắng lại là các kỹ sư.
+Không phải vậy, về sau khi challenge phổ biến, thì người chiến thắng lại là các **kỹ sư.**
 
 # <span style="color: #ff9900;">Tôi thử challenge</span>
 
@@ -71,7 +71,7 @@ Và team chúng tôi đã xuất sắc giành giải nhất.
 
 Chính xác thì team chúng tôi về gần bét (3/4) đội tham dự.
 
-Còn team giành giải nhất, tréo nghoeo thay, lại là team của <span style="color:#FF6464">phòng Marketing (nơi mà chẳng có một ai là kỹ sư cả).</span>
+Còn team giành giải nhất, tréo ngoe thay, lại là team của <span style="color:#FF6464">phòng Marketing (nơi mà chẳng có một ai là kỹ sư cả).</span>
 
 Giải pháp của họ là gì?
 Giống hệt những đứa trẻ kể trên, họ chỉ thử nghiệm, học hỏi và thử nghiệm tiếp, không có gì đặc biệt ở đây hết.
