@@ -19,7 +19,7 @@ Tôi thì không phải loại nào trong 2 loại trên, bản thân tôi cũng
 
 # <span style="color: #ff9900;">Mọi phần mềm sinh ra đều là để giải quyết vấn đề nào đó?</span>
 
-Giá trị cốt lõi của việc áp dụng các đột phá công nghệ, là nằm ở việc công nghệ đó đem lại lợi ích gì cho kinh doanh sản xuất, cho đời sống xã hội; hay nói cách khác, công nghệ đó giải quyết được vấn đề gì. Chẳng phải ngẫu nhiên mà người ta thường dùng cụm từ "giải pháp công nghệ", tức là bản thân nó là giải pháp (solution) cho vấn đề gì.
+<p>Giá trị cốt lõi của việc áp dụng các đột phá công nghệ, là nằm ở việc công nghệ đó đem lại lợi ích gì cho kinh doanh sản xuất, cho đời sống xã hội; cụ thể hơn, công nghệ đó giải quyết được vấn đề gì. Chẳng phải ngẫu nhiên mà người ta thường dùng cụm từ "giải pháp công nghệ", tức là bản thân nó là giải pháp (solution) cho vấn đề gì.
 
 Hãy thử quan sát một số ví dụ sau:
 
@@ -28,6 +28,13 @@ Hãy thử quan sát một số ví dụ sau:
 - Để giải quyết vấn đề kết nối các ngân hàng, chúng ta có OpenBanking.
   ...
 
+Như vậy thì liên quan gì đến việc clean code?
+Dựa trên mục đich cuối cùng của ngành phần mềm, ta buộc thừa nhận rằng việc phần mềm chạy được, giải quyết đúng vấn đề, hay "gãi đúng chỗ ngứa" là điều quan trọng hơn thẩy. Khi đem lên bàn cân, người ta dễ dàng lựa chọn một phần mềm chạy được mà code xấu, hơn là một phần mềm code đẹp nhưng lại chạy chẳng ra hồn.
+Giả sử bạn muốn xem giờ, tôi cho bạn 2 lựa chọn: 1 cái apple watch hết pin, và 1 cái casino 300k vẫn chạy đúng giờ, thì bạn sẽ lựa chọn cái nào?
+
+Điều này nhìn có vẻ ít quan trọng, nhưng thực tế thì ngược lại. Nó ảnh hưởng nhiều đến tư duy của một lập trình viên. Bạn đã từng bao giờ gặp
+
+</p>
 # <span style="color: #ff9900;">Code sinh ra để người đọc</span>
 
 # <span style="color: #ff9900;">Công nghệ thay đổi và code cũng vậy </span>
