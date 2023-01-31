@@ -19,6 +19,15 @@ Tôi thì không phải loại nào trong 2 loại trên, bản thân tôi cũng
 
 # <span style="color: #ff9900;">Mọi phần mềm sinh ra đều là để giải quyết vấn đề nào đó?</span>
 
+Giá trị cốt lõi của việc áp dụng các đột phá công nghệ, là nằm ở việc công nghệ đó đem lại lợi ích gì cho kinh doanh sản xuất, cho đời sống xã hội; hay nói cách khác, công nghệ đó giải quyết được vấn đề gì. Chẳng phải ngẫu nhiên mà người ta thường dùng cụm từ "giải pháp công nghệ", tức là bản thân nó là giải pháp (solution) cho vấn đề gì.
+
+Hãy thử quan sát một số ví dụ sau:
+
+- Để giải quyết các vấn đề về liên lạc, chúng ta xây dựng ra các ứng dụng nhắn tin tức thì (Instant Message) như Yahoo, Skype, Messenger,... Rồi sau đó để giải quyết vấn đề liên lạc phục vụ riêng cho doanh nghiệp, chúng ta lại có Slack, MS Teams,... Hay để nhắn tin private, chúng ta lại có các phần mềm như Telegram, Snapchat,...
+- Để giải quyết việc quản lý Kế Toán doanh nghiệp, chúng ta có Misa.
+- Để giải quyết vấn đề kết nối các ngân hàng, chúng ta có OpenBanking.
+  ...
+
 # <span style="color: #ff9900;">Code sinh ra để người đọc</span>
 
 # <span style="color: #ff9900;">Công nghệ thay đổi và code cũng vậy </span>
