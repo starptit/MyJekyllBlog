@@ -2,6 +2,7 @@
 title: "Năm Mèo Nói Chuyện Clean Code: Mèo Đen Hay Mèo Trắng"
 categories: coding
 layout: article
+tags: [coding, mindset]
 ---
 
 > <span style="color:#993300">Mèo đen hay mèo trắng không quan trọng, miễn là nó bắt được chuột (Thuyết con mèo - Đặng Tiểu Bình)</span>
