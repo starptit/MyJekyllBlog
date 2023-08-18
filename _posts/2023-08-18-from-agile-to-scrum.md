@@ -184,5 +184,4 @@ Tính chất trao quyền này chính là yếu tố cuối cùng cần ghi nh�
 - 12 nguyên tắc của Agile
 - Bản chất tạo nên Agile
 
-Nếu bạn cảm thấy thích series này, tôi rất welcome nếu bạn có thể comment ở phía dưới bài viết, để chúng ta có thể cùng thảo luận nhằm hiểu sâu hơn về chủ đề này. Ngoài ra, tôi sẽ bàn luận sâu hơn về Scrum ở phần sau nếu như bài viết này đạt nhiều hơn 50 người đọc hoặc 1 điều kiện X (X bí mật).
 {% include disqus_comments.html %}
