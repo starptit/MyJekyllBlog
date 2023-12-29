@@ -12,8 +12,8 @@ tags: [product, mindset, stories, biases]
 </div>
 <span style="color:#993300">Thảy nghệ thuật đều vô dụng - Bức hoạ Dorian Gray (Oscar Wilde)</span> -->
 
-
 # <span style="color: #ff9900;">Chuyện #1: Mặc giáp cho máy bay</span>
+
 <p>Trong Thế Chiến II, thời điểm chiến sự giữa các phe đang diễn ra hết sức khốc liệt, các tướng lĩnh phe Đồng Minh nhận thấy tình trạng có rất nhiều máy bay chiến đấu và máy bay ném bom trở về từ chiến trường Đức với chi chít lỗ đạn. Họ hiểu rằng cần phải tìm cách gia cố thêm nhằm tăng số lượng máy bay sống sót trở về căn cứ. Tuy nhiên, không thể gia cố toàn bộ bộ phận được, bởi vì:
 <ul>
   <li> Chi phí sẽ rất lớn </li>
@@ -32,11 +32,11 @@ Bài toán trên được giao cho Abraham Wald (một nhà toán học gốc Do
   <img class="wp-image-1879 aligncenter" src="/assets/images/post/sv_bias/aircraft.png" alt="" width="500" height="375" srcset="/assets/images/post/sv_bias/aircraft.png" sizes="(max-width: 600px) 100vw, 320px" />
 </div>
 
-Quyết định dường như đơn giản, theo các quan chức quốc phòng cấp cao: áp dụng lớp giáp vào thân máy. Ngoài cánh, thân máy bị hỏng nặng hơn bất kỳ phần nào khác của máy bay, và khác với cánh, nó chứa thiết bị tích hợp cũng như phi hành đoàn. Thêm sự bảo vệ cho phần buồng lái bị tấn công mạnh dường như chỉ có lý thuyết.
+Quyết định dường như đơn giản, theo các quan chức quốc phòng cấp cao: áp dụng lớp giáp vào những vùng thương tổn nặng nề nhất (trúng nhiều đạn nhất) như là thân máy, cánh máy bay.
 
-Tuy nhiên, đó là quyết định sai lầm, và Wald biết tại sao. Ông giải thích với Bộ Quốc phòng rằng điều đúng đắn cần làm là áp dụng lớp giáp bổ sung vào những nơi không có lỗ đạn, thay vì áp dụng ở những nơi ghi nhận có số lượng lỗ đạn cao. Tại sao? Bởi vì dữ liệu đã được biên soạn bởi các máy bay còn sống sót, và do đó đại diện cho phía ngược của bộ dữ liệu, liên quan đến vấn đề hiện tại.
+Tuy nhiên, Wald cho rằng nhận định đó là sai lầm. Ông giải thích với Bộ Quốc phòng rằng điều đúng đắn cần làm là bổ sung lớp giáp vào những nơi không có lỗ đạn, thay vì áp dụng ở những nơi ghi nhận số lượng lỗ đạn cao. Tại sao?
 
-Wald suy luận rằng dữ liệu về máy bay được thu thập từ những máy bay đã thành công trở về căn cứ để được đếm cho cuộc nghiên cứu. Điều đó có nghĩa là chúng có thể chịu được lực bắn mạnh ở những nơi như cánh và thân máy và vẫn có thể bay, như dữ liệu dường như đã chỉ ra. Tuy nhiên, rất ít máy bay trở về với hỏng hóc động cơ - không phải vì có rất ít máy bay bị bắn vào đó... mà vì hầu hết các máy bay bị tấn công động cơ đơn giản không bao giờ trở lại để được đếm.
+Wald suy luận rằng dữ liệu về máy bay được thu thập từ những máy bay đã thành công trở về căn cứ để được thống kê cho cuộc nghiên cứu. Điều đó có nghĩa là chúng có thể chịu được lực bắn mạnh ở những nơi như cánh và thân máy và vẫn có thể bay. Tuy nhiên, rất ít máy bay trở về với hỏng hóc động cơ - không phải vì có rất ít máy bay bị bắn vào đó... mà vì hầu hết các máy bay bị tấn công động cơ đơn giản không bao giờ trở lại để được quan sát cả.
 
 <div style="display: flex; align-items: center; justify-content: center;">
   <img class="wp-image-1879 aligncenter" src="/assets/images/post/sv_bias/statistic.png" alt="" width="500" height="375" srcset="/assets/images/post/sv_bias/statistic.png" sizes="(max-width: 600px) 100vw, 320px" />
@@ -44,10 +44,10 @@ Wald suy luận rằng dữ liệu về máy bay được thu thập từ nhữn
 
 Các khuyến nghị của Wald đã được áp dụng nhanh chóng, góp phần cứu sống hàng trăm phi công trong cuộc chiến, và nguyên lý này vẫn tiếp tục được áp dụng bởi Không Quân Mỹ trong hàng chục năm sau.
 
-
 # <span style="color: #ff9900;">Chuyện #2: Dòng sông thử thách</span>
 
 Trong chuyến company trip cùng Amela tháng 09 vừa rồi, tôi và nhóm bạn có tham gia trò `Dòng sông thử thách`. Đại khái là trò chơi cũng thuộc dạng chill chill, một nhóm ~ 4 người leo lên con thuyền dạng tròn như thuyền thúng vậy. Sau đó, thuyền được thả trôi theo dòng nước theo 1 hải trình khép kín, người chơi chỉ việc enjoy cái moment này thôi. Tuy nhiên, trò này còn có đặc điểm là:
+
 1. Nước rất xiết nên bắn tung tóe mỗi khi đẩy thuyền đi.
 2. Thuyền tròn, vì vậy sẽ bị xoay đủ vòng, ngoài ra còn va đập vào 2 bên thành, khiến nước bắn càng dữ hơn.
 
@@ -70,14 +70,17 @@ Sự thật là vị trí khô ráo nhất mà tôi chọn, không phải là v�
 Xét lại, quả thật tôi đã đi theo lối mòn thống kê như những tướng linh của phe Đồng Minh khi quan sát máy bay trúng đạn vậy, trong khi góc nhìn đúng phải giống như Wald. Tức là phải quan sát cả quan điểm vì sao tôi lại có mẫu quan sát đó.
 
 # <span style="color: #ff9900;">Thiên kiến kẻ sống sót</span>
+
 Hiện tượng tư duy trên gọi là thiên kiến kẻ sống sót (survivorship bias) - hiểu nôm na là chúng ta hay nhìn vào những người hay vật đã vượt qua một quy trình chọn lọc nào đó, và tin rằng những gì họ làm có tác dụng giúp họ vượt qua quy trình chọn lọc đó.
 
-Một ví dụ cực kỳ phổ biến của thiên kiến này đó là ví dụ về các tỷ phú bỏ học. Khi nhìn vào những Steve Jobs, Mark Zuckerberg, Bill Gates,...  ta dễ lầm tưởng rằng việc bỏ học rồi khởi nghiệp là dễ trở thành tỉ phú. Thế nhưng sự thật số lượng người bỏ học, khởi nghiệp và thất bại thì lại không nổi tiếng, nên ta không biết đến nó, và quan trọng là số lượng tập này mới chiếm đại đa số.
+Một ví dụ cực kỳ phổ biến của thiên kiến này đó là ví dụ về các tỷ phú bỏ học. Khi nhìn vào những Steve Jobs, Mark Zuckerberg, Bill Gates,... ta dễ lầm tưởng rằng việc bỏ học rồi khởi nghiệp là dễ trở thành tỉ phú. Thế nhưng sự thật số lượng người bỏ học, khởi nghiệp và thất bại thì lại không nổi tiếng, nên ta không biết đến nó, và quan trọng là số lượng tập này mới chiếm đại đa số.
+
 <div style="display: flex; align-items: center; justify-content: center;">
   <img class="wp-image-1879 aligncenter" src="/assets/images/post/sv_bias/leave-school-they-said.png" alt="" width="320" height="560" srcset="/assets/images/post/sv_bias/leave-school-they-said.png" sizes="(max-width: 600px) 100vw, 320px" />
 </div>
 
 Ví dụ khác, bạn đã bao giờ nghe đến danh sách những quyền sách mà tỷ phú hay đọc kiểu "7 thói quen bạn trẻ thành thụ", "Hút cần cùng Tonybuoitoi", "Tôi tài giỏi, bạn đ' thế", ... chưa? Nhiều người nghe xong sẽ lầm tưởng rằng họ chỉ cần đọc theo những đầu sách đó của người thành đạt, thì họ cũng sẽ thành đạt, nhưng không hề biết hàng tá người khác cũng đọc sách / thói quen tương tự mà không hề thành đạt. Tôi thật sự cạn lời khi đọc tin ông bố chuẩn bị tủ sách này cho con 5 tuổi.
+
 <div style="display: flex; align-items: center; justify-content: center;">
   <img class="wp-image-1879 aligncenter" src="/assets/images/post/sv_bias/list_sach.png" alt="" width="400" height="800" srcset="/assets/images/post/sv_bias/list_sach.png" sizes="(max-width: 600px) 100vw, 320px" />
 </div>
@@ -87,7 +90,6 @@ Thiên kiến này được tận dụng cực tốt bởi các nhà marketing �
 <span style="color:#ee0033">Vậy, làm thế nào để tránh thiên kiến kẻ sống sót?</span>
 
 Nguyên tắc đơn giản nhất, đừng vội tin những gì bạn đang thấy. Cụ thể, cần phải suy ngẫm những trường hợp khác thì sao?
-
 
 > Warren Buffett thành công vì ông bắt đầu đầu tư chứng khoán từ năm 11 tuổi, thế nên chúng ta hãy đầu tư sớm.
 
